@@ -1,0 +1,149 @@
+/* Research studio. Shared geometry; dark, snow and glass keep their own palettes. */
+:root[data-deeppartner-host=true]:not(.dark):not(.theme-glass):not(.theme-snow){
+ --background:#fbfcfe;--foreground:#20314d;--card:#ffffff;--card-foreground:#20314d;
+ --secondary:#eef2f8;--muted:#f1f4f9;--muted-foreground:#586982;
+ --primary:#315ee9;--primary-foreground:#ffffff;--accent:#e8eefc;--accent-foreground:#234ec7;
+ --border:#dce3ee;--input:#d2dce9;--ring:#315ee9;
+}
+.dp-workspace{font-size:14px;--workspace-rail:var(--secondary);--workspace-selected:var(--accent)}
+.dp-workspace-header{height:58px;min-height:58px;padding:0 22px;gap:20px;background:var(--card)}
+.dp-workspace-location{gap:12px;font-size:13px}
+.dp-workspace-location>span{max-width:320px}
+.dp-workspace-location>strong{font-size:15px;font-weight:650;letter-spacing:-.02em}
+.dp-workspace-actions>button{min-height:36px;font-size:13px;padding:7px 11px;border-radius:8px}
+.dp-workspace-actions>button:last-child{background:var(--primary);color:var(--primary-foreground)}
+.dp-workspace aside>div:first-child:has(.dp-product-wordmark){height:58px;padding-inline:18px}
+.dp-sidebar-home{padding:6px 14px 0}
+.dp-project-switch{margin-bottom:18px;gap:7px}
+.dp-project-switch .dp-select{min-height:38px;padding:8px 10px;font-size:12px;border-radius:8px}
+.dp-project-switch>button{height:34px;width:30px}
+.dp-nav-row{min-height:38px;gap:11px;padding:9px 11px;font-size:13px;border-radius:8px}
+.dp-nav-row>svg{stroke-width:1.7;width:17px;height:17px}
+.dp-nav-row[aria-current=page]{font-weight:650}
+.dp-nav-row[aria-current=page]:before{left:0;top:10px;bottom:10px;width:3px}
+.dp-navigation-group{margin-top:22px}
+.dp-navigation-group h2{font-size:11px;font-weight:550;padding:0 11px 9px;opacity:1}
+.dp-navigation-group .dp-nav-row+.dp-nav-row{margin-top:3px}
+.dp-sidebar-conversations{padding:20px 14px 8px}
+.dp-recent-heading{font-size:11px;padding:12px 7px 9px}
+.dp-sidebar-conversations button{font-size:12px;line-height:1.6}
+.dp-sidebar-conversations [class*="py-2"]{padding-block:7px}
+.dp-sidebar-footer{padding:11px 14px}
+.dp-sidebar-account>.dp-nav-row{width:auto;flex:1}
+.dp-sidebar-account>span{font-size:11px;flex-shrink:0;max-width:90px}
+.dp-sidebar-home.is-collapsed .dp-nav-row{min-height:38px}
+.dp-workspace .dp-content{min-height:0}
+.dp-workspace .dp-artifacts .reading-toolbar{height:auto;min-height:50px;padding:8px 18px;gap:10px}
+.dp-workspace .dp-artifacts .reading-toolbar h1{font-size:15px;font-weight:650}
+.dp-workspace .dp-artifacts .reading-toolbar>button{font-size:12px;padding:6px 9px;min-height:32px}
+.dp-workspace .dp-artifacts .reading-toolbar .icon-button{min-width:32px;min-height:32px}
+.dp-workspace .embedded-workbench-toolbar:has(nav[hidden]){min-height:34px;height:34px;padding-inline:16px}
+.dp-workspace .embedded-workbench-toolbar .job-indicator{font-size:12px;min-height:30px}
+.dp-workspace .dp-artifacts .file-search{padding:9px 11px;margin:14px 18px 8px;border-radius:8px}
+.dp-workspace .dp-artifacts .file-browser .file-table td{font-size:13px;padding:12px 9px}
+.dp-workspace .dp-artifacts .file-browser .file-table th{font-size:11px;padding:10px 9px}
+
+/* The native composer centers its input. Its product toolbar must share that width. */
+.dp-composer-policy{min-width:0;width:100%}
+.dp-writing-toolbar{width:min(100% - 32px,720px);margin:0 auto 12px;padding:0;gap:8px}
+.dp-writing-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.dp-writing-controls>svg{color:var(--primary);flex-shrink:0}
+.dp-writing-controls .dp-select{width:auto;min-width:108px;max-width:220px;min-height:32px;padding:5px 9px;font-size:12px;border-radius:7px;background:var(--card);gap:14px}
+.dp-writing-journal{min-height:32px;padding:5px 8px;max-width:260px;color:var(--muted-foreground)}
+.dp-writing-progress{padding:8px 10px;background:var(--secondary);border-radius:7px;line-height:1.6;font-size:12px}
+.dp-writing-progress button{font-size:12px}
+.dp-writing-journal-picker{bottom:auto;top:calc(100% + 8px);max-height:min(440px,60dvh);overflow:auto;z-index:80;background:var(--card)}
+.dp-writing-journal-picker li button{padding:10px;font-size:13px}
+.dp-writing-steps{gap:6px;font-size:11px;line-height:1.5}
+.dp-upload-status,.dp-attachment-error{max-width:720px;margin-inline:auto}
+.dp-workspace .dp-chat-pane textarea::placeholder{color:var(--muted-foreground);opacity:.8}
+.dp-select-popover{max-width:calc(100vw - 16px)}
+.dp-select-popover [role=option]{min-height:36px}
+
+/* Width belongs to the working pane, not to the browser viewport. */
+.dp-native-shell .dp-artifacts .bibliography-workspace,.dp-native-shell .dp-artifacts .bibliography-list{min-width:0;max-width:100%}
+.dp-native-shell .dp-artifacts .bibliography-scroll{min-width:0;overflow:auto;scrollbar-gutter:stable;padding-inline:18px}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table){width:100%;min-width:0;table-layout:fixed}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) th.bibliography-checkbox{width:30px}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) th:nth-child(2){width:auto}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) th:nth-child(3){width:21%}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) th:nth-child(4){width:58px}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) th:nth-child(5){width:20%}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) th:last-child{width:100px}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) td{padding-block:15px;white-space:normal;overflow-wrap:anywhere}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) .bibliography-title{align-items:flex-start;gap:10px;font-size:14px;line-height:1.65}
+.dp-native-shell .dp-artifacts .bibliography-title>svg{margin-top:4px;flex-shrink:0;color:var(--primary)}
+.dp-native-shell .dp-artifacts .bibliography-title>span{min-width:0}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) :is(.bibliography-read,.bibliography-download){white-space:normal;width:100%;min-width:0;min-height:34px;padding:6px 8px;font-size:12px;border-radius:6px}
+.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) tbody tr.selected{background:color-mix(in srgb,var(--accent) 60%,var(--card))}
+.dp-native-shell .dp-artifacts .bibliography-count{padding:16px 18px 10px;font-size:13px;gap:8px;flex-wrap:wrap}
+.dp-artifacts .literature-folders{padding:14px 18px;gap:8px}
+.dp-artifacts .library-content-map-summary{padding:8px 18px;font-size:11px;line-height:1.6}
+.dp-native-shell .dp-artifacts .bibliography-detail{min-width:0;width:300px;flex-basis:300px}
+
+.dp-artifacts .project-canvas-body{min-width:0;min-height:0}
+.dp-artifacts .project-canvas-graph{background-color:var(--background);min-width:0}
+.dp-artifacts .canvas-inspector{width:280px;min-width:0;flex:0 0 280px;background:var(--card)}
+.dp-artifacts .canvas-inspector>header{padding:20px;font-size:14px;line-height:1.6}
+.dp-artifacts .canvas-inspector-body{padding:18px 20px;font-size:12px;line-height:1.8;overflow-wrap:anywhere}
+.dp-artifacts .canvas-outline{max-width:calc(100% - 24px);flex-wrap:wrap;background:var(--card);padding:6px;border:1px solid var(--border);border-radius:10px;box-shadow:0 3px 12px #1428460a}
+.dp-artifacts .canvas-outline button{font-size:12px;padding:7px 10px;border-radius:6px}
+.dp-artifacts .canvas-outline button[aria-pressed=true]{background:var(--accent);color:var(--primary)}
+.dp-artifacts .canvas-record-search{display:block;width:100%;padding:8px 10px;margin-bottom:10px;border:1px solid var(--border);border-radius:6px;background:var(--background);color:var(--foreground)}
+.dp-artifacts .canvas-record-picker{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.dp-artifacts .canvas-record-picker>strong{display:block;margin-bottom:10px}
+.dp-artifacts .canvas-record-picker>div{display:grid;gap:4px;max-height:300px;overflow:auto}
+.dp-artifacts .canvas-record-picker button{display:block;width:100%;text-align:left;padding:8px;border-radius:6px;line-height:1.5;font-size:12px}
+.dp-artifacts .canvas-record-picker button:hover,.dp-artifacts .canvas-record-picker button[aria-pressed=true]{background:var(--accent)}
+.dp-artifacts .canvas-record-picker small{display:block;color:var(--muted-foreground);margin-top:3px;font-size:10px}
+.dp-artifacts .task-center{width:min(600px,calc(100vw - 32px));border-radius:12px;box-shadow:0 12px 50px #14284624}
+.dp-artifacts .task-card-identity>strong{font-size:13px}
+.dp-artifacts .task-state{font-size:11px;padding:5px 7px}
+.dp-artifacts .task-card-current,.dp-artifacts .task-card-error,.dp-artifacts .task-wait-note{font-size:12px}
+.dp-artifacts .task-card-actions>button,.dp-artifacts .task-card-actions>a{font-size:12px;min-height:32px;padding:6px 9px}
+.dp-artifacts .task-state-waiting_input{background:color-mix(in srgb,#b67917 12%,var(--card));color:var(--foreground)}
+.dp-artifacts .task-state-waiting_service{background:var(--secondary);color:var(--muted-foreground)}
+@container artifact (max-width:850px){
+ .dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) :is(th,td):nth-child(3),.dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) :is(th,td):nth-child(5){display:none}
+ .dp-native-shell .dp-artifacts .bibliography-mobile-meta{display:block;margin-top:7px;font-size:11px;line-height:1.6;color:var(--muted-foreground)}
+ .dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) th:nth-child(2){width:auto}
+ .dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) th:last-child{width:98px}
+ .dp-native-shell .dp-artifacts .bibliography-workspace{position:relative}
+ .dp-native-shell .dp-artifacts .bibliography-detail{position:absolute;inset:0 0 0 auto;width:min(360px,94%);max-width:94%;z-index:8;box-shadow:-8px 0 28px #14284624}
+ .dp-artifacts .canvas-inspector{width:240px;flex-basis:240px}
+}
+@container artifact (max-width:600px){
+ .dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) :is(th,td):nth-child(4){display:none}
+ .dp-native-shell .dp-artifacts .bibliography-scroll{padding-inline:10px}
+ .dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) td{padding-inline:6px}
+ .dp-native-shell .dp-artifacts .bibliography-table:not(.library-data-table) .bibliography-title{font-size:13px}
+ .dp-artifacts .project-canvas-body{flex-direction:column;display:flex}
+ .dp-artifacts .project-canvas-graph{flex:1;min-height:280px}
+ .dp-artifacts .canvas-inspector{width:100%;flex:0 1 230px;border-left:0;border-top:1px solid var(--border)}
+ .dp-artifacts .canvas-inspector>header{padding:12px 16px}
+ .dp-artifacts .canvas-inspector-body{padding:12px 16px}
+}
+@media(max-width:767px){
+ .dp-workspace-header{height:46px;min-height:46px;padding:0 12px}
+ .dp-workspace-location>strong{font-size:14px}
+ .dp-workspace-actions>button{min-height:32px}
+ .dp-writing-toolbar{width:calc(100% - 24px);margin-bottom:10px}
+ .dp-writing-controls{gap:5px}
+ .dp-writing-controls .dp-select{min-width:95px;max-width:170px;font-size:11px}
+ .dp-writing-journal{font-size:11px;max-width:145px}
+ .dp-workspace .dp-artifacts .reading-toolbar{padding:8px 12px;flex-wrap:wrap;overflow-x:visible}
+ .dp-artifacts .canvas-scope{width:100%;order:3;display:flex;overflow:auto}
+ .dp-artifacts .canvas-scope>button{flex:1;white-space:nowrap}
+ .dp-artifacts .library-content-map-button{font-size:11px}
+}
+@media(max-height:760px){.dp-navigation-group{margin-top:12px}.dp-sidebar-conversations{padding-top:12px}.dp-nav-row{min-height:33px;padding-block:7px}}
+@media(prefers-reduced-motion:reduce){.dp-workspace *{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.dp-artifacts .task-plan-review{padding:12px;margin:10px 0;border:1px solid var(--border);border-radius:8px;background:var(--background);font-size:12px;line-height:1.6}
+.dp-artifacts .task-plan-review p{color:var(--muted-foreground);margin:6px 0 12px}
+.dp-artifacts .task-plan-review pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:280px;overflow:auto;padding:10px;background:var(--card);font-size:11px}
+.dp-artifacts .task-plan-review label{display:grid;gap:6px;margin:12px 0}
+.dp-artifacts .task-plan-review textarea{width:100%;padding:9px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--foreground);resize:vertical}
+.dp-artifacts .task-plan-review>div{display:flex;gap:8px;flex-wrap:wrap}
+.dp-artifacts .task-plan-review>div button{padding:7px 10px;border-radius:6px;border:1px solid var(--border);min-height:34px}
+.dp-artifacts .task-plan-review>div button:first-child{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)}

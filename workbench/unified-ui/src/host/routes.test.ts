@@ -1,0 +1,12 @@
+import {describe,it,expect} from 'vitest'
+import {hostHref,logicalPath,projectHref} from './routes'
+describe('project and native-session navigation',()=>{
+ it('keeps canonical chat navigation inside the single web root and workspace',()=>{const href=hostHref('/chat/s-42','https://host/research/?project=p&dt_workspace=w','/research/');expect(href).toBe('/research/?project=p&dt_workspace=w&session=s-42');expect(logicalPath(href.split('?')[1])).toBe('/chat/s-42')})
+ it('uses exactly the same route contract at the desktop root',()=>{expect(hostHref('/chat/s-42','http://127.0.0.1:9000/?project=p&dt_workspace=w','/')).toBe('/?project=p&dt_workspace=w&session=s-42')})
+ it('drops the former project session before opening another workspace',()=>{expect(projectHref('/research/',{id:'new-project',native_id:'new-workspace'})).toBe('/research/?project=new-project&dt_workspace=new-workspace')})
+ it('starts a clean conversation while preserving project identity',()=>{expect(hostHref('/chat','https://host/research/?project=p&dt_workspace=w&session=old','/research/')).toBe('/research/?project=p&dt_workspace=w&view=chat')})
+ it('leaves the overview when native navigation opens a conversation',()=>{expect(hostHref('/chat/s-42','https://host/research/?project=p&dt_workspace=w&view=overview','/research/')).toBe('/research/?project=p&dt_workspace=w&session=s-42')})
+ it('does not reroute external links or API downloads',()=>{expect(hostHref('https://other/a','https://host/research/?project=p','/research/')).toBe('https://other/a');expect(hostHref('/api/files/a','https://host/research/?project=p','/research/')).toBe('/api/files/a')})
+ it('restores native settings section navigation within the web and desktop hosts',()=>{for(const [current,entry] of [['https://host/research/?project=p&dt_workspace=w','/research/'],['http://127.0.0.1:9000/?project=p&dt_workspace=w','/']]){const href=hostHref('/settings/connections',current,entry);expect(logicalPath(href.split('?')[1])).toBe('/settings/connections');expect(href).toContain('project=p');expect(href).toContain('dt_workspace=w');expect(hostHref('/chat',new URL(href,current).href,entry)).not.toContain('settings_section')}})
+ it('keeps the main session bound while the original settings pages are open',()=>{const href=hostHref('/settings/appearance','https://host/research/?project=p&dt_workspace=w&session=main-42','/research/');expect(new URL(href,'https://host').searchParams.get('session')).toBe('main-42');expect(logicalPath(href.split('?')[1])).toBe('/settings/appearance')})
+})

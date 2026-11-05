@@ -1,0 +1,4 @@
+interface:
+  display_name: "工作台交付质量"
+  short_description: "Verify research files against user templates"
+  default_prompt: "Use $workbench-deliverable-quality to prepare and verify this research deliverable against the supplied requirements."

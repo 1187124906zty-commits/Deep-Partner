@@ -1,0 +1,149 @@
+{
+  "correct": {
+    "question": "Does a P1 FEM implementation solve -(k u')'=f for spatially variable k=1+x, rather than the incorrect -k u''=f?",
+    "runtime": "paso",
+    "entrypoint": "run.py",
+    "files": [
+      {
+        "path": "manufactured_diffusion.py",
+        "content": "\"\"\"Small P1 FEM oracle for -(k u')' = f on (0, 1), u(0)=u(1)=0.\n\nk=1+x; u_exact=sin(pi*x). CPU demonstration; NumPy is the only dependency.\nThe deliberately wrong comparison solves -k*u''=f, whose weak form has\nan extra integral(k' * u' * v). Both linear systems are solved accurately.\nThis verifies this example, not the behavior of an AI using the skill.\n\"\"\"\n\nimport argparse\nimport json\nimport math\nfrom pathlib import Path\n\nimport numpy as np\n\n\ndef source(x):\n    return math.pi**2 * (1.0 + x) * np.sin(math.pi * x) - math.pi * np.cos(math.pi * x)\n\n\ndef solve_case(n_elements, wrong_nondivergence=False):\n    nodes = np.linspace(0.0, 1.0, n_elements + 1)\n    stiffness = np.zeros((len(nodes), len(nodes)))\n    load = np.zeros(len(nodes))\n    xi, weights = np.polynomial.legendre.leggauss(6)\n    basis = np.stack(((1.0 - xi) / 2.0, (1.0 + xi) / 2.0), axis=1)\n\n    for element in range(n_elements):\n        h = nodes[element + 1] - nodes[element]\n        xq = nodes[element] + h * (1.0 + xi) / 2.0\n        wq = weights * h / 2.0\n        derivative = np.array([-1.0 / h, 1.0 / h])\n        local_k = np.sum(wq * (1.0 + xq)) * np.outer(derivative, derivative)\n        if wrong_nondivergence:\n            # k'=1: weak form of -k*u'', not of the requested -(k*u')'.\n            local_k += np.outer(wq @ basis, derivative)\n        local_f = basis.T @ (wq * source(xq))\n        ids = np.array([element, element + 1])\n        stiffness[np.ix_(ids, ids)] += local_k\n        load[ids] += local_f\n\n    # Homogeneous Dirichlet conditions. Nonzero data require RHS lifting.\n    solution = np.zeros(len(nodes))\n    solution[1:-1] = np.linalg.solve(stiffness[1:-1, 1:-1], load[1:-1])\n    residual = stiffness @ solution - load\n    relative_residual = np.linalg.norm(residual[1:-1]) / np.linalg.norm(load[1:-1])\n\n    l2_squared = 0.0\n    h1_squared = 0.0\n    for element in range(n_elements):\n        h = nodes[element + 1] - nodes[element]\n        xq = nodes[element] + h * (1.0 + xi) / 2.0\n        wq = weights * h / 2.0\n        local_u = solution[element : element + 2]\n        value_error = basis @ local_u - np.sin(math.pi * xq)\n        gradient_error = (local_u[1] - local_u[0]) / h - math.pi * np.cos(math.pi * xq)\n        l2_squared += float(wq @ value_error**2)\n        h1_squared += float(wq @ gradient_error**2)\n\n    return {\n        \"n_elements\": n_elements,\n        \"h\": 1.0 / n_elements,\n        \"l2_error\": math.sqrt(l2_squared),\n        \"h1_seminorm_error\": math.sqrt(h1_squared),\n        \"relative_linear_residual\": float(relative_residual),\n        \"boundary_error\": float(max(abs(solution[0]), abs(solution[-1]))),\n    }\n\n\ndef add_rates(rows):\n    for previous, current in zip(rows, rows[1:]):\n        current[\"l2_rate\"] = math.log(previous[\"l2_error\"] / current[\"l2_error\"], 2.0)\n        current[\"h1_rate\"] = math.log(\n            previous[\"h1_seminorm_error\"] / current[\"h1_seminorm_error\"], 2.0\n        )\n\n\ndef run():\n    meshes = (8, 16, 32, 64)\n    correct = [solve_case(n) for n in meshes]\n    wrong = [solve_case(n, wrong_nondivergence=True) for n in meshes]\n    add_rates(correct)\n    add_rates(wrong)\n    # Predefined, modest tolerances for this smooth small manufactured case.\n    checks = {\n        \"correct_l2_rate_near_two\": all(1.9 < r[\"l2_rate\"] < 2.1 for r in correct[1:]),\n        \"correct_h1_rate_near_one\": all(0.95 < r[\"h1_rate\"] < 1.05 for r in correct[1:]),\n        \"both_systems_solved_accurately\": all(\n            r[\"relative_linear_residual\"] < 1e-10 for r in correct + wrong\n        ),\n        \"dirichlet_conditions_satisfied\": all(r[\"boundary_error\"] < 1e-14 for r in correct + wrong),\n        \"wrong_operator_fails_solution_check\": wrong[-1][\"l2_error\"] > 20.0 * correct[-1][\"l2_error\"],\n        \"wrong_operator_error_does_not_converge_to_zero\": wrong[-1][\"l2_error\"] > 0.8 * wrong[-2][\"l2_error\"],\n    }\n    return {\n        \"problem\": \"-(k u')'=f; k=1+x; u_exact=sin(pi*x); homogeneous Dirichlet\",\n        \"numpy_version\": np.__version__,\n        \"correct_divergence_form\": correct,\n        \"wrong_nondivergence_form\": wrong,\n        \"checks\": {name: bool(value) for name, value in checks.items()},\n        \"all_checks_passed\": bool(all(checks.values())),\n        \"scope\": \"One-dimensional smooth linear P1 FEM example; no AI behavior or PyTorch training evaluated.\",\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--output\", type=Path, help=\"Optional JSON output file\")\n    args = parser.parse_args()\n    report = run()\n    encoded = json.dumps(report, indent=2, ensure_ascii=False)\n    if args.output:\n        args.output.write_text(encoded + \"\\n\", encoding=\"utf-8\")\n    print(encoded)\n    return 0 if report[\"all_checks_passed\"] else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n"
+      },
+      {
+        "path": "run.py",
+        "content": "import csv,json,math,sys\nfrom pathlib import Path\nfrom manufactured_diffusion import solve_case,add_rates\nwrong=sys.argv[1]==\"wrong\"\nrows=[solve_case(n,wrong_nondivergence=wrong) for n in (8,16,32,64)]\nadd_rates(rows)\nmetrics={\"l2_error\":rows[-1][\"l2_error\"],\"min_l2_rate\":min(r[\"l2_rate\"] for r in rows[1:]),\"max_linear_residual\":max(r[\"relative_linear_residual\"] for r in rows),\"boundary_error\":max(r[\"boundary_error\"] for r in rows)}\nPath(\"outputs/metrics.json\").write_text(json.dumps({\"metrics\":metrics,\"wrong_operator\":wrong,\"rows\":rows},indent=2))\nwith Path(\"outputs/convergence.csv\").open(\"w\",newline=\"\") as f:\n writer=csv.DictWriter(f,fieldnames=sorted(set().union(*(r.keys() for r in rows))));writer.writeheader();writer.writerows(rows)\nprint(json.dumps(metrics))\n"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "Independent manufactured solution error",
+        "metric": "l2_error",
+        "op": "le",
+        "threshold": 0.001,
+        "unit": "dimensionless"
+      },
+      {
+        "name": "P1 L2 convergence order",
+        "metric": "min_l2_rate",
+        "op": "ge",
+        "threshold": 1.8,
+        "unit": "1"
+      },
+      {
+        "name": "Algebraic residual",
+        "metric": "max_linear_residual",
+        "op": "le",
+        "threshold": 1e-10,
+        "unit": "1"
+      },
+      {
+        "name": "Dirichlet boundary",
+        "metric": "boundary_error",
+        "op": "le",
+        "threshold": 1e-14,
+        "unit": "dimensionless"
+      }
+    ],
+    "reference": {
+      "type": "manufactured_analytic",
+      "domain": "0<x<1; all variables nondimensional",
+      "exact": "u=sin(pi*x)",
+      "coefficient": "k=1+x",
+      "forcing": "f=pi^2*(1+x)*sin(pi*x)-pi*cos(pi*x)",
+      "boundary": "u(0)=u(1)=0",
+      "expected": "P1 L2 order 2 for this smooth elliptic problem; use >=1.8 across 8,16,32,64 elements."
+    },
+    "limitations": [
+      "One smooth linear 1D elliptic benchmark; no experimental material validation, nonlinear transport, ML or inverse problem tested."
+    ],
+    "resources": {
+      "cpus": 2,
+      "memory_mb": 4096,
+      "minutes": 5
+    },
+    "arguments": [
+      "correct"
+    ]
+  },
+  "wrong": {
+    "question": "Does a P1 FEM implementation solve -(k u')'=f for spatially variable k=1+x, rather than the incorrect -k u''=f?",
+    "runtime": "paso",
+    "entrypoint": "run.py",
+    "files": [
+      {
+        "path": "manufactured_diffusion.py",
+        "content": "\"\"\"Small P1 FEM oracle for -(k u')' = f on (0, 1), u(0)=u(1)=0.\n\nk=1+x; u_exact=sin(pi*x). CPU demonstration; NumPy is the only dependency.\nThe deliberately wrong comparison solves -k*u''=f, whose weak form has\nan extra integral(k' * u' * v). Both linear systems are solved accurately.\nThis verifies this example, not the behavior of an AI using the skill.\n\"\"\"\n\nimport argparse\nimport json\nimport math\nfrom pathlib import Path\n\nimport numpy as np\n\n\ndef source(x):\n    return math.pi**2 * (1.0 + x) * np.sin(math.pi * x) - math.pi * np.cos(math.pi * x)\n\n\ndef solve_case(n_elements, wrong_nondivergence=False):\n    nodes = np.linspace(0.0, 1.0, n_elements + 1)\n    stiffness = np.zeros((len(nodes), len(nodes)))\n    load = np.zeros(len(nodes))\n    xi, weights = np.polynomial.legendre.leggauss(6)\n    basis = np.stack(((1.0 - xi) / 2.0, (1.0 + xi) / 2.0), axis=1)\n\n    for element in range(n_elements):\n        h = nodes[element + 1] - nodes[element]\n        xq = nodes[element] + h * (1.0 + xi) / 2.0\n        wq = weights * h / 2.0\n        derivative = np.array([-1.0 / h, 1.0 / h])\n        local_k = np.sum(wq * (1.0 + xq)) * np.outer(derivative, derivative)\n        if wrong_nondivergence:\n            # k'=1: weak form of -k*u'', not of the requested -(k*u')'.\n            local_k += np.outer(wq @ basis, derivative)\n        local_f = basis.T @ (wq * source(xq))\n        ids = np.array([element, element + 1])\n        stiffness[np.ix_(ids, ids)] += local_k\n        load[ids] += local_f\n\n    # Homogeneous Dirichlet conditions. Nonzero data require RHS lifting.\n    solution = np.zeros(len(nodes))\n    solution[1:-1] = np.linalg.solve(stiffness[1:-1, 1:-1], load[1:-1])\n    residual = stiffness @ solution - load\n    relative_residual = np.linalg.norm(residual[1:-1]) / np.linalg.norm(load[1:-1])\n\n    l2_squared = 0.0\n    h1_squared = 0.0\n    for element in range(n_elements):\n        h = nodes[element + 1] - nodes[element]\n        xq = nodes[element] + h * (1.0 + xi) / 2.0\n        wq = weights * h / 2.0\n        local_u = solution[element : element + 2]\n        value_error = basis @ local_u - np.sin(math.pi * xq)\n        gradient_error = (local_u[1] - local_u[0]) / h - math.pi * np.cos(math.pi * xq)\n        l2_squared += float(wq @ value_error**2)\n        h1_squared += float(wq @ gradient_error**2)\n\n    return {\n        \"n_elements\": n_elements,\n        \"h\": 1.0 / n_elements,\n        \"l2_error\": math.sqrt(l2_squared),\n        \"h1_seminorm_error\": math.sqrt(h1_squared),\n        \"relative_linear_residual\": float(relative_residual),\n        \"boundary_error\": float(max(abs(solution[0]), abs(solution[-1]))),\n    }\n\n\ndef add_rates(rows):\n    for previous, current in zip(rows, rows[1:]):\n        current[\"l2_rate\"] = math.log(previous[\"l2_error\"] / current[\"l2_error\"], 2.0)\n        current[\"h1_rate\"] = math.log(\n            previous[\"h1_seminorm_error\"] / current[\"h1_seminorm_error\"], 2.0\n        )\n\n\ndef run():\n    meshes = (8, 16, 32, 64)\n    correct = [solve_case(n) for n in meshes]\n    wrong = [solve_case(n, wrong_nondivergence=True) for n in meshes]\n    add_rates(correct)\n    add_rates(wrong)\n    # Predefined, modest tolerances for this smooth small manufactured case.\n    checks = {\n        \"correct_l2_rate_near_two\": all(1.9 < r[\"l2_rate\"] < 2.1 for r in correct[1:]),\n        \"correct_h1_rate_near_one\": all(0.95 < r[\"h1_rate\"] < 1.05 for r in correct[1:]),\n        \"both_systems_solved_accurately\": all(\n            r[\"relative_linear_residual\"] < 1e-10 for r in correct + wrong\n        ),\n        \"dirichlet_conditions_satisfied\": all(r[\"boundary_error\"] < 1e-14 for r in correct + wrong),\n        \"wrong_operator_fails_solution_check\": wrong[-1][\"l2_error\"] > 20.0 * correct[-1][\"l2_error\"],\n        \"wrong_operator_error_does_not_converge_to_zero\": wrong[-1][\"l2_error\"] > 0.8 * wrong[-2][\"l2_error\"],\n    }\n    return {\n        \"problem\": \"-(k u')'=f; k=1+x; u_exact=sin(pi*x); homogeneous Dirichlet\",\n        \"numpy_version\": np.__version__,\n        \"correct_divergence_form\": correct,\n        \"wrong_nondivergence_form\": wrong,\n        \"checks\": {name: bool(value) for name, value in checks.items()},\n        \"all_checks_passed\": bool(all(checks.values())),\n        \"scope\": \"One-dimensional smooth linear P1 FEM example; no AI behavior or PyTorch training evaluated.\",\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--output\", type=Path, help=\"Optional JSON output file\")\n    args = parser.parse_args()\n    report = run()\n    encoded = json.dumps(report, indent=2, ensure_ascii=False)\n    if args.output:\n        args.output.write_text(encoded + \"\\n\", encoding=\"utf-8\")\n    print(encoded)\n    return 0 if report[\"all_checks_passed\"] else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n"
+      },
+      {
+        "path": "run.py",
+        "content": "import csv,json,math,sys\nfrom pathlib import Path\nfrom manufactured_diffusion import solve_case,add_rates\nwrong=sys.argv[1]==\"wrong\"\nrows=[solve_case(n,wrong_nondivergence=wrong) for n in (8,16,32,64)]\nadd_rates(rows)\nmetrics={\"l2_error\":rows[-1][\"l2_error\"],\"min_l2_rate\":min(r[\"l2_rate\"] for r in rows[1:]),\"max_linear_residual\":max(r[\"relative_linear_residual\"] for r in rows),\"boundary_error\":max(r[\"boundary_error\"] for r in rows)}\nPath(\"outputs/metrics.json\").write_text(json.dumps({\"metrics\":metrics,\"wrong_operator\":wrong,\"rows\":rows},indent=2))\nwith Path(\"outputs/convergence.csv\").open(\"w\",newline=\"\") as f:\n writer=csv.DictWriter(f,fieldnames=sorted(set().union(*(r.keys() for r in rows))));writer.writeheader();writer.writerows(rows)\nprint(json.dumps(metrics))\n"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "Independent manufactured solution error",
+        "metric": "l2_error",
+        "op": "le",
+        "threshold": 0.001,
+        "unit": "dimensionless"
+      },
+      {
+        "name": "P1 L2 convergence order",
+        "metric": "min_l2_rate",
+        "op": "ge",
+        "threshold": 1.8,
+        "unit": "1"
+      },
+      {
+        "name": "Algebraic residual",
+        "metric": "max_linear_residual",
+        "op": "le",
+        "threshold": 1e-10,
+        "unit": "1"
+      },
+      {
+        "name": "Dirichlet boundary",
+        "metric": "boundary_error",
+        "op": "le",
+        "threshold": 1e-14,
+        "unit": "dimensionless"
+      }
+    ],
+    "reference": {
+      "type": "manufactured_analytic",
+      "domain": "0<x<1; all variables nondimensional",
+      "exact": "u=sin(pi*x)",
+      "coefficient": "k=1+x",
+      "forcing": "f=pi^2*(1+x)*sin(pi*x)-pi*cos(pi*x)",
+      "boundary": "u(0)=u(1)=0",
+      "expected": "P1 L2 order 2 for this smooth elliptic problem; use >=1.8 across 8,16,32,64 elements."
+    },
+    "limitations": [
+      "One smooth linear 1D elliptic benchmark; no experimental material validation, nonlinear transport, ML or inverse problem tested."
+    ],
+    "resources": {
+      "cpus": 2,
+      "memory_mb": 4096,
+      "minutes": 5
+    },
+    "arguments": [
+      "wrong"
+    ]
+  },
+  "catalog": {
+    "question": "Discover the actual existing openPASO MCP tool schemas in a bounded Slurm allocation.",
+    "runtime": "openpaso_catalog",
+    "files": [],
+    "criteria": [],
+    "reference": {
+      "type": "software_metadata"
+    },
+    "limitations": [
+      "Tool discovery is not a solver accuracy test."
+    ],
+    "resources": {
+      "cpus": 2,
+      "memory_mb": 4096,
+      "minutes": 5
+    }
+  }
+}

@@ -1,0 +1,9 @@
+Metropolis editable PPTX adaptation
+
+Original theme: Matthias Vogelgesang and the LaTeX community.
+https://github.com/matze/mtheme
+
+The original beamercolorthememetropolis.dtx and beamerthememetropolis.dtx headers declare Creative Commons Attribution-ShareAlike 4.0 International. They are retained verbatim alongside this notice.
+License: https://creativecommons.org/licenses/by-sa/4.0/
+
+This adaptation uses native PowerPoint text and shapes, a 16:9 page, Arial and Microsoft YaHei for installed font compatibility, and explicit layout geometry. It is not a pixel-identical Beamer rendering. This adaptation is distributed under the same CC BY-SA 4.0 license.

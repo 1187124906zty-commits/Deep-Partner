@@ -1,0 +1,22 @@
+{
+  "scope": "Current NeuralOperator packaged reference dataset, first test sample; no FNO training or performance reproduction claimed.",
+  "shape": [
+    50,
+    16,
+    16
+  ],
+  "a_range": [
+    0.0,
+    1.0
+  ],
+  "u_range": [
+    -0.11912135034799576,
+    1.9015082120895386
+  ],
+  "all_finite": true,
+  "figure": "results/darcy-reference.png",
+  "plot_program": "src/plot_reference.py",
+  "compute_program": "src/plot_FNO_darcy.py",
+  "paper_basis": "FNO 2010.08895, Appendix A.3.2. This small current package is not asserted identical to the full original 421x421 benchmark.",
+  "input_encoding": "torch.bool phase map (0/1); not a raw permeability field. No physical-value mapping reconstructed."
+}

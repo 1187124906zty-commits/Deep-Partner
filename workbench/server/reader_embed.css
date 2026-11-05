@@ -1,0 +1,20 @@
+/* The upstream engine supplies reading, selection and translation; this shell belongs to the workbench. */
+.neoread-toolbar,.document-tabbar{display:none!important}
+.app,.reader-shell,.reader-tab-panel,.neoread-panels,.pdf-reading,.translation-document{background:var(--background)!important;color:var(--foreground)!important}
+.app[data-has-tabs]{padding-top:0!important}
+.neoread-stage,.neoread-stage[data-theme],.pdf-container,.pdf-container[data-theme],.translation-document{background:var(--card)!important;--pdf-dark-paper:var(--card)!important;--pdf-dark-ink:var(--foreground)!important}
+.pdfViewer .page{margin:18px auto!important;box-shadow:none!important;border:0!important}
+.pdf-container .pdfViewer{padding-top:8px!important}
+.pdf-block-reading .pdfViewer{padding:8px 0!important}
+.pdf-block-reading .pdfViewer .page{margin:18px auto!important}
+.selection-bar{border:1px solid var(--border)!important;border-radius:10px!important;background:var(--popover)!important;box-shadow:0 5px 22px #0002!important;padding:4px!important}
+.selection-bar button{font-size:11px!important;border-radius:6px!important}
+.chat-empty,.guide-preview,.neoread-guide,.block-focus-hint{display:none!important}
+.wb-block-focus{position:absolute;pointer-events:none;z-index:4;border:1px solid color-mix(in srgb,var(--primary),transparent 60%);border-radius:4px;background:color-mix(in srgb,var(--primary),transparent 96%);animation:wb-focus-out 1.25s ease-out forwards}
+.neoread-panels [data-panel],.reader-navigation{min-width:0}
+.reader-navigation,.reader-nav,.toc-panel,.book-navigation{background:var(--background)!important}
+button,input,textarea,select{font-family:inherit}
+.neoread-panels{font-size:12px}
+.translation-document{font-weight:400!important}
+.translation-block[data-focused]{transform:none!important}
+@keyframes wb-focus-out{0%,60%{opacity:1}100%{opacity:0}}

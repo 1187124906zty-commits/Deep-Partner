@@ -1,0 +1,12 @@
+{
+  "langgenius/dify-api:1.18.0": "sha256:0a7409b80eb9d587ff99d8ed3e791c915a82f75345c09fef7271860c0ddafc2e",
+  "langgenius/dify-web:1.18.0": "sha256:073cbd1e1c1d4965908d143025ea6734e9cb07a86f45030d7ac6f25eeed3dc3e",
+  "langgenius/dify-plugin-daemon:0.6.10-local": "sha256:0b8f1f1e766826352d868aaf8c9eeeee8e37a3a3b023044ed8ab0d145f853cdf",
+  "postgres:15-alpine": "sha256:1d4031d6ed0a9b774b365f99a3c16127217eb19f699d8d43fc43b732748601ef",
+  "redis:6-alpine": "sha256:d3eff30f5995e647ed7f22bf73987fb0999f19251c3845a436270c431b65a01a",
+  "langgenius/qdrant:v1.8.3": "sha256:599bf2d2af3d58727fe7564e0a8fc1e7965858a316892b4f3186f360fbf88e9a",
+  "langgenius/dify-sandbox:0.2.15": "sha256:942acde5b90350498f71c9f89fe1c0a578578c51521d6683783e073528b6a26a",
+  "ubuntu/squid:latest": "sha256:8fafd41d6ddceb295d26eea9938321d825ac5351c7e46cf6a8aa5d093b8ed1ce",
+  "nginx:latest": "sha256:8e0328743c8e52ead9fac9c198d0893d63cd38e41b1d9ea629e092a8ac229a93",
+  "busybox:latest": "sha256:f97baa533a26513c453a362be331a43eb60214302f449c16571b23cea141dce4"
+}

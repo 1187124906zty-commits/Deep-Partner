@@ -1,0 +1,2951 @@
+{
+  "source": "https://authorservices-ppd.wiley.com/asset/Journals%20in%20New%20Journal%20Design%202025.xlsx",
+  "journals": [
+    {
+      "name": "Annals of Applied Biology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Acta Anaesthesiologica Scandinavica",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "American Business Law Journal",
+      "reference_style": "As in Manuscript",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Academic Emergency Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Alcohol: Clinical and Experimental Research",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Accounting & Finance",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Applied Clinical Medical Physics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Addiction",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "AI Magazine",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Advanced Functional Materials",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Materials",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Materials Interfaces",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Materials Technologies",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Optical Materials",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Sustainable Systems",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Therapeutics",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Theory and Simulations",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Science",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Electronic Materials",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Austral Entomology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "myriad"
+    },
+    {
+      "name": "Advanced Energy Materials",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Applied Economic Perspectives and Policy",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Anthropology & Education Quarterly",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "AEM Education and Training",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Agricultural and Forest Entomology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "AGU Advances",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Animal Genetics",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Agricultural Economics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Annals of Gastroenterological Surgery",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Advanced Healthcare Materials",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "AIChE Journal",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Advances in Digestive Medicine",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "American Journal of Agricultural Economics",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "minion"
+    },
+    {
+      "name": "Australasian Journal on Ageing",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "American Journal of Botany",
+      "reference_style": "As in Manuscript",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "The American Journal on Addictions",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "American Journal of Political Science",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "utopia"
+    },
+    {
+      "name": "Journal of the Association for Information Science and Technology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Alzheimer&apos;s & Dementia",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "American Anthropologist",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Animal Models and Experimental Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "American Ethnologist",
+      "reference_style": "As in Manuscript",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Advanced Manufacturing and Processing",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Acute Medicine & Surgery",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Annalen der Physik",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Andrology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Anthropology and Humanism",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Anthropology of Consciousness",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "Australian & New Zealand Journal of Family Therapy",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Journal of the American Oil Chemists’ Society",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Acta Obstetricia et Gynecologica Scandinavica",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Acta Ophthalmologica",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Archaeological Papers of the American Anthropological Association",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Annals of Public and Cooperative Economics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Acta Physiologica Scandinavica",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Applied Psychology: Health and Well-Being",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Analyses of Social Issues and Public Policy",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Anatomical Sciences Education",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Asian Economic Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Surgical Practice",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Applied Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Applications in Plant Sciences",
+      "reference_style": "As in Manuscript",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "The Anatomical Record: Advances in Integrative Anatomy and Evolutionary Biology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Archaeometry",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Consumer Psychology Review",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Archiv der Pharmazie",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Area",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Asian Journal of Control",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Atmospheric Science Letters",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Asian Politics and Policy",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Australian Journal of Public Administration",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Anthropology of Work Review",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "Acta Zoologica : Morphology and Evolution",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Business and Society Review",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "British Journal of Clinical Pharmacology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "British Educational Research Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "Bioethics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "BioFactors",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "British Journal of Pharmacology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "British Journal of Clinical Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "British Journal of Developmental Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "British Journal of Educational Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "British Journal of Educational Technology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "British Journal of Haematology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "British Journal of Health Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "British Journal of Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "myriad"
+    },
+    {
+      "name": "British Journal of Social Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "British Journal of Special Education",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "BJUI Compass",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Bulletin of the Korean Chemical Society",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "myriad"
+    },
+    {
+      "name": "Bulletin of the London Mathematical Society",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Biochemistry and Molecular Biology Education",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "British Journal of Mathematical and Statistical Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Biology of the Cell",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Brain Pathology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Advanced Sensor Research",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Advanced Physics Research",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Brain-X",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "BMEMat",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Advanced Chinese Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Biological Diversity",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "American Journal of Community Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "CAAI Transactions on Intelligence Technology",
+      "reference_style": "Math and Physical Sciences Reference Style",
+      "columns": 2,
+      "font": "garamond"
+    },
+    {
+      "name": "Bioengineering & Translational Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Biotechnology Progress",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "CA: A Cancer Journal for Clinicians",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Cancer Communications",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Canadian Geographies / Géographies canadiennes",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Clinical Advances in Periodontics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "myriad"
+    },
+    {
+      "name": "Canadian Public Administration / Administration publique du Canada",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Criminology & Public Policy",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Contemporary Accounting Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Clinical and Experimental Neuroimmunology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Civil Engineering Design",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "International Journal of Ceramic Engineering and Science",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Crop, Forage & Turfgrass Management",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Congenital Anomalies",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "City & Society",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Canadian Journal of Agricultural Economics/Revue canadienne dagroeconomie",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Canadian Journal of Chemical Engineering",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Campbell Systematic Reviews",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Cell Communication and Signaling",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Cancer",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Cancer Cytopathology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "The Journal of Comparative Neurology",
+      "reference_style": "Chicago Manual of style, 17th edition",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Clinical Obesity",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Conservation Biology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "garamond"
+    },
+    {
+      "name": "Colorectal Disease",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Contemporary Economic Policy",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Coloration Technology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Communications on Pure and Applied Mathematics",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Crystal Research and Technology",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Clinical Physiology and Functional Imaging",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Comprehensive Reviews in Food Science and Food Safety",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Conservation Science and Practice",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Culture, Agriculture, Food & Environment",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "The Curriculum Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "Curtis’s Botanical Magazine",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Cytometry Part B: Clinical Cytometry",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Alzheimer&apos;s & Dementia: Diagnosis, Assessment & Disease Monitoring",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Drug and Alcohol Review",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Decision Sciences",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "The Depositional Record",
+      "reference_style": "As in Manuscript",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Developing World Bioethics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Development Growth & Differentiation",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Disasters",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Developmental Medicine & Child Neurology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Diabetic Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Diabetes, Obesity and Metabolism",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Development Policy Review",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Decision Sciences Journal of Innovative Education",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Developmental Dynamics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Ecological Applications",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Economic Affairs",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Economica",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "European Journal of Clinical Investigation",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Economic Inquiry",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Ecological Monographs",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Ecosphere",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Ecology",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Entomologia Experimentalis et Applicata",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "myriad"
+    },
+    {
+      "name": "Ecological Entomology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Earth’s Future",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "The Economic History Review",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "European Journal of Philosophy",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Environmental and Molecular Mutagenesis",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "European Management Review",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Community Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Plant Registrations",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Clinical and Translational Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Droplet",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Clinical and Translational Allergy",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Clinical and Translational Discovery",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Deep Underground Science and Engineering",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Cochrane Evidence Synthesis and Methods",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Diabetes, Obesity and Metabolism Now",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Earth Stewardship",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Eye & ENT Research",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Electrical Materials and Applications",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "garamond"
+    },
+    {
+      "name": "FlexMat",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Criminology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "European Journal of Oral Sciences",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Environmental Progress & Sustainable Energy",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "European Policy Analysis",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Epileptic Disorders",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Experimental Physiology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Experimental Physiology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Epilepsia",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Epilepsia Open",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "EPPO Bulletin",
+      "reference_style": "As in Manuscript",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Ecological Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Ecological  Solutions and Evidence",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Earth Surface Processes and Landforms",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Ethos",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "ETRI Journal",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "European Law Journal",
+      "reference_style": "Oxford University Standard for the Citation of Legal Authorities (OSCOLA – Footnote Reference Style)",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Equine Veterinary Education",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Equine Veterinary Journal",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Family Relations : Interdisciplinary Journal of Applied Family Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "FASEB BioAdvances",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "The FASEB Journal",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Fundamental & Clinical Pharmacology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Family Court Review",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Family & Consumer Sciences Research Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Feminist Anthropology",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "helvetica"
+    },
+    {
+      "name": "Functional Ecology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Financial Review",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Fiscal Studies",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Foreign Language Annals",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "GAMM - Mitteilungen",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Global Biogeochemical Cycles",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Global Strategy Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Geo: Geography and Environment",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "The Geographical Journal",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Geographical Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "German Quarterly",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Geochemistry, Geophysics, Geosystems",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "GeoHealth",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Geophysical Prospecting",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Geophysical Research Letters",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Grassland Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Headache: The Journal of Head and Face Pain",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Hepatology Research",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Health Information and Libraries Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "HIV Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "The Howard Journal of Crime and Justice",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Insect Conservation and Diversity",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "International Journal of Cosmetic Science",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "International Endodontic Journal",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "International Journal of Experimental Pathology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "International Insolvency Review",
+      "reference_style": "As in manuscript",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "International Journal of Applied Ceramic Technology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "International Journal of Cancer",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "International Journal of Economic Theory",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "International Journal of Gynecology & Obstetrics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Japanese Journal of Sociology",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "International Journal of Nursing Knowledge",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "International Journal of Pediatric Obesity",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "International Journal of Imaging Systems and Technology",
+      "reference_style": "Chicago Manual of style, 17th edition",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Insect Molecular Biology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Infant Mental Health Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "International Migration",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "International Nursing Review",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "International Review of Finance",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "IUBMB Life",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Adolescent & Adult Literacy",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Journal of Applied Behavior Analysis",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "JACCP:  Journal of the American College of Clinical Pharmacy",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of the American Ceramic Society",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Applied Corporate Finance",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "garamond"
+    },
+    {
+      "name": "Journal of Agricultural Economics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Advances in Modeling Earth Systems",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Animal Ecology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of the Chinese Chemical Society",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of the Experimental Analysis of Behavior",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Consumer Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Dermatology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Family Theory & Review",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Genetic Counseling",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of the European Academy of Dermatology and Venereology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Journal of Ecology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Engineering Education",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "The Journal of Eukaryotic Microbiology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Fish Biology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Juvenile and Family Court Journal",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "minion"
+    },
+    {
+      "name": "Journal of Food Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Financial Research",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Forensic Sciences",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of General and Family Medicine",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Geophysical Research: Space Physics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Geophysical Research: Solid Earth",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Geophysical Research: Oceans",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Geophysical Research: Atmospheres",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Geophysical Research: Planets",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Geophysical Research: Earth Surface",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Geophysical Research: Biogeosciences",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Hepato-Biliary-Pancreatic Sciences",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Healthcare Risk Management",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "garamond"
+    },
+    {
+      "name": "Clinical and Public Health Guidelines",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Food Biomacromolecules",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Energy Conversion and Economics",
+      "reference_style": "Math and Physical Sciences Reference Style",
+      "columns": 2,
+      "font": "garamond"
+    },
+    {
+      "name": "Earth and Space Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "IET Energy Systems Integration",
+      "reference_style": "Math and Physical Sciences Reference Style",
+      "columns": 2,
+      "font": "garamond"
+    },
+    {
+      "name": "JCPP Advances",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Hospital Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of the Agricultural and Applied Economics Association",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "minion"
+    },
+    {
+      "name": "ibrain",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "iMeta",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Grassland Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Interdisciplinary Medicine",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Hong Kong Journal of Emergency Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Journal of Geophysical Research: Machine Learning and Computation",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Elder Policy",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Future in Educational Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Foot and Ankle Research",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Experimental Orthopaedics",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Information & Functional Materials",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "iMetaOmics",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Industrial Ecology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Japan Journal of Nursing Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Latin American and Caribbean Anthropology",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "minion"
+    },
+    {
+      "name": "International Journal of Language & Communication Disorders",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of the London Mathematical Society",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Legal Studies Education",
+      "reference_style": "As in Manuscript",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Microscopy",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Neuroendocrinology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Neuropsychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Journal of Anatomy",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Arrhythmia",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Family Therapy",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Obstetrics and Gynaecology Research",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Linguistic Anthropology",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "Journal of Law and Society",
+      "reference_style": "Oxford University Standard for the Citation of Legal Authorities (OSCOLA – Footnote Reference Style)",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Occupational and Organizational Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Journal of Prosthodontics",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Research on Adolescence",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Journal of Risk and Insurance Review",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Applied Ecology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Parenteral and Enteral Nutrition",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Periodontology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Pineal Research",
+      "reference_style": "Chicago Manual of style, 17th edition",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Product Innovation Management",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Phycology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "The Journal of Rural Health",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Research in Special Educational Needs",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Journal of Surfactants and Detergents",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "JSFA Reports",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of the Society for Information Display",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Sleep Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Traumatic Stress",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of the World Aquaculture Society",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "The Journal of World Intellectual Property",
+      "reference_style": "Oxford University Standard for the Citation of Legal Authorities (OSCOLA – Footnote Reference Style)",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "The Journal of Wildlife Management",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "The Kaohsiung Journal of Medical Sciences",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Legal and Criminological Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Lipids",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Laser & Photonics Reviews",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Learning Health Systems",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Legislative Studies Quarterly",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Mathematical Logic Quarterly",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Mathematische Nachrichten",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Medical Anthropology Quarterly",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "minion"
+    },
+    {
+      "name": "Macromolecular Symposia",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Materialwissenschaft und Werkstofftechnik",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Medical Education",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Methods in Ecology and Evolution",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Middle East Policy",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Meteorological Applications",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Meteorological Applications",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Metaphilosophy",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Computer-Aided Civil and Infrastructure Engineering",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Mind & Language",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Milton Quarterly",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "minion"
+    },
+    {
+      "name": "Marine Mammal Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "The Modern Language Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Medical Physics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Magnetic Resonance in Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Mathematika",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Museum Anthropology",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Medical and Veterinary Entomology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Journal for the Anthropology of North America",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Annals of Anthropological Practice",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "Nutrition in Clinical Practice",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Nutrition & Dietetics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Nutrition & Dietetics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "New Disease Reports",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Nursing in Critical Care",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Noûs",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Near Surface Geophysics",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Annals of the New York Academy of Sciences",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "New Zealand Geographer",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Obesity Reviews",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Obesity",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Oil and Energy Trends",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Orbis Litterarum : International review of Literary Studies",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Ophthalmic and Physiological Optics",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "myriad"
+    },
+    {
+      "name": "Pediatric Allergy and Immunology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Paleoceanography and Paleoclimatology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Journal of Policy Analysis and Management",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "People and Nature",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Pain Practice",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Psychology and Psychotherapy: Theory, Research and Practice",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Polymer Composites",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Pediatrics International",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Polymer Engineering & Science",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Pharmacotherapy",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Perspectives of Earth and Space Scientists",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Physiological Entomology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Philosophical Investigations",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Photochemistry and Photobiology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Psychiatry and Clinical Neurosciences Reports",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "MedComm",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "International Journal of Mechanical System Dynamics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "mLife",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Malignancy Spectrum",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Neuroprotection",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Journal of Pediatric Gastroenterology and Nutrition",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "JPGN Reports",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Popular Culture Review",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Journal of Intelligent Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "New Plant Protection",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Knee Surgery, Sports Traumatology, Arthroscopy",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Materials Genome Engineering Advances",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Sculpture, Monuments and Open Space",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Philosophy and Phenomenological Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Physiological Reports",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Papers in Regional Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "PoLAR: Political and Legal Anthropology Review",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Proceedings of the London Mathematical Society",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "PM&R: The journal of injury, function and rehabilitation",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Population Ecology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Political Psychology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Plants, People, Planet",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Physiologia Plantarum: An International Journal for Plant Biology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Periodontology 2000",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Protein Science",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Precision Radiation Oncology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Process Safety Progress",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Precision Medical Sciences",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Plant Species Biology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Policy Studies Journal",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "garamond"
+    },
+    {
+      "name": "Review of European Comparative & International Environmental Law",
+      "reference_style": "As in Manuscript",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "The Quarterly Journal of the Royal Meteorological Society",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Advanced Quantum Technologies",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Radio Science",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Real Estate Economics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Review of Education",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "arial"
+    },
+    {
+      "name": "Review of Financial Economics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Risk Analysis",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Reproductive Medicine and Biology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Risk Management & Insurance Review",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Reviews of Geophysics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Review of Policy Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Regional Science Policy and Practice",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "The Russian Review",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Strategic Entrepreneurship Journal",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Scandinavian Journal of Immunology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stix"
+    },
+    {
+      "name": "Scandinavian Journal of Statistics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Southern Journal of Philosophy",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Small",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Small Methods",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "ScalaPro"
+    },
+    {
+      "name": "Sociological Forum",
+      "reference_style": "Chicago Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Southern Economic Journal",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Social Policy Report",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Swiss Political Science Review",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "School Science and Mathematics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Statistica Neerlandica",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Structural Concrete",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Support for Learning",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "times"
+    },
+    {
+      "name": "Soil Use and Management",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Space Weather",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Systematic Entomology",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "The Australian Journal of Anthropology",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Therapeutic Apheresis and Dialysis",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Journal of Topology",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Tectonics",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Teaching Statistics",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Die Unterrichtspraxis/Teaching German",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "Times"
+    },
+    {
+      "name": "Transactions of the London Mathematical Society",
+      "reference_style": "American Mathematical Society (AMS) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Transfusion Medicine",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Traditional and Kampo Medicine",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "helvetica"
+    },
+    {
+      "name": "Tropical Medicine & International Health",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Transactions of the Institute of British Geographers",
+      "reference_style": "Harvard Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Alzheimer&apos;s & Dementia: Translational Research & Clinical Interventions",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Transfusion",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Visual Anthropology Review",
+      "reference_style": "Chicago Reference Style",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Veterinary Clinical Pathology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Veterinary Dermatology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "univers"
+    },
+    {
+      "name": "Wildlife Monographs",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Journal of Vinyl and Additive Technology",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Vox Sanguinis",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Veterinary Surgery",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Water and Environment Journal",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Water Environment Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "World Food Policy",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Water Resources Research",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 1,
+      "font": "stix"
+    },
+    {
+      "name": "Weed Research",
+      "reference_style": "Harvard Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Wound Repair and Regeneration",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Wildlife Society Bulletin",
+      "reference_style": "As in Manuscript",
+      "columns": 1,
+      "font": "lato"
+    },
+    {
+      "name": "Zoologica Scripta : An International Journal of Systematic Zoology",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "SPE Polymers",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "stixtwotext"
+    },
+    {
+      "name": "Veterinary Record Case Reports",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Veterinary Record Open",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Veterinary Record",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "minion"
+    },
+    {
+      "name": "Rheumatology & Autoimmunity",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "utopia"
+    },
+    {
+      "name": "River",
+      "reference_style": "American Psychological Association (APA) Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "World Journal of Otorhinolaryngology – Head and Neck Surgery",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "lato"
+    },
+    {
+      "name": "Responsive Materials",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Smart Molecules",
+      "reference_style": "Chemistry - Materials Sciences Reference Style",
+      "columns": 2,
+      "font": "times"
+    },
+    {
+      "name": "Quantitative Biology",
+      "reference_style": "Vancouver Reference Style",
+      "columns": 2,
+      "font": "arial"
+    },
+    {
+      "name": "Sleep Research",
+      "reference_style": "American Medical Association (AMA) Reference Style",
+      "columns": 2,
+      "font": "arial"
+    }
+  ]
+}

@@ -1,0 +1,932 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-11-02",
+  "runtime_enabled": false,
+  "purpose": "Source-bound local starting index for consolidation with existing workbench standards, template catalogs and corpus context.",
+  "sources": [
+    {
+      "id": "ppt.catalog",
+      "kind": "product_configuration",
+      "local_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\templates\\presentations\\catalog.json",
+      "deployed_path": "/srv/research-workbench/source/templates/presentations/catalog.json",
+      "version": "2026-11-01",
+      "checked_on": "2026-11-02",
+      "access": "local file and deployed file read",
+      "scope": "Built-in adapted presentation templates; not private template requirements",
+      "facts": {
+        "templates": [
+          "beamer-default",
+          "beamer-madrid",
+          "metropolis"
+        ],
+        "layout": {
+          "ratio": "16:9",
+          "width_in": 13.333333,
+          "height_in": 7.5,
+          "margin_in": 0.7,
+          "title_font_pt": 32,
+          "cover_font_pt": 38,
+          "body_font_pt": 24,
+          "min_body_font_pt": 20,
+          "caption_font_pt": 14,
+          "line_spacing": 1.18,
+          "title_max_lines": 2,
+          "max_figures_per_slide": 1,
+          "latin_font": "Arial",
+          "cjk_font": "微软雅黑",
+          "font_adaptation": "PPTX 采用可用的 Arial 与微软雅黑，不把它称为 Beamer 原生字体的逐像素复刻。",
+          "alignment": "shared left edges; fixed title, content and caption regions; preserve image aspect ratio"
+        }
+      }
+    },
+    {
+      "id": "ppt.purposes",
+      "kind": "product_configuration",
+      "local_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\templates\\presentations\\purpose-rules.json",
+      "deployed_path": "/srv/research-workbench/source/templates/presentations/purpose-rules.json",
+      "locator": "profiles; sources; scoring_policy; classification_policy",
+      "checked_on": "2026-11-02",
+      "access": "Local canonical JSON read; production linkage confirmed by coordinator",
+      "scope": "Six extensible audience-centered purposes; independent of temporary visual themes",
+      "implementation": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\server\\presentation_catalog.py"
+    },
+    {
+      "id": "output.standards",
+      "kind": "product_contract",
+      "local_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\vendor\\workbench-skills\\OUTPUT_STANDARD.md",
+      "implementation": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\server\\standards.py",
+      "checked_on": "2026-11-02",
+      "access": "Local standards routing implementation read",
+      "scope": "Existing product contract and task routes; whole contract not re-reviewed this turn"
+    },
+    {
+      "id": "manuscript.catalog",
+      "kind": "template_catalog_with_provenance",
+      "local_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\server\\manuscripts.py",
+      "provenance_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\templates\\manuscripts\\source\\provenance.json",
+      "checked_on": "2026-11-02",
+      "access": "Local relevant entries and provenance read; deployed ten template IDs and names confirmed",
+      "scope": "Templates distinguish original Word, LaTeX and adaptations; current journal author guides not re-verified"
+    },
+    {
+      "id": "ppt.checks",
+      "kind": "implementation_evidence",
+      "local_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\server\\slide_quality.py",
+      "checked_on": "2026-11-02",
+      "access": "Local layout_sections and verify_rendered read",
+      "scope": "Observed implementation; not a source of universal template requirements"
+    },
+    {
+      "id": "book.srw2",
+      "kind": "writing_reference",
+      "title": "Science Research Writing: For Native and Non-Native Speakers of English",
+      "author": "Hilary Glasman-Deal",
+      "edition": "2nd edition; copyright 2021, cataloging 2020",
+      "local_path": "C:\\Users\\DEVELOPER\\Downloads\\2nd-科研写作-Science research writing for non-native speakers of English.pdf",
+      "stable_identity": "https://doi.org/10.1142/q0232",
+      "cached_page_file": "D:\\ChatGPT-workspace\\skill开发\\writing-framework-rebuild-20261014\\sources\\srw2\\pages.json",
+      "pages_read_this_turn": [
+        213,
+        214,
+        295,
+        296,
+        318
+      ],
+      "original_render_checked_pdf_page": 213,
+      "current_page_count": 385,
+      "scope": "Whole-book MinerU cloud conversion completed; physical-page/asset structure checked; only listed pilot pages received agent visual review",
+      "access_scope": "Existing local materials; distribution or public-user entitlement not established",
+      "extraction_note": "Raw MinerU, automatic physical-page derivative and explicitly marked reading supplement layer preserved; existing cached_page_file kept for provenance",
+      "actual_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.srw2\\derived\\reading.md",
+      "automatic_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.srw2\\derived\\page-faithful.md",
+      "source_page_json_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.srw2\\derived\\page-faithful.json",
+      "structure_probe_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.srw2\\derived\\structure-probes.json",
+      "cluster_markdown_path": "/work/home/cluster_user/research-projects/deeptutor-integration/research-workbench/quality-library/mineru-20261102/jobs/book.srw2/derived/reading.md",
+      "server_markdown_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/book.srw2/derived/reading.md",
+      "cluster_original_pdf_path": "/work/home/cluster_user/research-projects/deeptutor-integration/research-workbench/quality-library/mineru-20261102/inputs/book.srw2.pdf",
+      "cluster_receipt_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.srw2\\cluster-receipt.json",
+      "source_mapping_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.srw2\\source-mapping.json",
+      "parser": {
+        "requested_provider": "MinerU cloud precision API",
+        "requested_model_version": "vlm",
+        "observed_producer_version": "3.4.4",
+        "observed_backend": "hybrid",
+        "observed_effort": "medium",
+        "ocr": true,
+        "table": true,
+        "formula": true,
+        "language": "en",
+        "pages_per_part": 180
+      },
+      "parse_status": "all_source_pages_parsed_with_physical_page_mapping",
+      "pages_without_content_blocks": [],
+      "risk_page_count": 219,
+      "asset_count": 139,
+      "content_review_status": "full_book_unreviewed; six_page_combination_pilot_only",
+      "agent_visual_reviewed_source_pdf_pages": [
+        213,
+        296
+      ],
+      "human_review_performed": false,
+      "public_deployment_allowed": false,
+      "full_book_precision_established": false
+    },
+    {
+      "id": "book.awg3",
+      "kind": "writing_reference",
+      "title": "Academic Writing for Graduate Students: Essential Tasks and Skills",
+      "author": "John M. Swales; Christine B. Feak",
+      "edition": "3rd edition, 2012",
+      "local_path": "D:\\BaiduNetdiskDownload\\PFC2D\\Academic Writing for Graduate Students Essential Tasks and Skills.pdf",
+      "stable_identity": "https://doi.org/10.3998/mpub.2173936",
+      "cached_page_file": "D:\\ChatGPT-workspace\\skill开发\\writing-framework-rebuild-20261014\\sources\\awg3\\pages.json",
+      "pages_read_this_turn": [
+        41,
+        42,
+        171,
+        172
+      ],
+      "original_render_checked_pdf_page": 42,
+      "current_page_count": 430,
+      "scope": "Whole-book MinerU cloud conversion completed; physical-page/asset structure checked; only listed pilot pages received agent visual review",
+      "access_scope": "Existing local materials; distribution or public-user entitlement not established",
+      "extraction_note": "Raw MinerU, automatic physical-page derivative and explicitly marked reading supplement layer preserved; existing cached_page_file kept for provenance",
+      "actual_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.awg3\\derived\\reading.md",
+      "automatic_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.awg3\\derived\\page-faithful.md",
+      "source_page_json_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.awg3\\derived\\page-faithful.json",
+      "structure_probe_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.awg3\\derived\\structure-probes.json",
+      "cluster_markdown_path": "/work/home/cluster_user/research-projects/deeptutor-integration/research-workbench/quality-library/mineru-20261102/jobs/book.awg3/derived/reading.md",
+      "server_markdown_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/book.awg3/derived/reading.md",
+      "cluster_original_pdf_path": "/work/home/cluster_user/research-projects/deeptutor-integration/research-workbench/quality-library/mineru-20261102/inputs/book.awg3.pdf",
+      "cluster_receipt_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.awg3\\cluster-receipt.json",
+      "source_mapping_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.awg3\\source-mapping.json",
+      "parser": {
+        "requested_provider": "MinerU cloud precision API",
+        "requested_model_version": "vlm",
+        "observed_producer_version": "3.4.4",
+        "observed_backend": "hybrid",
+        "observed_effort": "medium",
+        "ocr": true,
+        "table": true,
+        "formula": true,
+        "language": "en",
+        "pages_per_part": 180
+      },
+      "parse_status": "all_source_pages_parsed_with_physical_page_mapping",
+      "pages_without_content_blocks": [],
+      "risk_page_count": 156,
+      "asset_count": 139,
+      "content_review_status": "full_book_unreviewed; six_page_combination_pilot_only",
+      "agent_visual_reviewed_source_pdf_pages": [
+        42,
+        172
+      ],
+      "human_review_performed": false,
+      "public_deployment_allowed": false,
+      "full_book_precision_established": false
+    },
+    {
+      "id": "book.corpora2",
+      "kind": "writing_reference",
+      "title": "Academic Writing with Corpora: A Resource Book for Data-Driven Learning",
+      "author": "Tatyana Karpenko-Seccombe",
+      "edition": "2nd edition, 2025",
+      "local_path": "D:\\WECHAT\\xwechat_files\\wxid_bybr0emq5bzg22_ef18\\msg\\file\\2026-10\\Academic_Writing_with_Corpora.pdf",
+      "stable_identity": "https://doi.org/10.4324/9781003427124",
+      "cached_page_file": "D:\\ChatGPT-workspace\\skill开发\\writing-framework-rebuild-20261014\\sources\\corpora2\\pages.json",
+      "pages_read_this_turn": [
+        88,
+        89,
+        90,
+        91,
+        92,
+        93
+      ],
+      "original_render_checked_pdf_page": 93,
+      "current_page_count": 227,
+      "scope": "Whole-book MinerU cloud conversion completed; physical-page/asset structure checked; only listed pilot pages received agent visual review",
+      "access_scope": "Existing local materials; distribution or public-user entitlement not established",
+      "extraction_note": "Raw MinerU, automatic physical-page derivative and explicitly marked reading supplement layer preserved; existing cached_page_file kept for provenance",
+      "actual_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.corpora2\\derived\\reading.md",
+      "automatic_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.corpora2\\derived\\page-faithful.md",
+      "source_page_json_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.corpora2\\derived\\page-faithful.json",
+      "structure_probe_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.corpora2\\derived\\structure-probes.json",
+      "cluster_markdown_path": "/work/home/cluster_user/research-projects/deeptutor-integration/research-workbench/quality-library/mineru-20261102/jobs/book.corpora2/derived/reading.md",
+      "server_markdown_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/book.corpora2/derived/reading.md",
+      "cluster_original_pdf_path": "/work/home/cluster_user/research-projects/deeptutor-integration/research-workbench/quality-library/mineru-20261102/inputs/book.corpora2.pdf",
+      "cluster_receipt_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.corpora2\\cluster-receipt.json",
+      "source_mapping_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\mineru-books\\book.corpora2\\source-mapping.json",
+      "parser": {
+        "requested_provider": "MinerU cloud precision API",
+        "requested_model_version": "vlm",
+        "observed_producer_version": "3.4.4",
+        "observed_backend": "hybrid",
+        "observed_effort": "medium",
+        "ocr": true,
+        "table": true,
+        "formula": true,
+        "language": "en",
+        "pages_per_part": 180
+      },
+      "parse_status": "all_source_pages_parsed_with_physical_page_mapping",
+      "pages_without_content_blocks": [],
+      "risk_page_count": 151,
+      "asset_count": 173,
+      "content_review_status": "full_book_unreviewed; six_page_combination_pilot_only",
+      "agent_visual_reviewed_source_pdf_pages": [
+        90,
+        93
+      ],
+      "human_review_performed": false,
+      "public_deployment_allowed": false,
+      "full_book_precision_established": false
+    },
+    {
+      "id": "S01",
+      "kind": "presentation_guidance_source",
+      "title": "Slideshow",
+      "publisher": "MIT Biological Engineering Communication Lab",
+      "url": "https://mitcommlab.mit.edu/be/commkit/slideshow/",
+      "purpose_ids": [
+        "group",
+        "conference"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:29.263650+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S01\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S01\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S01\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S01\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S01/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S01\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S01",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S01\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Article body or journal-club tab; site navigation omitted.",
+        "prior_research_note": "相关正文已读；页面注明2026-07更新。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "Identify Your Purpose",
+          "read_lines": "54-59",
+          "supports": "方法反馈与结果传播需要不同内容重点。"
+        },
+        {
+          "section": "Analyze Your Audience; Help your audience understand your data",
+          "read_lines": "60-79",
+          "supports": "背景、术语和图表解释需匹配听众。"
+        },
+        {
+          "section": "Prepare for the talking part of the talk",
+          "read_lines": "129-134",
+          "supports": "可准备更技术化的补充问答材料。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S01\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S01\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S01/derived/document.md",
+      "recommended_reading_method": "mineru_cloud"
+    },
+    {
+      "id": "S02",
+      "kind": "presentation_guidance_source",
+      "title": "Preparing Your Presentation for #AGU20",
+      "publisher": "American Geophysical Union",
+      "url": "https://www.agu.org/-/media/files/fall-meeting/preparing-presentation-guidelines.pdf",
+      "purpose_ids": [
+        "conference"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:28.342422+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S02\\original.pdf",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S02\\mineru\\reading.md",
+      "native_extraction_method": "native_pdf_text",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S02\\native.source.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "vlm",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S02\\mineru\\derived\\page-faithful.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S02/derived/page-faithful.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S02\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S02",
+        "local_heading_index": null,
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "All two physical PDF pages; source text layer only.",
+        "prior_research_note": "两页PDF正文已读；2020虚拟会议文件。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "Create your presentation",
+          "page": 1,
+          "read_lines": "9-24",
+          "supports": "组织必要要点、保证图形可读，可拆解复杂页面。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S02\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S02\\mineru\\reading.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S02/reading.md",
+      "recommended_reading_method": "mineru_cloud"
+    },
+    {
+      "id": "S03",
+      "kind": "presentation_guidance_source",
+      "title": "At Lab Meetings Show Everything",
+      "publisher": "Newcastle University, Student Guidelines",
+      "url": "https://microsites.ncl.ac.uk/fmspgrstudentguidelines/2015/07/30/at-lab-meetings-show-everything/",
+      "purpose_ids": [
+        "group"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:29.779735+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S03\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S03\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S03\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S03\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S03/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S03\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S03",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S03\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Article body or journal-club tab; site navigation omitted.",
+        "prior_research_note": "正文已读；2015文章，含个人经验。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "Opening; Things to Include; Practical Tips",
+          "read_lines": "9-29",
+          "supports": "组会用于改进研究，应提供方法条件、失败结果和所需诊断信息。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S03\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S03\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S03/derived/document.md",
+      "recommended_reading_method": "mineru_cloud"
+    },
+    {
+      "id": "S04",
+      "kind": "presentation_guidance_source",
+      "title": "The Heilmeier Catechism",
+      "publisher": "DARPA",
+      "url": "https://www.darpa.mil/about/heilmeier-catechism",
+      "purpose_ids": [
+        "project"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": null,
+      "local_original_path": null,
+      "local_markdown_path": null,
+      "native_extraction_method": null,
+      "locator_map_path": null,
+      "mineru": {
+        "state": "not_eligible_no_original",
+        "processed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "not_retrieved",
+        "this_ingest_scope": null,
+        "prior_research_note": "官方索引内容含完整八问；初次打开返回页面元数据，后续正文重取超时。未宣称全文阅读。",
+        "full_text_public_distribution_allowed": false
+      },
+      "source_locators": [
+        {
+          "section": "The Heilmeier Catechism, eight numbered questions",
+          "supports": "目标、现状、新方法、意义、风险、成本、时间与成功检查。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false
+    },
+    {
+      "id": "S05",
+      "kind": "presentation_guidance_source",
+      "title": "Research Performance Progress Report (RPPR)",
+      "publisher": "National Institutes of Health",
+      "url": "https://www.grants.nih.gov/grants-process/post-award-monitoring-and-reporting/reporting-requirements/research-performance-progress-report-rppr",
+      "purpose_ids": [
+        "project"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": null,
+      "local_original_path": null,
+      "local_markdown_path": null,
+      "native_extraction_method": null,
+      "locator_map_path": null,
+      "mineru": {
+        "state": "not_eligible_no_original",
+        "processed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "not_retrieved",
+        "this_ingest_scope": null,
+        "prior_research_note": "相关正文已读；页面注明2024-09-04更新。",
+        "full_text_public_distribution_allowed": false
+      },
+      "source_locators": [
+        {
+          "section": "Types of RPPRs",
+          "read_lines": "7-12",
+          "supports": "年度、阶段与结题报告内容不完全相同。"
+        },
+        {
+          "section": "What: Accomplishments; Products; Changes/Problems; Project Outcomes",
+          "read_lines": "42-74",
+          "supports": "记录目标下的完成情况、产品、后续计划及问题。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false
+    },
+    {
+      "id": "S06",
+      "kind": "presentation_guidance_source",
+      "title": "Thesis Proposal",
+      "publisher": "MIT EECS Communication Lab",
+      "url": "https://mitcommlab.mit.edu/eecs/commkit/thesis-proposal/",
+      "purpose_ids": [
+        "proposal"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:29.606432+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S06\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S06\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S06\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S06\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S06/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S06\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S06",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S06\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Article body or journal-club tab; site navigation omitted.",
+        "prior_research_note": "相关正文已读；主要对象为书面开题。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "Purpose; Analyze Your Audience",
+          "read_lines": "42-49",
+          "supports": "论证价值、可行性及明确的工作范围。"
+        },
+        {
+          "section": "Include a timeline; Include details and preliminary results",
+          "read_lines": "65-72",
+          "supports": "计划应能说明如何实施及为何可行。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S06\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S06\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S06/derived/document.md",
+      "recommended_reading_method": "mineru_cloud"
+    },
+    {
+      "id": "S07",
+      "kind": "presentation_guidance_source",
+      "title": "PhD Thesis Proposals",
+      "publisher": "MIT AeroAstro Communication Lab",
+      "url": "https://mitcommlab.mit.edu/aeroastro/commkit/phd-thesis-proposals/",
+      "purpose_ids": [
+        "proposal"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:30.535850+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S07\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S07\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S07\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S07\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S07/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S07\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S07",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S07\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Article body or journal-club tab; site navigation omitted.",
+        "prior_research_note": "相关正文已读；包含2025-09起的本部门局部规定。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "4. Purpose; 7.2.2 Planned Contributions; 7.2.3 Timeline",
+          "read_lines": "54-60;96-103",
+          "supports": "拟议贡献、实施资源与里程碑共同支持可行性。"
+        },
+        {
+          "section": "7.3.1 Purpose",
+          "read_lines": "104-107",
+          "supports": "委员已预读时，口头开题可聚焦拟议贡献和建设性问答。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S07\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S07\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S07/derived/document.md",
+      "recommended_reading_method": "mineru_cloud"
+    },
+    {
+      "id": "S08",
+      "kind": "presentation_guidance_source",
+      "title": "Thesis Defense, section 2.9.4",
+      "publisher": "MIT, online writing guide",
+      "url": "https://web.mit.edu/course/21/21.guide/th-defen.htm",
+      "purpose_ids": [
+        "defense"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:29.941035+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S08\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S08\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S08\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S08\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S08/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S08\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S08",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S08\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Main defense guidance paragraph only; legacy navigation omitted.",
+        "prior_research_note": "短篇正文全段已读；未提供可确认的当前更新时间。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "2.9.4, main paragraph",
+          "read_lines": "3-5",
+          "supports": "背景、问题、方法、结果、结论是一种组织参考，并需练习。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S08\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S08\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S08/derived/document.md",
+      "recommended_reading_method": "mineru_cloud"
+    },
+    {
+      "id": "S09",
+      "kind": "presentation_guidance_source",
+      "title": "Defense Season Wrapped: What Makes a Thesis Defense Great?",
+      "publisher": "MIT Biological Engineering Communication Lab",
+      "url": "https://mitcommlab.mit.edu/be/2026/02/25/defense-season-wrapped-what-makes-a-thesis-defense-great/",
+      "purpose_ids": [
+        "defense"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:31.155293+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S09/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S09",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Article body or journal-club tab; site navigation omitted.",
+        "prior_research_note": "相关正文已读；2026-02案例教学文章。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "Why Your Work Matters",
+          "read_lines": "54-99",
+          "supports": "解释贡献所处位置，并诚实讨论限制。"
+        },
+        {
+          "section": "Tour Guiding Your PhD",
+          "read_lines": "100-121",
+          "supports": "可以按独立章节组织；不必依照严格时间顺序。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S09/derived/document.md",
+      "recommended_reading_method": "mineru_cloud",
+      "source_heading_crosswalk": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S09\\mineru\\source-heading-crosswalk.json"
+    },
+    {
+      "id": "S10",
+      "kind": "presentation_guidance_source",
+      "title": "Your Journal Club Presentation",
+      "publisher": "University of Virginia, Department of Pharmacology",
+      "url": "https://med.virginia.edu/research/pharmacology/current-students/degree-requirements/journal-club-tips",
+      "purpose_ids": [
+        "literature"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:30.805816+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S10\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S10\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S10\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S10\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S10/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S10\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S10",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S10\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Journal Club Tips content block only; department menus omitted.",
+        "prior_research_note": "Journal Club Tips正文已读。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "Journal Club Tips",
+          "read_lines": "36-39",
+          "supports": "围绕中心主张选择关键实验，并主持聚焦论文的讨论。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S10\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S10\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S10/derived/document.md",
+      "recommended_reading_method": "mineru_cloud"
+    },
+    {
+      "id": "S11",
+      "kind": "presentation_guidance_source",
+      "title": "Journal Clubs, Evidence Based Medicine",
+      "publisher": "NYU Health Sciences Library",
+      "url": "https://hslguides.med.nyu.edu/EBM/journalclubs",
+      "purpose_ids": [
+        "literature"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:36.937126+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S11\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S11\\native.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S11\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S11\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S11/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S11\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S11",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S11\\mineru\\derived\\heading-index.json",
+        "review_status": "native_primary_due_to_mineru_omission",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Article body or journal-club tab; site navigation omitted.",
+        "prior_research_note": "相关正文已读；页面注明2026-07-06更新。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "native_primary_due_to_mineru_omission",
+        "current_reading_layer": "native_html",
+        "not_hard_constraints": true,
+        "known_mineru_omission": "MinerU-HTML omitted interactive-panel body under Typical Journal Club Structure; use the native_html source copy for design/validity/results/limitations claims. Raw cloud output is preserved."
+      },
+      "source_locators": [
+        {
+          "section": "Appraising your Article; Typical Journal Club Structure",
+          "read_lines": "128-180",
+          "supports": "评议研究设计、结果有效性、局限和应用情境。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S11\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S11\\native.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/inputs/presentation-sources/S11/native.md",
+      "recommended_reading_method": "native_html"
+    },
+    {
+      "id": "S12",
+      "kind": "presentation_guidance_source",
+      "title": "Graduate Resources, Thesis Defense Scheduling",
+      "publisher": "MIT Department of Earth, Atmospheric and Planetary Sciences",
+      "url": "https://eaps.mit.edu/education/graduate-program/graduate-resources/",
+      "purpose_ids": [
+        "defense"
+      ],
+      "checked_on": "2026-11-02",
+      "retrieved_at": "2026-11-01T17:21:31.195675+00:00",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S12\\original.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S12\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S12\\heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S12\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S12/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S12\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S12",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S12\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_access_status": "downloaded",
+        "this_ingest_scope": "Thesis Defense Scheduling subsection only; other graduate resources omitted.",
+        "prior_research_note": "答辩目的及相邻说明已读。",
+        "full_text_public_distribution_allowed": false,
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "source_locators": [
+        {
+          "section": "Thesis Defense + Graduation > Thesis Defense Scheduling",
+          "read_lines": "266-269",
+          "supports": "答辩展示合格质量的独立研究及连贯表达结果的能力。"
+        }
+      ],
+      "private_library_root": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources",
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S12\\native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S12\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S12/derived/document.md",
+      "recommended_reading_method": "mineru_cloud"
+    },
+    {
+      "id": "S05-ALT",
+      "kind": "presentation_guidance_official_alternative",
+      "parent_source_id": "S05",
+      "title": "Overview of Research Performance Progress Report (RPPR)",
+      "publisher": "NIH eRA",
+      "url": "https://www.era.nih.gov/about-era/services-for-applicants-recipients/reporting-requirements/overview-rppr.htm",
+      "purpose_ids": [
+        "project"
+      ],
+      "checked_on": "2026-11-02",
+      "local_original_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S05\\alternatives\\official-era-overview.html",
+      "local_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S05\\alternatives\\mineru\\derived\\document.md",
+      "native_extraction_method": "native_html",
+      "locator_map_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S05\\alternatives\\official-era-overview.heading-map.json",
+      "mineru": {
+        "processed": true,
+        "state": "conversion_completed",
+        "requested_model_version": "MinerU-HTML",
+        "actual_local_markdown": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S05\\alternatives\\mineru\\derived\\document.md",
+        "actual_remote_markdown": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S05-ALT/derived/document.md",
+        "local_job_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S05\\alternatives\\mineru",
+        "remote_job": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S05-ALT",
+        "local_heading_index": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S05\\alternatives\\mineru\\derived\\heading-index.json",
+        "review_status": "bounded_source_checks_passed",
+        "raw_output_preserved": true,
+        "whole_document_accuracy_claimed": false
+      },
+      "access_scope": {
+        "canonical_source_S05_still_unavailable": true,
+        "relationship": "official_alternative_not_original_page",
+        "supports": [
+          "Annual scientific progress, significant changes, personnel, subsequent plans",
+          "Annual/final/interim reporting distinctions"
+        ],
+        "not_supported": [
+          "Detailed products category of original NIH page",
+          "Original NIH page full text or complete substantive equivalence"
+        ],
+        "bounded_source_review_status": "bounded_source_checks_passed",
+        "current_reading_layer": "mineru_cloud",
+        "not_hard_constraints": true
+      },
+      "public_deployment_allowed": false,
+      "native_markdown_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S05\\alternatives\\official-era-overview.native.md",
+      "recommended_reading_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\presentation-sources\\S05\\alternatives\\mineru\\derived\\document.md",
+      "recommended_remote_reading_path": "/app/data/user/mineru-knowledge-ingest-20261102/jobs/purpose.S05-ALT/derived/document.md",
+      "recommended_reading_method": "mineru_cloud"
+    }
+  ],
+  "updated_on": "2026-11-02",
+  "canonical_presentation_rules": {
+    "local_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\templates\\presentations\\purpose-rules.json",
+    "repo_relative_path": "templates/presentations/purpose-rules.json",
+    "deployed_path": "/srv/research-workbench/source/templates/presentations/purpose-rules.json",
+    "version": "2026-11-02",
+    "status": "production_rule_source_confirmed_by_coordinator",
+    "runtime_implementation": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\server\\presentation_catalog.py"
+  },
+  "presentation_source_ingest_report": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\reports\\presentation-source-ingest.json",
+  "distribution_note": "This is a local/private source registry. Source originals, full-text derivatives and book material are not public static assets or redistribution entitlements.",
+  "presentation_source_ingest_summary": {
+    "requested_original_sources": 12,
+    "originals_downloaded": 10,
+    "originals_not_retrieved": 2,
+    "native_html_originals": 9,
+    "native_pdf_originals": 1,
+    "official_alternatives_downloaded": 1,
+    "mineru_processed_originals": 10,
+    "mineru_processed_alternatives": 1,
+    "mineru_queued_items": 0,
+    "recommended_mineru_readings": 10,
+    "recommended_native_readings": 1
+  },
+  "mineru_library_index_path": "D:\\ChatGPT-workspace\\询问\\dify-research-deployment\\quality-knowledge\\library\\mineru-library-index.json"
+}

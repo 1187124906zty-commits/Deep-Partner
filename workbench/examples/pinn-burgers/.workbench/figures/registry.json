@@ -1,0 +1,12 @@
+{
+  "results/burgers-reference.png": {
+    "id": "5951b8083ce043fcac289a38cc640547",
+    "revision": 1,
+    "asset": "results/burgers-reference.png",
+    "plot_program": "src/plot_reference.py",
+    "compute_program": "src/Burgers.py",
+    "matplotlib": "3.11.2",
+    "updated": "2026-10-31T17:06:38.346695+00:00",
+    "bound_modified": 1793466397000000000
+  }
+}

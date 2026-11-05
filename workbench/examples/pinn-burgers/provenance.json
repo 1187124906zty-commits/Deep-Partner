@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/maziarraissi/PINNs",
+  "commit": "932f50a2d8ef4e80d1456bbae6887a73ff5166ef",
+  "license": "MIT",
+  "article": "https://arxiv.org/abs/1711.10561",
+  "description": "Author-provided Burgers code and reference data. Demo post-processing is separate from PINN training.",
+  "files": {
+    "appendix/continuous_time_inference (Burgers)/Burgers.py": "project/src/Burgers.py",
+    "Utilities/plotting.py": "project/src/plotting.py",
+    "appendix/Data/burgers_shock.mat": "project/data/burgers_shock.mat",
+    "LICENSE": "project/LICENSE",
+    "README.md": "project/docs/UPSTREAM.md"
+  }
+}

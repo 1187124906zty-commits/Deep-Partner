@@ -1,0 +1,9 @@
+{
+  "version": "2026-11-01",
+  "templates": [
+    {"id":"beamer-default","name":"Beamer Default","source":"https://github.com/josephwright/beamer","source_file":"beamercolorthemedefault.sty","license":"LPPL / GPL","basis":"Beamer 官方默认主题的可编辑 PPTX 适配；保留克制的蓝白结构，不带机构标识。","adaptation":true,"institutional_identity":false,"palette":{"background":"FFFFFF","foreground":"202124","primary":"3333B3","accent":"3333B3"},"header":"plain"},
+    {"id":"beamer-madrid","name":"Beamer Madrid","source":"https://github.com/josephwright/beamer","source_file":"beamerthemeMadrid.sty","license":"LPPL / GPL","basis":"Beamer 官方 Madrid 主题的可编辑 PPTX 适配，采用结构色标题栏与页脚信息区，不带机构标识。","adaptation":true,"institutional_identity":false,"palette":{"background":"FFFFFF","foreground":"202124","primary":"3333B3","accent":"262686"},"header":"band"},
+    {"id":"metropolis","name":"Metropolis","source":"https://ctan.org/pkg/beamertheme-metropolis","source_repository":"https://github.com/matze/mtheme","source_file":"beamercolorthememetropolis.dtx","license":"CC BY-SA 4.0","basis":"依据作者 Metropolis 主题源码的可编辑 PPTX 适配；深青、橙色强调及进度线，保留来源和相同许可。","adaptation":true,"institutional_identity":false,"palette":{"background":"FAFAFA","foreground":"23373B","primary":"23373B","accent":"EB811B"},"header":"band"}
+  ],
+  "layout": {"ratio":"16:9","width_in":13.333333,"height_in":7.5,"margin_in":0.7,"title_font_pt":32,"cover_font_pt":38,"body_font_pt":24,"min_body_font_pt":20,"caption_font_pt":14,"line_spacing":1.18,"title_max_lines":2,"max_figures_per_slide":1,"latin_font":"Arial","cjk_font":"微软雅黑","font_adaptation":"PPTX 采用可用的 Arial 与微软雅黑，不把它称为 Beamer 原生字体的逐像素复刻。","alignment":"shared left edges; fixed title, content and caption regions; preserve image aspect ratio"}
+}

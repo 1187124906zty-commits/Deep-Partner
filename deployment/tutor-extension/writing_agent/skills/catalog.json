@@ -1,0 +1,39 @@
+[
+  {
+    "name": "corpus-assisted-writing",
+    "file": "corpus-assisted-writing.md",
+    "source": "author existing corpus-assisted-writing skill",
+    "purpose": "理解原文内容与表达意图"
+  },
+  {
+    "name": "corpus-expression-transfer",
+    "file": "corpus-expression-transfer.md",
+    "source": "author existing corpus-assisted-writing/references/transfer.md",
+    "purpose": "专业搭配、句式及段落关系学习"
+  },
+  {
+    "name": "scientific-expression-review",
+    "file": "scientific-expression-review.md",
+    "source": "author installed scientific-expression-review/SKILL.md",
+    "purpose": "从首次阅读者判断关键句的对象、动作、关系及句段推进"
+  },
+  {
+    "name": "scientific-expression-criteria",
+    "file": "scientific-expression-criteria.md",
+    "source": "author installed scientific-expression-review/references/criteria.md",
+    "purpose": "意义完整性、表达直接性、主次和语料适配的具体审读依据"
+  },
+  {
+    "name": "citation-management",
+    "file": "citation-management.md",
+    "source": "https://raw.githubusercontent.com/K-Dense-AI/scientific-agent-skills/main/skills/citation-management/SKILL.md",
+    "purpose": "题录核验和引用管理",
+    "license": "MIT"
+  },
+  {
+    "name": "journal-literature-synthesis",
+    "file": "journal-literature-synthesis.md",
+    "source": "author 2026-11-04 feedback; four source-located CCR introduction readings; local corpus-assisted-writing and scientific-expression-review",
+    "purpose": "研究支流综合、沙漏收窄、段尾判断与连续承接，区分期刊要求与范例适配"
+  }
+]

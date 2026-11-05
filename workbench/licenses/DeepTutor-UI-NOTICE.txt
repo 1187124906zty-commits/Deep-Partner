@@ -1,0 +1,3 @@
+DeepTutor UI adaptation
+
+The workbench DitoComposer adapts the docked surface, spacing and send-state design from DeepTutor web/components/chat/home/ChatComposer.tsx and ChatComposer.module.css. The upstream source is Apache License 2.0; a copy is included in DeepTutor-APACHE-2.0.txt. Workbench conversation transport and source context are independent integrations.

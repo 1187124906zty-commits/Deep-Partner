@@ -1,0 +1,2 @@
+# Scholar-MCP 0.1.0 imports mcp.server.fastmcp, removed in MCP SDK 2.x.
+mcp>=1.12.0,<2

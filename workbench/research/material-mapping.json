@@ -1,0 +1,37 @@
+{
+  "author_materials": {
+    "local_source": "D:/博士工作/博士项目/水分扩散/2026-10-20",
+    "remote_compute_workspace": "/work/home/cluster_user/research-projects/deeptutor-integration/research-workbench/imports/moisture/workspace",
+    "version": "2026-10-30 author DOCX and corresponding PDF; Oct25 numerical table/plot bundle; latest framework v25 separate source",
+    "transfer": "uploaded; exact trusted import receipt matched",
+    "validation": "Slurm25117043 COMPLETED0:0; 15 plots; 42 compiled source files; 15/15 web-runtime checks"
+  },
+  "model_source": {
+    "local_source": "D:/Development/skill开发/apinn-manuscript-revision-20261003/final",
+    "selected_code_destination": "/work/home/cluster_user/research-projects/deeptutor-integration/research-workbench/imports/moisture/workspace/project/src/model-snapshot",
+    "selected_code_files": 24,
+    "version": "Earlier final research archive stored under a directory containing 20261003; selected training revisions Oct7 and Oct12; not established as identical to Oct30 manuscript"
+  },
+  "large_numerical_data": {
+    "remote_authority": "/work/home/cluster_user/research-projects/chatgpt-large-data-20261025/large-data/skill-kaifa/apinn-manuscript-revision-20261003/final",
+    "status": "previous transfer verified; reused; not retransferred or revalidated scientifically in this app test"
+  },
+  "private_application_copy": {
+    "host": "papers-research",
+    "project_id": "05a893386c09449d88366cf6dfdc825f",
+    "root": "/workspace/outputs/.deeptutor/chat/46fa62a4b01250359275b0834249c716/workspaces/ws_9d5f5821305c4314aedb1ec973ee6de6",
+    "current_manuscript_images": 16,
+    "original_image_bytes_preserved": 16,
+    "source_links": 15,
+    "presentation_generated": false,
+    "native_workspace": "ws_9d5f5821305c4314aedb1ec973ee6de6",
+    "account_alignment": "verified against actual user Edge tab807973009",
+    "previous_source_project": "10ac79bb0e5c478eaec07d022e05126d",
+    "previous_source_archived": true
+  },
+  "trusted_binary_archive": {
+    "sha256": "16cc7f614d50c91f44c3070f9f0cec0ec03251e79294bc89a8adc4d9305c1afc",
+    "job": "25117043",
+    "purpose": "authorize deserializable runtime state from trusted plotting job"
+  }
+}

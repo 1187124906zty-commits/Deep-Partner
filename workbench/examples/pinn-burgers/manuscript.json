@@ -1,0 +1,735 @@
+{
+  "title": "Inspecting a physics-informed Burgers example",
+  "template": "elsevier",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Abstract"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "This example organizes the Burgers-equation materials released with the PINNs project. It combines the original paper, author-provided code and reference data, an editable manuscript and a presentation. The displayed fields are supplied reference solutions; this demonstration does not train a PINN."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Research question"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Physics-informed neural networks approximate a solution while incorporating a differential-equation residual into training. The Burgers problem provides a compact example in which advection, diffusion and a steepening spatial profile can be inspected together [1]."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Governing equation"
+          }
+        ]
+      },
+      {
+        "type": "blockMath",
+        "attrs": {
+          "latex": "u_t+u u_x-\\frac{0.01}{\\pi}u_{xx}=0,\\quad x\\in[-1,1],\\quad t\\in[0,1]"
+        }
+      },
+      {
+        "type": "blockMath",
+        "attrs": {
+          "latex": "u(0,x)=-\\sin(\\pi x),\\qquad u(t,-1)=u(t,1)=0"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The conditions above are taken from Eq. (3) of the downloaded Part I paper, PDF page 5. Coordinates and field values are treated as dimensionless in this example."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. Reference data"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The supplied burgers_shock.mat file contains 256 spatial locations and 100 saved times, from t = 0 to t = 0.99. The plotting script reads this file without changing it and draws the space-time field and four time slices."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "asset:burgers-reference.png",
+          "title": "Figure 1. Author-supplied Burgers reference solution and time slices. This is reference data, not a network prediction.",
+          "alt": "Burgers reference field and time slices"
+        }
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Quantity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Observed value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Spatial locations"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "256"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Saved times"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "100"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Initial-condition maximum difference"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1.110e-16"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Finite entries"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "All entries checked"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. Verification and limits"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The initial slice agrees with −sin(πx) to floating-point precision. This check verifies the identity and interpretation of the supplied array. Network training accuracy, optimization stability and generalization require separate experiments. Gradient-related training issues are discussed in the validation reference [2]."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. Reproducibility"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Run python src/plot_reference.py from the program folder. The original Burgers.py is retained for inspection; it uses the upstream TensorFlow 1-era training API. Code is pinned to commit 932f50a2d8ef4e80d1456bbae6887a73ff5166ef under the MIT license. The present plotting task was run through Slurm, and its numerical report is in results/reference-summary.json."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "References"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[1] Raissi, Perdikaris and Karniadakis. Physics Informed Deep Learning (Part I), arXiv:1711.10561. The downloaded file is the Part I preprint."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[2] Wang, Teng and Perdikaris. Understanding and mitigating gradient pathologies in physics-informed neural networks, arXiv:2001.04536."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[3] Raissi, Perdikaris and Karniadakis. Physics Informed Deep Learning (Part II), arXiv:1711.10566."
+          }
+        ]
+      }
+    ]
+  },
+  "comments": [],
+  "translation": {
+    "title": "物理约束 Burgers 方程示例的数据审阅",
+    "language": "zh-CN",
+    "template": "chinese",
+    "content": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "摘要"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "本示例整理了 PINNs 项目公开的 Burgers 方程材料，将原始论文、作者代码和参考数据与可编辑稿件、汇报文件放在同一工作区。图中展示的是作者提供的参考解；本演示没有训练 PINN。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "1  研究问题"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "物理信息神经网络在逼近解函数的同时，将微分方程残差加入训练。Burgers 问题为共同考察对流、扩散和空间剖面的陡化提供了一个紧凑算例[1]。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "2  控制方程"
+            }
+          ]
+        },
+        {
+          "type": "blockMath",
+          "attrs": {
+            "latex": "u_t+u u_x-\\frac{0.01}{\\pi}u_{xx}=0,\\quad x\\in[-1,1],\\quad t\\in[0,1]"
+          }
+        },
+        {
+          "type": "blockMath",
+          "attrs": {
+            "latex": "u(0,x)=-\\sin(\\pi x),\\qquad u(t,-1)=u(t,1)=0"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "以上条件取自已下载的 Part I 论文式（3），位于 PDF 第5页。本示例将坐标和场变量作为无量纲量处理。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "3  参考数据"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "作者提供的 burgers_shock.mat 文件包含256个空间位置和100个保存时刻，时间从 t = 0 到 t = 0.99。绘图脚本读取该文件，不改动原始数据，并绘制时空场与四个时间切片。"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "attrs": {
+            "src": "asset:burgers-reference.png",
+            "title": "图1  作者提供的 Burgers 参考解与时间切片。图中为参考数据，并非网络预测。",
+            "alt": "Burgers 参考场与时间切片"
+          }
+        },
+        {
+          "type": "table",
+          "content": [
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableHeader",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "检查量"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "数据中的值"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "空间位置数"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "256"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "保存时刻数"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "100"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "初值最大差异"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "1.110e-16"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "有限值检查"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "全部通过"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "4  核对结果与适用范围"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "初始切片与 −sin(πx) 的差异处于浮点精度范围。该检查用于核对数据数组的身份和解释。网络训练精度、优化稳定性和泛化能力仍需单独开展实验。验证环节的参考文献[2]讨论了梯度相关的训练问题。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "5  复现方式"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "在程序目录运行 python src/plot_reference.py 即可重建图。保留的原始 Burgers.py 供阅读，其训练接口属于上游 TensorFlow 1 时代的 API。代码固定为提交 932f50a2d8ef4e80d1456bbae6887a73ff5166ef，遵循 MIT 许可证。本次绘图通过 Slurm 运行，数值记录保存在 results/reference-summary.json。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "参考文献"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "[1] Raissi, Perdikaris and Karniadakis. Physics Informed Deep Learning (Part I), arXiv:1711.10561. The downloaded file is the Part I preprint."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "[2] Wang, Teng and Perdikaris. Understanding and mitigating gradient pathologies in physics-informed neural networks, arXiv:2001.04536."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "[3] Raissi, Perdikaris and Karniadakis. Physics Informed Deep Learning (Part II), arXiv:1711.10566."
+            }
+          ]
+        }
+      ]
+    },
+    "comments": [],
+    "source_revision": 0,
+    "stale": false,
+    "origin": "preset",
+    "generation_id": "preset-pinn-burgers"
+  }
+}

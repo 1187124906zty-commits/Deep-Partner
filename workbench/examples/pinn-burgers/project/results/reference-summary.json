@@ -1,0 +1,24 @@
+{
+  "scope": "Visualization of the authors supplied reference data; not a trained PINN prediction.",
+  "shape": [
+    256,
+    100
+  ],
+  "x_range": [
+    -1.0,
+    1.0
+  ],
+  "t_range": [
+    0.0,
+    0.99
+  ],
+  "initial_max_error": 1.1102230246251565e-16,
+  "u_range": [
+    -0.9999810273487268,
+    0.9999810273487268
+  ],
+  "all_finite": true,
+  "figure": "results/burgers-reference.png",
+  "plot_program": "src/plot_reference.py",
+  "compute_program": "src/Burgers.py"
+}

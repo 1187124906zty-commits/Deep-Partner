@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "runtime_enabled": false,
+  "scope": "Illustrative source-grounded seeds, not an exhaustive mandatory rule set or deployed replacement.",
+  "rules": [
+    {
+      "id": "ppt.default.geometry",
+      "kind": "product_default",
+      "statement": "工作台公共模板使用16:9页面与0.7英寸边距。",
+      "source_bindings": [
+        {
+          "source_id": "ppt.catalog",
+          "locator": "/layout/ratio; /layout/width_in; /layout/height_in; /layout/margin_in"
+        }
+      ],
+      "scope": {
+        "task": "slides",
+        "template_ids": [
+          "beamer-default",
+          "beamer-madrid",
+          "metropolis"
+        ]
+      },
+      "check": {
+        "method": "programmatic",
+        "evidence": "PPTX page size and relevant object geometry",
+        "implemented_in_this_bundle": false
+      },
+      "state": "illustrative_seed_not_promoted",
+      "expected": {
+        "ratio": "16:9",
+        "width_in": 13.333333,
+        "height_in": 7.5,
+        "margin_in": 0.7
+      },
+      "override": "Explicit task or private-template requirements take precedence over this default."
+    },
+    {
+      "id": "ppt.default.fonts",
+      "kind": "product_default",
+      "statement": "公共模板当前西文字体Arial，中文字体微软雅黑，正文默认24pt。",
+      "source_bindings": [
+        {
+          "source_id": "ppt.catalog",
+          "locator": "/layout/latin_font; /layout/cjk_font; /layout/body_font_pt"
+        }
+      ],
+      "scope": {
+        "task": "slides",
+        "template_ids": [
+          "beamer-default",
+          "beamer-madrid",
+          "metropolis"
+        ]
+      },
+      "check": {
+        "method": "programmatic_and_render",
+        "evidence": "Resolved OOXML fonts plus actual rendering font availability",
+        "implemented_in_this_bundle": false
+      },
+      "state": "illustrative_seed_not_promoted",
+      "expected": {
+        "latin_font": "Arial",
+        "cjk_font": "微软雅黑",
+        "body_font_pt": 24
+      },
+      "override": "These values are not a substitute for parsed private-template font requirements."
+    },
+    {
+      "id": "ppt.default.title-lines",
+      "kind": "product_default",
+      "statement": "公共模板标题默认不超过两行。",
+      "source_bindings": [
+        {
+          "source_id": "ppt.catalog",
+          "locator": "/layout/title_max_lines"
+        }
+      ],
+      "scope": {
+        "task": "slides",
+        "template_ids": [
+          "beamer-default",
+          "beamer-madrid",
+          "metropolis"
+        ]
+      },
+      "check": {
+        "method": "render_geometry",
+        "evidence": "Final rendered title lines; estimates are preliminary",
+        "implemented_in_this_bundle": false
+      },
+      "state": "illustrative_seed_not_promoted",
+      "expected": {
+        "title_max_lines": 2
+      }
+    },
+    {
+      "id": "ppt.default.purpose",
+      "kind": "conditional_guidance",
+      "statement": "汇报用途和听众影响内容安排，结构列表按实际证据调整。",
+      "source_bindings": [
+        {
+          "source_id": "ppt.purposes",
+          "locator": "PROFILES; generation_context"
+        }
+      ],
+      "scope": {
+        "task": "slides",
+        "profile_ids": [
+          "group",
+          "conference",
+          "project",
+          "proposal",
+          "defense",
+          "literature"
+        ]
+      },
+      "check": {
+        "method": "semantic_review",
+        "evidence": "Task purpose, audience, source paper and page plan",
+        "implemented_in_this_bundle": false
+      },
+      "state": "illustrative_seed_not_promoted"
+    },
+    {
+      "id": "writing.domain-sense",
+      "kind": "conditional_guidance",
+      "statement": "专业词的义项和搭配要结合学科及连续语境判定；相同词形可表示不同对象。",
+      "source_bindings": [
+        {
+          "source_id": "book.corpora2",
+          "locator": "PDF90–93; printed67–70; especially Task3.2.21"
+        }
+      ],
+      "scope": {
+        "task": [
+          "paper",
+          "translation",
+          "slides"
+        ],
+        "topic": "Terminology and word choice"
+      },
+      "check": {
+        "method": "semantic_review_with_source_context",
+        "evidence": "Current physical object plus KWIC and adjacent source context",
+        "implemented_in_this_bundle": false
+      },
+      "state": "illustrative_seed_not_promoted"
+    },
+    {
+      "id": "writing.adapt-adopt",
+      "kind": "conditional_guidance",
+      "statement": "描述修改既有模型与直接采用既有模型时，分别核对adapt和adopt的含义，按实际动作选择。",
+      "source_bindings": [
+        {
+          "source_id": "book.corpora2",
+          "locator": "PDF91–92; printed68–69; Task3.2.20"
+        }
+      ],
+      "scope": {
+        "task": [
+          "paper",
+          "translation"
+        ],
+        "topic": "Method attribution and actual modifications"
+      },
+      "check": {
+        "method": "semantic_review",
+        "evidence": "Source method and actual implementation changes",
+        "implemented_in_this_bundle": false
+      },
+      "state": "illustrative_seed_not_promoted"
+    },
+    {
+      "id": "writing.cause-direction",
+      "kind": "conditional_guidance",
+      "statement": "因果方向、关联措辞与确定程度应表达作者实际证据支持的关系。",
+      "source_bindings": [
+        {
+          "source_id": "book.srw2",
+          "locator": "PDF213–214; printed184–185"
+        }
+      ],
+      "scope": {
+        "task": [
+          "paper",
+          "translation"
+        ],
+        "topic": "Causal language and claim strength"
+      },
+      "check": {
+        "method": "semantic_review",
+        "evidence": "Sentence context and research evidence; lexical matching alone cannot establish causality",
+        "implemented_in_this_bundle": false
+      },
+      "state": "illustrative_seed_not_promoted"
+    },
+    {
+      "id": "writing.information-flow",
+      "kind": "conditional_guidance",
+      "statement": "利用读者已知信息承接新信息，并按上下文决定重复、代词及语态。",
+      "source_bindings": [
+        {
+          "source_id": "book.awg3",
+          "locator": "PDF41–42; printed31–32"
+        }
+      ],
+      "scope": {
+        "task": [
+          "paper",
+          "translation"
+        ],
+        "topic": "Paragraph flow"
+      },
+      "check": {
+        "method": "semantic_review",
+        "evidence": "Continuous paragraph and intended reader knowledge",
+        "implemented_in_this_bundle": false
+      },
+      "state": "illustrative_seed_not_promoted"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Darcy 流算子学习示例",
+  "sections": [
+    {
+      "id": "cover",
+      "role": "cover",
+      "title": "Darcy 流算子学习示例",
+      "content": "文献、代码、参考数据与可编辑稿件"
+    },
+    {
+      "id": "method",
+      "role": "content",
+      "title": "从系数函数映射到解函数",
+      "content": "Darcy 方程给定空间变化系数场，求稳态解。\nFNO 在傅里叶空间参数化算子。\n公开小型数据用于展示资料与图像的对应关系。"
+    },
+    {
+      "id": "results",
+      "role": "content",
+      "title": "输入编码与参考解需要区分",
+      "content": "左图为当前文件保存的二值相位编码。\n右图为同一样本的参考解。\n本次完成绘图与数据核对，尚未训练网络。",
+      "figures": [
+        "Figure 1"
+      ]
+    },
+    {
+      "id": "ending",
+      "role": "ending",
+      "title": "进一步研究需要补齐的证据",
+      "content": "核对归一化、训练条件和独立测试集。\n比较不同分辨率与不同算子模型。\n在相同条件下讨论误差与计算开销。"
+    }
+  ]
+}

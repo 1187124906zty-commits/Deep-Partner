@@ -1,0 +1,2788 @@
+[
+  {
+    "name": "workbench_manuscript",
+    "description": "Read, save or import an editable manuscript and its image assets.\nInput is a project, action and source document or file; output is the native document or upload receipt.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "get",
+          "description": "Editable manuscript operation",
+          "enum": [
+            "get",
+            "save",
+            "import",
+            "upload_asset"
+          ],
+          "type": "string"
+        },
+        "document": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Existing Tiptap document and manuscript fields; save requires its revision"
+        },
+        "revision": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Explicit current revision, overriding document.revision when supplied"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Reason retained with manuscript history"
+        },
+        "file_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Local document to import or image asset to upload"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_manuscript_templates",
+    "description": "Inspect supported manuscript templates and retrieve their actual source or preview.\nInput is a catalog action or selected template and destination; output is native metadata or a local artifact.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "default": "list",
+          "description": "Read template catalog, rendered preview or original source",
+          "enum": [
+            "list",
+            "preview",
+            "source"
+          ],
+          "type": "string"
+        },
+        "kind": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Template ID returned by the actual catalog"
+        },
+        "output_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Destination file required for preview or original source downloads"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_manuscript_export",
+    "description": "Submit a native manuscript export with its language and review settings.\nInput is an owned project and export settings; output is the unchanged job ID for workbench_jobs polling.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "format": {
+          "description": "Native export format",
+          "enum": [
+            "docx",
+            "pdf",
+            "tex"
+          ],
+          "type": "string"
+        },
+        "action": {
+          "const": "export",
+          "default": "export",
+          "description": "Submit the existing manuscript export operation",
+          "type": "string"
+        },
+        "review": {
+          "default": false,
+          "description": "Include native review annotations",
+          "type": "boolean"
+        },
+        "language": {
+          "default": "auto",
+          "description": "Document language basis; auto may prepare an English draft",
+          "enum": [
+            "auto",
+            "source",
+            "translation",
+            "reader"
+          ],
+          "type": "string"
+        },
+        "document_id": {
+          "default": "",
+          "description": "Current reader document ID when exporting reader translation",
+          "type": "string"
+        },
+        "columns": {
+          "default": 2,
+          "description": "One or two columns, preserving backend default two",
+          "enum": [
+            1,
+            2
+          ],
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "format"
+      ]
+    }
+  },
+  {
+    "name": "workbench_export_download",
+    "description": "Download a completed manuscript or presentation artifact.\nInput is a project, export area, name and destination; output is the saved file descriptor.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "name": {
+          "description": "Exact completed export name from the native job result",
+          "type": "string"
+        },
+        "output_path": {
+          "description": "Explicit destination for the native export bytes",
+          "type": "string"
+        },
+        "area": {
+          "default": "manuscript",
+          "description": "Native export area",
+          "enum": [
+            "manuscript",
+            "slides"
+          ],
+          "type": "string"
+        },
+        "action": {
+          "const": "download",
+          "default": "download",
+          "description": "Download an already completed export",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "name",
+        "output_path"
+      ]
+    }
+  },
+  {
+    "name": "workbench_references",
+    "description": "Maintain stable citations and request source-backed replacement or related-paper proposals.\nInput is a project and citation action with its revision or source metadata; output is the native document, proposal or state.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "list",
+          "description": "Canonical citation operation",
+          "enum": [
+            "list",
+            "add",
+            "recommend",
+            "replace",
+            "related"
+          ],
+          "type": "string"
+        },
+        "reference_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Stable existing reference ID for recommend, replace or related"
+        },
+        "entry": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Selected source metadata, including title and DOI"
+        },
+        "revision": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Current manuscript revision required for add and replace"
+        },
+        "query": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional real search query for replacement recommendations"
+        },
+        "newest": {
+          "default": false,
+          "description": "Prefer newer available search candidates",
+          "type": "boolean"
+        },
+        "instruction": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Specific recommendation request; omitted preserves backend instruction"
+        },
+        "paragraph": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Reviewed replacement paragraph preserving citation numbers"
+        },
+        "expected_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Exact paragraph from the recommendation receipt"
+        },
+        "years": {
+          "default": 5,
+          "description": "Related-paper range, zero means all years",
+          "enum": [
+            0,
+            5,
+            10
+          ],
+          "type": "integer"
+        },
+        "source": {
+          "default": "auto",
+          "description": "Actual configured search provider or auto",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_journals",
+    "description": "Find journals, inspect sourced metrics or generate a supported journal preview.\nInput is journal criteria or a project and selected layout; output is native metadata or a preview job ID.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "default": "search",
+          "description": "Journal discovery, sourced details or manuscript preview",
+          "enum": [
+            "search",
+            "details",
+            "preview"
+          ],
+          "type": "string"
+        },
+        "query": {
+          "default": "",
+          "description": "Journal search words; empty returns generic template choices",
+          "type": "string"
+        },
+        "journal_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Selected journal ID; preview omission preserves generic-zh default"
+        },
+        "year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional source metric report year"
+        },
+        "project_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Owned project required for generating a journal preview"
+        },
+        "columns": {
+          "default": 1,
+          "description": "Journal preview column count, preserving backend default one",
+          "enum": [
+            1,
+            2
+          ],
+          "type": "integer"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_journal_templates",
+    "description": "Discover and retain original official journal author-template packages.\nInput is a journal or cached candidate selection; output is source provenance, a receipt or the original local file.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "search",
+          "description": "Discover official candidates, retain a selected package or fetch its file",
+          "enum": [
+            "search",
+            "download",
+            "file"
+          ],
+          "type": "string"
+        },
+        "journal": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Journal ID required for source discovery and selected candidate download"
+        },
+        "template_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual cached template candidate ID for download"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Exact retained template filename for file retrieval"
+        },
+        "output_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Destination file required for retrieving retained template bytes"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_figure",
+    "description": "Inspect, preview and save actual registered Matplotlib figure objects.\nInput is a project image and source-supported revisioned patches; output is native figure state or its save receipt.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "path": {
+          "description": "Image path relative to the project's program directory",
+          "type": "string"
+        },
+        "action": {
+          "default": "inspect",
+          "description": "Inspect actual plot objects, preview changes or save them",
+          "enum": [
+            "inspect",
+            "preview",
+            "save"
+          ],
+          "type": "string"
+        },
+        "revision": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual inspected figure revision required for preview/save"
+        },
+        "changes": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native figure, objects and layout patches using actual inspected object IDs"
+        },
+        "start_edit_session": {
+          "default": false,
+          "description": "Create the backend figure editing session during inspection",
+          "type": "boolean"
+        },
+        "edit_session": {
+          "default": "",
+          "description": "Existing editing-session ID for preview/save",
+          "type": "string"
+        },
+        "reason": {
+          "default": "调整图形样式",
+          "description": "Reason saved with figure history",
+          "type": "string"
+        },
+        "autosave": {
+          "default": false,
+          "description": "Native figure save flag",
+          "type": "boolean"
+        },
+        "include_context": {
+          "default": false,
+          "description": "Also return native image/manuscript/source-program context during inspection",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "project_id",
+        "path"
+      ]
+    }
+  },
+  {
+    "name": "workbench_figure_chat",
+    "description": "Read or continue source-bound figure conversations and linked agent replies.\nInput is an image, discussion action and optional selected objects; output is native messages, proposal or session state.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "path": {
+          "description": "Current project image path",
+          "type": "string"
+        },
+        "action": {
+          "default": "history",
+          "description": "Read image discussion, send a request or inspect an associated session",
+          "enum": [
+            "history",
+            "send",
+            "session"
+          ],
+          "type": "string"
+        },
+        "message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Request required for send; model-backed replies retain source limits"
+        },
+        "revision": {
+          "default": 0,
+          "description": "Current native figure revision",
+          "type": "integer"
+        },
+        "selection": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual selected plot object IDs"
+        },
+        "changes": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Current unsaved native figure patches"
+        },
+        "image_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional local PNG snapshot for the native discussion"
+        },
+        "edit_session": {
+          "default": "",
+          "description": "Current backend figure edit-session ID",
+          "type": "string"
+        },
+        "include_context": {
+          "default": true,
+          "description": "Include actual figure/source context in the model request",
+          "type": "boolean"
+        },
+        "session_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Existing session previously associated with this figure"
+        }
+      },
+      "required": [
+        "project_id",
+        "path"
+      ]
+    }
+  },
+  {
+    "name": "workbench_image_review",
+    "description": "Prepare or submit an image review retaining source programs and annotations.\nInput is a project image, local PNG and request; output is the native prepared-review or agent receipt.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "path": {
+          "description": "Existing image path relative to the project program directory",
+          "type": "string"
+        },
+        "image_path": {
+          "description": "Local PNG review image or cropped screenshot",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Actual image-review request",
+          "type": "string"
+        },
+        "action": {
+          "const": "review",
+          "default": "review",
+          "description": "Prepare or submit the existing native image-review operation",
+          "type": "string"
+        },
+        "plot_program": {
+          "default": "",
+          "description": "Optional actual project-relative plotting source",
+          "type": "string"
+        },
+        "compute_program": {
+          "default": "",
+          "description": "Optional actual project-relative computation source",
+          "type": "string"
+        },
+        "crop": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native crop locator, if present"
+        },
+        "annotations": {
+          "anyOf": [
+            {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native image annotation records"
+        },
+        "send": {
+          "default": true,
+          "description": "Submit to the native agent; false saves only a prepared review",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "project_id",
+        "path",
+        "image_path",
+        "instruction"
+      ]
+    }
+  },
+  {
+    "name": "workbench_raster",
+    "description": "Save edited bitmap pixels while retaining the previous native image version.\nInput is a project image, local PNG and optional timestamp; output is the native save receipt or conflict.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "path": {
+          "description": "Existing bitmap path relative to the project program directory",
+          "type": "string"
+        },
+        "image_path": {
+          "description": "Local complete PNG containing edited pixels",
+          "type": "string"
+        },
+        "action": {
+          "const": "save",
+          "default": "save",
+          "description": "Save pixels through the existing version-preserving image endpoint",
+          "type": "string"
+        },
+        "expected_modified": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Original file timestamp for optimistic conflict detection"
+        }
+      },
+      "required": [
+        "project_id",
+        "path",
+        "image_path"
+      ]
+    }
+  },
+  {
+    "name": "workbench_slide_templates",
+    "description": "Inspect, upload, prepare and configure the original presentation templates.\nInput is a project and template lifecycle action; output is the native catalog, manifest, selection or preparation job ID.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "list",
+          "description": "Inspect or configure a project-private presentation template",
+          "enum": [
+            "list",
+            "upload",
+            "prepare",
+            "select",
+            "roles"
+          ],
+          "type": "string"
+        },
+        "template": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual catalog template ID; roles requires uploaded"
+        },
+        "file_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Local editable PPTX required for upload"
+        },
+        "roles": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native role-to-page mapping for an uploaded template"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_slides",
+    "description": "Manage audience-confirmed slide content and its original editable exports.\nInput is a project and explicit slide lifecycle action; output is native plan, confirmation, job ID or preview artifact.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned research project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "get",
+          "description": "Native slide plan, confirmation, export or preview operation",
+          "enum": [
+            "confirm",
+            "get",
+            "save",
+            "plan",
+            "export",
+            "preview"
+          ],
+          "type": "string"
+        },
+        "template": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual selected template; confirm only after the user's choice"
+        },
+        "profile": {
+          "anyOf": [
+            {
+              "enum": [
+                "group",
+                "conference",
+                "project",
+                "proposal",
+                "defense",
+                "literature"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "User-selected audience and purpose required for confirm"
+        },
+        "confirmation_action": {
+          "default": "generate",
+          "description": "Native confirmation operation",
+          "enum": [
+            "generate",
+            "restyle"
+          ],
+          "type": "string"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Existing editable slide plan with sections and applicable confirmation ID"
+        },
+        "instruction": {
+          "default": "",
+          "description": "Specific instructions for model-backed slide planning",
+          "type": "string"
+        },
+        "length": {
+          "default": "medium",
+          "description": "Native planning length, normally short, medium or long",
+          "type": "string"
+        },
+        "use_native": {
+          "default": true,
+          "description": "Use the assigned native model for planning",
+          "type": "boolean"
+        },
+        "confirmation_id": {
+          "default": "",
+          "description": "Current explicit confirmation receipt required by the backend",
+          "type": "string"
+        },
+        "kind": {
+          "default": "deck",
+          "description": "deck or a catalog template ID for a rendered preview",
+          "type": "string"
+        },
+        "page": {
+          "default": 1,
+          "description": "One-based actual rendered page number",
+          "type": "integer"
+        },
+        "output_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Destination PNG required for preview"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_account",
+    "description": "Inspect the current Workbench account and authentication state.\nInput selects an account view; output preserves its native identity/profile fields.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "default": "current",
+          "description": "Read the current identity, authentication status or account profile",
+          "enum": [
+            "current",
+            "status",
+            "profile"
+          ],
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_projects",
+    "description": "List, create or rename research projects through the original application.\nInput is an action and its project/name fields; output is the native project result.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "default": "list",
+          "description": "List projects, create one, or rename an existing owned project",
+          "enum": [
+            "list",
+            "create",
+            "update"
+          ],
+          "type": "string"
+        },
+        "project_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Existing project ID required for update"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Project name of 1 to 100 characters for create or update"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_files",
+    "description": "Manage current project files while preserving native conflict and history behavior.\nInput supplies project-relative paths or local uploads; output is native state or an absolute artifact.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Existing owned Workbench project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "list",
+          "description": "Project file operation",
+          "enum": [
+            "list",
+            "read",
+            "upload",
+            "write",
+            "create_folder",
+            "trash"
+          ],
+          "type": "string"
+        },
+        "path": {
+          "default": "",
+          "description": "Project-relative file path or directory; empty lists the root",
+          "type": "string"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Exact UTF-8 text to save for write"
+        },
+        "file_paths": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Local files to upload into path, each at most 256 MiB"
+        },
+        "expected_modified": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Existing modification timestamp for optimistic write conflict detection"
+        },
+        "reason": {
+          "default": "MCP file edit",
+          "description": "Reason saved in native replacement history",
+          "type": "string"
+        },
+        "output_dir": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional local download base directory; a fresh child is created per read"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_revisions",
+    "description": "Inspect or restore the application's recoverable artifact revisions.\nInput identifies a native revision; output is history, a native diff, preview or restoration result.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Existing owned project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "list",
+          "description": "Inspect or restore native recoverable history",
+          "enum": [
+            "list",
+            "inspect",
+            "restore"
+          ],
+          "type": "string"
+        },
+        "revision_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native trash/revision ID required for inspect or restore"
+        },
+        "view": {
+          "default": "diff",
+          "description": "Readable history difference or original preview",
+          "enum": [
+            "diff",
+            "preview"
+          ],
+          "type": "string"
+        },
+        "output_dir": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Download base directory for preview; each call creates a fresh child"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_rules",
+    "description": "Read existing Workbench task rules and source integration contracts.\nInput selects a rule/context view; output preserves the actual published instructions or schema.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "default": "standards",
+          "description": "Read task standards, a named skill, API schema or project integration context",
+          "enum": [
+            "standards",
+            "skill",
+            "llms",
+            "schema",
+            "context"
+          ],
+          "type": "string"
+        },
+        "project_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Owned project ID required for context"
+        },
+        "identifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Skill identifier returned by standards, required for skill"
+        },
+        "task": {
+          "default": "review",
+          "description": "Task-specific integration context",
+          "enum": [
+            "code",
+            "code-review",
+            "test",
+            "paper",
+            "translation",
+            "literature",
+            "slides",
+            "review",
+            "reader",
+            "figure"
+          ],
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_storage",
+    "description": "Inspect the current account's storage usage and quota.\nInput selects usage; output is the native storage and cache report.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "usage",
+          "default": "usage",
+          "description": "Read account quota, file and cache usage",
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_knowledge_bases",
+    "description": "Manage knowledge-base resources in the owned project's native workspace scope.\nInput supplies existing IDs or new-KB sources; output preserves native metadata and indexing task IDs.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project used to resolve the actual native workspace scope",
+          "type": "string"
+        },
+        "action": {
+          "default": "list",
+          "description": "List assignable resources, inspect/create a KB, or bind visible KB IDs",
+          "enum": [
+            "list",
+            "details",
+            "create",
+            "bind"
+          ],
+          "type": "string"
+        },
+        "knowledge_base": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native qualified knowledge-base ID for details"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name for a new knowledge base"
+        },
+        "knowledge_bases": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Exact visible qualified IDs to bind; an explicit empty list clears bindings"
+        },
+        "file_paths": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional local source files; no files creates a native empty KB"
+        },
+        "rag_provider": {
+          "default": "llamaindex",
+          "description": "Source-supported native provider identifier, fixed for the new KB",
+          "type": "string"
+        },
+        "pageindex_mode": {
+          "default": "",
+          "description": "Optional native PageIndex OSS mode",
+          "enum": [
+            "",
+            "flash",
+            "standard"
+          ],
+          "type": "string"
+        },
+        "search_mode": {
+          "default": "",
+          "description": "Optional search mode supported by the selected native provider",
+          "type": "string"
+        },
+        "rel_paths": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional upload-relative paths aligned with local files"
+        },
+        "indexing_llm": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Legacy native indexing selection; current upstream may reject per-KB overrides"
+        },
+        "embedding_model": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native configured profile_id/model_id selection, without secrets"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_knowledge_files",
+    "description": "Read, append or organize native knowledge-base source files.\nInput supplies scoped KB paths or local files; output is native file state, text preview or an artifact.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project supplying the native workspace scope",
+          "type": "string"
+        },
+        "knowledge_base": {
+          "description": "Actual qualified knowledge-base ID visible in that scope",
+          "type": "string"
+        },
+        "action": {
+          "default": "list",
+          "description": "Native KB source-file operation",
+          "enum": [
+            "list",
+            "read",
+            "upload",
+            "create_folder",
+            "move"
+          ],
+          "type": "string"
+        },
+        "filename": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "KB-relative source filename for read"
+        },
+        "view": {
+          "default": "text",
+          "description": "Original bytes or the actual plain-text extraction preview",
+          "enum": [
+            "original",
+            "text"
+          ],
+          "type": "string"
+        },
+        "file_paths": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Local files for upload"
+        },
+        "rel_paths": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional source-relative paths aligned with uploaded files"
+        },
+        "dest_subdir": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional organizational destination for an upload batch"
+        },
+        "rag_provider": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional provider check; must match the KB's fixed provider"
+        },
+        "image_analysis": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native pinned image-analysis policy; omitted preserves that policy"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "KB-relative folder to create"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Current KB-relative file/folder to move"
+        },
+        "dest_folder": {
+          "default": "",
+          "description": "Destination folder for a move; empty selects KB root",
+          "type": "string"
+        },
+        "output_dir": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Download base directory for original files; a fresh child is created"
+        }
+      },
+      "required": [
+        "project_id",
+        "knowledge_base"
+      ]
+    }
+  },
+  {
+    "name": "workbench_knowledge_index",
+    "description": "Inspect and control the existing native knowledge indexing lifecycle.\nInput identifies the scoped KB/run; output preserves readiness, durable state or retry/cancel acceptance.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project supplying native workspace access",
+          "type": "string"
+        },
+        "knowledge_base": {
+          "description": "Actual native qualified KB ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "readiness",
+          "description": "Inspect index state, retry failed work, or request safe-boundary cancellation",
+          "enum": [
+            "readiness",
+            "run",
+            "progress",
+            "retry",
+            "cancel"
+          ],
+          "type": "string"
+        },
+        "task_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native indexing-run task ID required for cancel"
+        }
+      },
+      "required": [
+        "project_id",
+        "knowledge_base"
+      ]
+    }
+  },
+  {
+    "name": "workbench_search_sources",
+    "description": "Inspect the actual configured discovery sources for the current account.\nInput selects status; output contains native source names and availability flags.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "status",
+          "default": "status",
+          "description": "Read actual paper, web, institution and metrics provider configuration flags",
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_web_search",
+    "description": "Search real web pages through the Workbench discovery provider.\nInput is a query and source-supported domain filter; output is the native search response.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "q": {
+          "description": "Web query of 3 to 600 characters",
+          "type": "string"
+        },
+        "action": {
+          "const": "search",
+          "default": "search",
+          "description": "Search using the account's actual configured web provider",
+          "type": "string"
+        },
+        "kind": {
+          "default": "all",
+          "description": "Use general search or the source's publisher-domain filter",
+          "enum": [
+            "all",
+            "journal",
+            "template"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "q"
+      ]
+    }
+  },
+  {
+    "name": "workbench_paper_search",
+    "description": "Search existing literature providers and retain stable native selection identities.\nInput is a project query/provider/window/page; output preserves bibliographic records and source status.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project anchoring the discovery task",
+          "type": "string"
+        },
+        "q": {
+          "description": "Actual literature search query",
+          "type": "string"
+        },
+        "action": {
+          "const": "search",
+          "default": "search",
+          "description": "Search bibliographic sources without claiming full-text verification",
+          "type": "string"
+        },
+        "source": {
+          "default": "auto",
+          "description": "Native provider selection; configured credentials remain server-side",
+          "enum": [
+            "auto",
+            "scholar_mcp",
+            "academic_web",
+            "crossref",
+            "semantic",
+            "scholar",
+            "wos"
+          ],
+          "type": "string"
+        },
+        "years": {
+          "default": 0,
+          "description": "Publication-year window; zero applies no year filter",
+          "enum": [
+            0,
+            5,
+            10
+          ],
+          "type": "integer"
+        },
+        "newest": {
+          "default": false,
+          "description": "Request the upstream source's newest-first ordering",
+          "type": "boolean"
+        },
+        "page": {
+          "default": 1,
+          "description": "Native result page from 1 to 50",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 20,
+          "description": "Results from 1 to 20; Scholar MCP natively caps this at 10",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "q"
+      ]
+    }
+  },
+  {
+    "name": "workbench_literature",
+    "description": "Manage source-bound literature attachments without replacing their identity checks.\nInput supplies PDF files or native source identities; output is attachment metadata, original bytes or a preview.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Existing owned research project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "list",
+          "description": "List, attach, identify or read source documents",
+          "enum": [
+            "list",
+            "upload",
+            "match",
+            "read",
+            "preview"
+          ],
+          "type": "string"
+        },
+        "asset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual project-literature or linked-KB relative source path"
+        },
+        "library": {
+          "default": "workspace",
+          "description": "workspace or an actual project-bound native KB ID",
+          "type": "string"
+        },
+        "file_paths": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Local PDF files for upload, each at most 100 MiB"
+        },
+        "folder": {
+          "default": "reading",
+          "description": "Purpose category for new PDF attachments",
+          "enum": [
+            "references",
+            "validation",
+            "methods",
+            "reading"
+          ],
+          "type": "string"
+        },
+        "output_dir": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Local download base directory; a fresh child is created per artifact"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_literature_organization",
+    "description": "Organize research sources by purpose and native source-based classification.\nInput identifies sources or requests classification; output is assignments, classification state or a native job ID.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Existing owned project ID",
+          "type": "string"
+        },
+        "action": {
+          "default": "folders",
+          "description": "Read/assign purpose folders or inspect/request source-based classification",
+          "enum": [
+            "folders",
+            "assign",
+            "classification",
+            "classify"
+          ],
+          "type": "string"
+        },
+        "asset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual source identity required for assign"
+        },
+        "category": {
+          "default": "reading",
+          "description": "Source-supported literature purpose",
+          "enum": [
+            "references",
+            "validation",
+            "methods",
+            "reading"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_paper_downloads",
+    "description": "Use the existing authorized document-download queue and its real progress.\nInput supplies source identities or task IDs; output retains queue, transfer and receipt states.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "default": "worker_status",
+          "description": "Queue or inspect the existing authorized ScanSci download pipeline",
+          "enum": [
+            "enqueue",
+            "list",
+            "worker_status",
+            "retry",
+            "cancel"
+          ],
+          "type": "string"
+        },
+        "project_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Owned project ID required except for worker_status"
+        },
+        "entries": {
+          "anyOf": [
+            {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "One to 100 source-supported DOI/arXiv/title metadata entries"
+        },
+        "folder": {
+          "default": "reading",
+          "description": "Purpose category for queued attachments",
+          "enum": [
+            "references",
+            "validation",
+            "methods",
+            "reading"
+          ],
+          "type": "string"
+        },
+        "job_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native download task ID for retry or cancel"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_reader",
+    "description": "Open and inspect the actual project-bound PDF reading protocol.\nInput identifies a real source/document/block; output preserves parsed source blocks, saved states or artifacts.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project containing the manuscript or source PDF",
+          "type": "string"
+        },
+        "action": {
+          "default": "open",
+          "description": "Open a real source PDF, read its native blocks/state, or locate an image",
+          "enum": [
+            "open",
+            "content",
+            "image"
+          ],
+          "type": "string"
+        },
+        "area": {
+          "default": "paper",
+          "description": "Manuscript or attached literature source",
+          "enum": [
+            "paper",
+            "literature"
+          ],
+          "type": "string"
+        },
+        "asset": {
+          "default": "manuscript/main.json",
+          "description": "Actual source path; manuscript/main.json is the current manuscript",
+          "type": "string"
+        },
+        "library": {
+          "default": "",
+          "description": "workspace or the actual bound KB for literature; empty for manuscript",
+          "type": "string"
+        },
+        "title": {
+          "default": "",
+          "description": "Optional source display title",
+          "type": "string"
+        },
+        "width": {
+          "default": 1000,
+          "description": "Native reader viewport width",
+          "type": "integer"
+        },
+        "theme": {
+          "default": "snow",
+          "description": "Native reader theme identifier",
+          "type": "string"
+        },
+        "document_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native reader document ID returned by open"
+        },
+        "view": {
+          "default": "blocks",
+          "description": "Native parsed content, saved translations, options or original PDF",
+          "enum": [
+            "blocks",
+            "translations",
+            "options",
+            "source"
+          ],
+          "type": "string"
+        },
+        "block_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native image block ID required for image"
+        },
+        "output_dir": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Download base directory for the original PDF; each call creates a fresh child"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_translation",
+    "description": "Translate existing source content through the application's native model protocols.\nInput selects a manuscript or reader document; output retains native jobs or accepted reader operations.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project containing the selected manuscript or source PDF",
+          "type": "string"
+        },
+        "action": {
+          "default": "manuscript",
+          "description": "Translate an editable manuscript, start native PDF translation or export saved PDF translation",
+          "enum": [
+            "manuscript",
+            "reader_start",
+            "export_pdf"
+          ],
+          "type": "string"
+        },
+        "target": {
+          "default": "zh-CN",
+          "description": "Target language; reader_start accepts en or zh-CN",
+          "type": "string"
+        },
+        "use_native": {
+          "default": true,
+          "description": "Use the assigned native model for manuscript translation instead of the saved Workbench API",
+          "type": "boolean"
+        },
+        "source": {
+          "default": "source",
+          "description": "Translate the source manuscript or its existing editable translation",
+          "enum": [
+            "source",
+            "translation"
+          ],
+          "type": "string"
+        },
+        "document_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual native reader document ID for reader_start or export_pdf"
+        },
+        "columns": {
+          "default": 2,
+          "description": "Columns in the native saved-translation PDF export",
+          "enum": [
+            1,
+            2
+          ],
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_annotations",
+    "description": "Manage questions anchored to actual project artifacts and native audit history.\nInput is an annotation record or selected question IDs; output is native annotated state or submission receipt.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project containing the real annotated artifact",
+          "type": "string"
+        },
+        "action": {
+          "default": "list",
+          "description": "Read, create/update anchored questions or submit selected native question IDs",
+          "enum": [
+            "list",
+            "create",
+            "update",
+            "submit"
+          ],
+          "type": "string"
+        },
+        "area": {
+          "default": "",
+          "description": "Optional list filter or annotation content area",
+          "enum": [
+            "",
+            "paper",
+            "literature",
+            "code",
+            "slides",
+            "image"
+          ],
+          "type": "string"
+        },
+        "asset": {
+          "default": "",
+          "description": "Actual artifact path or source identity",
+          "type": "string"
+        },
+        "identifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Existing annotation ID required for update"
+        },
+        "payload": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native annotation fields: title,quote,body,color,status,locator,origin; area/asset can also be supplied"
+        },
+        "ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Selected annotation IDs required for submit"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_review",
+    "description": "Continue source-anchored review and record actual project changes and checks.\nInput is chat context or a truthful receipt; output preserves native messages, events and receipt state.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project containing the review context",
+          "type": "string"
+        },
+        "action": {
+          "default": "history",
+          "description": "Read review history/chat, send a source-anchored message or record verified work",
+          "enum": [
+            "history",
+            "chat_history",
+            "chat_send",
+            "receipt"
+          ],
+          "type": "string"
+        },
+        "area": {
+          "default": "paper",
+          "description": "Native content area for review chat",
+          "enum": [
+            "paper",
+            "literature",
+            "code",
+            "slides",
+            "image"
+          ],
+          "type": "string"
+        },
+        "asset": {
+          "default": "",
+          "description": "Actual source/artifact path for chat_send",
+          "type": "string"
+        },
+        "message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "User-authorized review message, up to 16000 characters"
+        },
+        "title": {
+          "default": "",
+          "description": "Optional artifact or question title",
+          "type": "string"
+        },
+        "quote": {
+          "default": "",
+          "description": "Actual quoted source passage",
+          "type": "string"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native page/paragraph/file locator and optional current_draft editor object"
+        },
+        "question_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Existing project question IDs addressed by a receipt"
+        },
+        "artifacts": {
+          "anyOf": [
+            {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native receipt artifact records with existing project-root-relative path"
+        },
+        "validation": {
+          "anyOf": [
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual textual or structured validation results for the receipt"
+        },
+        "limitations": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actual remaining limitations for the receipt"
+        },
+        "resolved": {
+          "default": false,
+          "description": "Mark only the supplied receipt question IDs resolved",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_jobs",
+    "description": "Read the actual state and outcomes of asynchronous project operations.\nInput identifies a project and optional recent job; output retains native job status/result/error fields.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project whose latest native jobs are read",
+          "type": "string"
+        },
+        "action": {
+          "const": "status",
+          "default": "status",
+          "description": "Read actual queued/running/completed/failed/interrupted jobs",
+          "type": "string"
+        },
+        "job_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional job ID filter within the latest 20 native project jobs"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  {
+    "name": "workbench_settings",
+    "description": "Read masked account settings or update their explicitly supplied values.\nInput contains setting changes; output is masked native configuration or saved/configured flags.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "default": "get",
+          "description": "Read masked settings or merge explicitly supplied updates into current non-secret settings",
+          "enum": [
+            "get",
+            "save"
+          ],
+          "type": "string"
+        },
+        "base_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional HTTPS model API base URL"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional model identifier"
+        },
+        "api_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional new model API key; omitted/empty retains the saved secret"
+        },
+        "translation_prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional custom translation instruction; empty resets to the native default"
+        },
+        "literature_token": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional new native literature token; never returned"
+        },
+        "literature_provider": {
+          "anyOf": [
+            {
+              "enum": [
+                "auto",
+                "crossref",
+                "semantic",
+                "scholar",
+                "wos"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Saved native default discovery provider"
+        },
+        "scholar_api_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional new Scholar SerpApi key; never returned"
+        },
+        "wos_api_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional new Web of Science key; never returned"
+        },
+        "web_search_api_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional new web-search key; never returned"
+        },
+        "jcr_api_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional new Clarivate metrics key; never returned"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_author_profile",
+    "description": "Manage manuscript author metadata independently of account authentication.\nInput selects profile fields, manuscript context or institution search; output is native author data or candidates.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "default": "get",
+          "description": "Read/update author details, read current manuscript front matter or search real institutions",
+          "enum": [
+            "get",
+            "save",
+            "preview",
+            "institutions"
+          ],
+          "type": "string"
+        },
+        "project_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Owned project ID required for preview"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Author name; omitted fields retain current values on save"
+        },
+        "affiliation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Author affiliation"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Author contact email, separate from login credentials"
+        },
+        "orcid": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Author ORCID in native 0000-0000-0000-0000 format"
+        },
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Author postal address"
+        },
+        "name_en": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Author English name"
+        },
+        "affiliation_en": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Author English affiliation"
+        },
+        "q": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Institution query for the actual native ROR search"
+        }
+      }
+    }
+  },
+  {
+    "name": "workbench_project_import",
+    "description": "Import a user-selected source-bound research material bundle.\nInput is the native manifest ZIP; output retains its asynchronous import job ID.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned destination project for the selected source bundle",
+          "type": "string"
+        },
+        "file_path": {
+          "description": "Local ZIP up to 300 MiB with workbench-import.json and the required editable DOCX manuscript",
+          "type": "string"
+        },
+        "action": {
+          "const": "import",
+          "default": "import",
+          "description": "Submit the source-supported native material import",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "file_path"
+      ]
+    }
+  },
+  {
+    "name": "workbench_knowledge_search",
+    "description": "Retrieve source passages from the project's real PDFs or bound native index.\nInput is a scoped query/mode; output preserves native passages, coverage, errors and provenance.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "description": "Owned project limiting retrieval to its PDFs and bound native knowledge bases",
+          "type": "string"
+        },
+        "query": {
+          "description": "Actual source query, trimmed/truncated to 600 characters by upstream; minimum length two",
+          "type": "string"
+        },
+        "action": {
+          "const": "search",
+          "default": "search",
+          "description": "Retrieve through the existing source-text or native semantic operation",
+          "type": "string"
+        },
+        "mode": {
+          "default": "fulltext-keyword",
+          "description": "PDF/native text preview keywords or the original indexed native RAG",
+          "enum": [
+            "fulltext-keyword",
+            "semantic"
+          ],
+          "type": "string"
+        },
+        "knowledge_base": {
+          "default": "",
+          "description": "Optional project-bound KB ID; required for semantic mode",
+          "type": "string"
+        },
+        "limit": {
+          "default": 8,
+          "description": "Source results from 1 to 20",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "query"
+      ]
+    }
+  }
+]

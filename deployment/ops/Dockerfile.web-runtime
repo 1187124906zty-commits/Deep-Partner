@@ -1,0 +1,12 @@
+# Runtime packaging when the official Next.js build was compiled on a separate disk.
+FROM node:24.22.1-alpine
+RUN apk add --no-cache tzdata && addgroup -S -g 1001 dify && adduser -S -u 1001 -G dify -s /bin/ash -h /home/dify dify
+ENV NODE_ENV=production DEPLOY_ENV=PRODUCTION PORT=3000 EXPERIMENTAL_ENABLE_VINEXT=false NEXT_TELEMETRY_DISABLED=1 NEXT_PUBLIC_BASE_PATH=/dify TZ=Asia/Shanghai
+WORKDIR /app
+COPY --chown=dify:dify public ./targets/next/web/public
+COPY --chown=dify:dify standalone ./targets/next/
+COPY --chown=dify:dify static ./targets/next/web/.next/static
+COPY --chown=dify:dify --chmod=755 entrypoint.sh ./entrypoint.sh
+USER dify
+EXPOSE 3000
+ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]

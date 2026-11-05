@@ -1,0 +1,32 @@
+{
+  "title": "PINN：Burgers 方程示例",
+  "sections": [
+    {
+      "id": "cover",
+      "role": "cover",
+      "title": "PINN：Burgers 方程示例",
+      "content": "从原始文献、作者代码到数据图与审阅稿"
+    },
+    {
+      "id": "question",
+      "role": "content",
+      "title": "物理残差如何约束网络解",
+      "content": "原论文在数据误差之外加入 Burgers 方程残差。\n初始条件为 −sin(πx)，两端取零值。\n本示例使用作者提供的参考解，尚未执行网络训练。"
+    },
+    {
+      "id": "figure",
+      "role": "content",
+      "title": "参考数据中的时空演化",
+      "content": "256 个空间点、100 个保存时刻。\n左图显示参考场，右图比较时间切片。",
+      "figures": [
+        "Figure 1"
+      ]
+    },
+    {
+      "id": "ending",
+      "role": "ending",
+      "title": "从资料整理到可复现实验",
+      "content": "原始 PDF 已按问题、训练验证与相关工作归入知识库。\n绘图脚本、原始数据和结果图相互关联。\n后续训练应单独检验误差、优化稳定性和泛化。"
+    }
+  ]
+}

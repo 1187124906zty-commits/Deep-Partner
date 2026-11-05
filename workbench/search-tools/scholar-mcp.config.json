@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "scholar-search": {
+      "command": "D:/Development/research-workbench/search-tools/scholar-env/Scripts/python.exe",
+      "args": ["-m", "scholar_mcp.server"],
+      "cwd": "D:/Development/research-workbench/search-tools/scholar-mcp",
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "SCHOLAR_TIMEOUT": "20",
+        "SCHOLAR_MAX_RETRIES": "0"
+      }
+    }
+  }
+}

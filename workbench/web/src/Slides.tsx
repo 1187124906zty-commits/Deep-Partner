@@ -1,0 +1,26 @@
+import {useDitoLocation} from './EmbeddedHost'
+import {StageQualityButton} from './StageQuality'
+import {useEffect,useState} from 'react'
+import {MessageSquarePlus,PanelRight,ChevronLeft,ChevronRight,Presentation,Play} from 'lucide-react'
+import {api,base,projectPath,type Project} from './api'
+import {Empty,IconButton,Loading} from './ui'
+import {ContextMenu} from './Review'
+import {ReviewWorkspace} from './ReviewWorkspace'
+import {DocumentOutput} from './DocumentOutput'
+import {SlideSetup} from './SlideSetup'
+import {SlidePlayback} from './SlidePlayback'
+
+type Section={id:string;title:string;content:string;notes?:string}
+export function SlidesPanel({project,onError,notify,version,target}:{project:Project;onError:(e:unknown)=>void;notify:(s:string)=>void;version:number;registerSave?:any;target?:any}){
+ const [playing,setPlaying]=useState(false);const [setup,setSetup]=useState(false);const [restyle,setRestyle]=useState(false);const [plan,setPlan]=useState<{title:string;sections:Section[]}>({title:'',sections:[]});const [page,setPage]=useState(0);const [loading,setLoading]=useState(true);const [ready,setReady]=useState(false);const [notes,setNotes]=useState(true);const [focusNote,setFocusNote]=useState(false);const [menu,setMenu]=useState<{x:number;y:number}|null>(null);const [renderVersion,setRenderVersion]=useState(0)
+ const load=async()=>{try{const [p,j]=await Promise.all([api(projectPath(project,'/slides')),api(projectPath(project,'/jobs'))]);setPlan(p);const job=j.jobs.find((x:any)=>x.kind==='slides-export'&&x.status==='completed');setReady(Boolean(job));setRenderVersion(job?Date.parse(job.updated):0)}catch(e){onError(e)}finally{setLoading(false)}}
+ useEffect(()=>{void load()},[project.id,version])
+ useEffect(()=>{if(target?.area==='slides')setPage(Math.max(0,(target.locator.page||1)-1))},[target])
+ const section=plan.sections[page];const thumb=(p:number)=>base+projectPath(project,'/slide-preview?kind=deck&page='+p+'&v='+renderVersion)
+ useDitoLocation(project,{area:'slides',asset:'slides/'+(section?.id||page+1),title:section?.title||plan.title||'汇报',quote:section?.content||'',locator:{page:page+1,slide_id:section?.id}},10);
+ const question=()=>{setNotes(true);setFocusNote(true)}
+ if(loading)return <Loading/>
+ return <div className="slides-reading-layout">{playing&&<SlidePlayback sections={plan.sections} page={page} onPage={setPage} image={ready?thumb(page+1):undefined} onClose={()=>setPlaying(false)}/>}{setup&&<SlideSetup project={project} restyle={restyle} onClose={()=>setSetup(false)} onDone={()=>{setSetup(false);void load();notify('汇报已生成并完成排版检查')}} onError={onError}/>}<aside className="slide-filmstrip">{plan.sections.map((s,i)=><button key={s.id||i} className={'filmstrip-item'+(page===i?' selected':'')} onClick={()=>{setPage(i);setFocusNote(false)}}><span className="slide-number">{i+1}</span><div className="slide-mini">{ready?<img src={thumb(i+1)} alt={s.title}/>:<strong>{s.title}</strong>}</div></button>)}</aside><section className="slides-reading-main"><div className="reading-toolbar"><Presentation size={16}/><span className="ellipsis">{plan.title||'研究汇报'}</span><div className="toolbar-spacer"/>{section&&<><button className="slide-play-trigger" onClick={()=>setPlaying(true)}><Play size={14}/>播放</button><IconButton title="添加当前页批注" onClick={question}><MessageSquarePlus size={17}/></IconButton><IconButton title="审阅侧栏" active={notes} onClick={()=>setNotes(!notes)}><PanelRight size={17}/></IconButton></>}<button className="slide-setup-trigger" onClick={()=>{setRestyle(false);setSetup(true)}}>{plan.sections.length?'重新生成':'生成汇报'}</button><StageQualityButton project={project} onError={onError} stage={ready?'slides-export':'slides-plan'} purpose={(plan as any).audience_profile||'group'}/><DocumentOutput onConfigure={()=>{setRestyle(true);setSetup(true)}} project={project} kind="slides" onChanged={()=>void load()} onError={onError} notify={notify}/></div><div className="slide-page-and-notes">{section?<div className="slide-page" onContextMenu={e=>{e.preventDefault();setMenu({x:e.clientX,y:e.clientY})}}>{ready?<img src={thumb(page+1)} alt={section.title}/>:<div className="slide-readable"><h1>{section.title}</h1><p>{section.content}</p></div>}<div className="slide-page-foot"><IconButton title="上一页" disabled={page===0} onClick={()=>setPage(page-1)}><ChevronLeft size={17}/></IconButton><span>{page+1} / {plan.sections.length}</span><IconButton title="下一页" disabled={page===plan.sections.length-1} onClick={()=>setPage(page+1)}><ChevronRight size={17}/></IconButton></div></div>:<div className="slide-start"><Presentation size={36} strokeWidth={1.2}/><h2>研究汇报</h2><button className="primary" onClick={()=>{setRestyle(false);setSetup(true)}}>生成汇报</button></div>}{notes&&section&&<ReviewWorkspace project={project} pages={plan.sections} page={page} onPage={i=>{setPage(i);setFocusNote(false)}} onClose={()=>setNotes(false)} onError={onError} notify={notify} focusNote={focusNote}/>}</div></section>
+ {menu&&<ContextMenu {...menu} onClose={()=>setMenu(null)} actions={[{label:'添加当前页批注',action:question},{label:'展开 Agent 与批注',action:()=>setNotes(true)},...(ready?[{label:'下载当前页图片',action:()=>window.open(thumb(page+1),'_blank','noopener')}]:[])]}/>}
+ </div>
+}

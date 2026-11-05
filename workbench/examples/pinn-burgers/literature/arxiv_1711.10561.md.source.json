@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_pdf": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\examples\\pinn-burgers\\literature\\arxiv_1711.10561.pdf",
+  "source_sha256": "2a8db6776a110a4f36bd1e36af79cf31a2e74baa5af8f7ee3d9286a75fdc400d",
+  "options": {
+    "mode": "offline",
+    "zh": false,
+    "math": false,
+    "render_pages": false,
+    "zotero_item": null,
+    "zotero_attachment": null,
+    "zotero_library": null,
+    "project_id": null,
+    "tools_root": null
+  },
+  "created_at": "2026-10-31T15:47:31.411892+00:00",
+  "network_used": false,
+  "page_count": 22,
+  "page_warnings": [],
+  "assets": {},
+  "converter": "PyMuPDF 1.27.2.2",
+  "markdown_sha256": "5f7934d10f1fe206359edeeb13311e0ef848adf4b6674174d3a05963c87fc71f"
+}

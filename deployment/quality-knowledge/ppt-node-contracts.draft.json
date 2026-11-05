@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "state": "superseded_by_production_rule_source",
+  "runtime_enabled": false,
+  "purpose_taxonomy": {
+    "ids": [
+      "group",
+      "conference",
+      "project",
+      "proposal",
+      "defense",
+      "literature"
+    ],
+    "extensible": true
+  },
+  "visual_style_policy": {
+    "independent_from_purpose": true,
+    "current_style_ids_are_temporary": true,
+    "user_template_requirements_override_product_defaults": true
+  },
+  "node_inputs": [
+    "purpose",
+    "audience",
+    "duration",
+    "source_versions",
+    "template_profile",
+    "applicable_rules"
+  ],
+  "required_outputs": {
+    "planning": [
+      "claim_evidence_map",
+      "page_plan",
+      "missing_materials"
+    ],
+    "generation": [
+      "editable_artifact",
+      "rendered_preview",
+      "artifact_revision"
+    ],
+    "review": [
+      "hard_checks",
+      "dimension_scores",
+      "source_and_artifact_locators",
+      "coverage",
+      "issues",
+      "revision_request",
+      "rule_and_artifact_versions"
+    ]
+  },
+  "score_scale": {
+    "minimum": 0,
+    "maximum": 4,
+    "core_minimum": 3,
+    "percent_display": "100 * sum(scored values) / (4 * count(scored dimensions)); label coverage and provisional status when any required dimension is missing",
+    "aggregation_policy": "Core thresholds and required hard checks decide transition; the displayed average alone does not.",
+    "anchors": {
+      "0": "未实现或对当前目的无效",
+      "1": "存在严重缺口，不能承担当前用途",
+      "2": "部分可用，仍有实质不足",
+      "3": "满足当前阶段使用目的",
+      "4": "有明确可说明的额外质量收益"
+    }
+  },
+  "confirmed_policy": {
+    "critical_failed_or_missing_requirement_prevents_automatic_transition": true,
+    "author_can_explicitly_continue_with_recorded_deviation": true,
+    "max_targeted_revision_rounds": 2
+  },
+  "profiles": [
+    {
+      "id": "group",
+      "name": "组会讨论",
+      "intended_outcome": "通过讨论改进正在开展的研究。",
+      "content_coverage": [
+        "本次问题或需要反馈的选择",
+        "理解问题所需的进展与条件",
+        "关键结果、异常或已尝试方法",
+        "仍有分歧的解释及下一步"
+      ],
+      "purpose_review_dimensions": [
+        "问题清晰",
+        "诊断条件充分",
+        "异常与不确定性诚实",
+        "反馈可回答",
+        "行动可承接"
+      ],
+      "scope_exceptions": [
+        "无结果的方案讨论不强制结果页",
+        "报告演练可采用conference",
+        "不强制公开所有原始数据"
+      ],
+      "sources": [
+        {
+          "source_id": "S01",
+          "locator": "Identify Your Purpose"
+        },
+        {
+          "source_id": "S03",
+          "locator": "Things to Include; Practical Tips"
+        }
+      ],
+      "node_guidance": {
+        "planning": "按诊断、设计或进展讨论选择组织方式。",
+        "review": "检查听众是否有足够信息回答所请求的问题。"
+      },
+      "applicability_note": "Assess preparation or artifacts at the current node; actual audience understanding, live Q&A response and degree/project approval require observed evidence or human decision, not a deck-only score.",
+      "core_assignment": "Select and record the core dimensions applicable to the current task before generation; source absence is not an automatic not_applicable waiver."
+    },
+    {
+      "id": "conference",
+      "name": "学术报告",
+      "intended_outcome": "使不熟悉具体工作的同行理解核心贡献与可信程度。",
+      "content_coverage": [
+        "必要背景与研究问题",
+        "核心贡献及所需的方法解释",
+        "关键结果和比较条件",
+        "结论、限制及意义"
+      ],
+      "purpose_review_dimensions": [
+        "听众可理解",
+        "贡献可辨识",
+        "证据支持主张",
+        "意义连接清楚",
+        "适合给定时间"
+      ],
+      "scope_exceptions": [
+        "方法贡献需要充分解释机制",
+        "不替代完整日志或项目验收",
+        "历史会议格式不视为本次规则"
+      ],
+      "sources": [
+        {
+          "source_id": "S01",
+          "locator": "Identify Your Purpose; Analyze Your Audience"
+        },
+        {
+          "source_id": "S02",
+          "locator": "page 1, Create your presentation"
+        }
+      ],
+      "node_guidance": {
+        "planning": "按本次时长和受众决定背景与方法深度。",
+        "review": "检查中心贡献是否有可解释的证据，避免用页面数量代替信息取舍判断。"
+      },
+      "applicability_note": "Assess preparation or artifacts at the current node; actual audience understanding, live Q&A response and degree/project approval require observed evidence or human decision, not a deck-only score.",
+      "core_assignment": "Select and record the core dimensions applicable to the current task before generation; source absence is not an automatic not_applicable waiver."
+    },
+    {
+      "id": "project",
+      "name": "项目汇报",
+      "intended_outcome": "对照约定目标说明状态，支持项目阶段决策。",
+      "content_coverage": [
+        "报告阶段、范围与约定目标",
+        "实际完成工作及可交付产品",
+        "证据、差距和原因",
+        "风险、依赖与处理",
+        "下阶段安排或本次决策需求"
+      ],
+      "purpose_review_dimensions": [
+        "目标覆盖",
+        "证据可追溯",
+        "活动与交付区分",
+        "偏差可解释",
+        "风险可处理",
+        "决策可用"
+      ],
+      "scope_exceptions": [
+        "Heilmeier八问不是强制逐页模板",
+        "结题不强制下一报告期或续期预算",
+        "无决策需求可仅供知情"
+      ],
+      "sources": [
+        {
+          "source_id": "S04",
+          "locator": "eight questions",
+          "access_limitation": "official indexed body only"
+        },
+        {
+          "source_id": "S05",
+          "locator": "Types of RPPRs; What"
+        }
+      ],
+      "node_guidance": {
+        "planning": "先判定阶段汇报或结题，并读取实际合同或机构要求。",
+        "review": "检查状态是否可与目标比较，缺证据时不得标作已达成。"
+      },
+      "applicability_note": "Assess preparation or artifacts at the current node; actual audience understanding, live Q&A response and degree/project approval require observed evidence or human decision, not a deck-only score.",
+      "core_assignment": "Select and record the core dimensions applicable to the current task before generation; source absence is not an automatic not_applicable waiver."
+    },
+    {
+      "id": "proposal",
+      "name": "开题报告",
+      "intended_outcome": "论证研究价值、可行性、工作范围与可检验计划。",
+      "content_coverage": [
+        "问题、已有工作与缺口",
+        "研究目标与拟议贡献",
+        "方法、假设及实施步骤",
+        "可行性依据与验证办法",
+        "资源、风险与里程碑"
+      ],
+      "purpose_review_dimensions": [
+        "问题价值与范围",
+        "相关工作理解",
+        "方法匹配",
+        "验证可执行",
+        "资源时间可行",
+        "不确定性处理"
+      ],
+      "scope_exceptions": [
+        "不强制已有全部结果或前期数据",
+        "未预读时需补充必要背景",
+        "书面页数和章节比例不转成PPT硬规则"
+      ],
+      "sources": [
+        {
+          "source_id": "S06",
+          "locator": "Purpose; Include details and preliminary results"
+        },
+        {
+          "source_id": "S07",
+          "locator": "4; 7.2.2; 7.2.3; 7.3.1"
+        }
+      ],
+      "node_guidance": {
+        "planning": "标明计划与已完成工作的状态，确认委员会是否预读。",
+        "review": "检查方法和验证是否足以支撑可行性判断；文献或理论依据也可成立。"
+      },
+      "applicability_note": "Assess preparation or artifacts at the current node; actual audience understanding, live Q&A response and degree/project approval require observed evidence or human decision, not a deck-only score.",
+      "core_assignment": "Select and record the core dimensions applicable to the current task before generation; source absence is not an automatic not_applicable waiver."
+    },
+    {
+      "id": "defense",
+      "name": "学位论文答辩",
+      "intended_outcome": "说明完成的学位研究及作者贡献，接受证据与理解的质询。",
+      "content_coverage": [
+        "研究范围与主要问题",
+        "各部分关系或如实分组",
+        "作者贡献与方法",
+        "关键结果、比较与验证",
+        "限制及结论"
+      ],
+      "purpose_review_dimensions": [
+        "贡献和作者角色清楚",
+        "证据充分",
+        "方法理解",
+        "章节导航",
+        "限制诚实",
+        "质询回应"
+      ],
+      "scope_exceptions": [
+        "允许独立章节或多个项目，不虚构唯一统一问题",
+        "未来计划不代替完成贡献",
+        "答辩程序和授位判断由学位机构负责"
+      ],
+      "sources": [
+        {
+          "source_id": "S08",
+          "locator": "2.9.4 main paragraph"
+        },
+        {
+          "source_id": "S09",
+          "locator": "Why Your Work Matters; Tour Guiding Your PhD"
+        },
+        {
+          "source_id": "S12",
+          "locator": "Thesis Defense Scheduling"
+        }
+      ],
+      "node_guidance": {
+        "planning": "先提炼贡献及章节关系，再选择线性或分组结构。",
+        "review": "检查作者完成工作和证据是否清楚，不对学位合格与否自动裁决。"
+      },
+      "applicability_note": "Assess preparation or artifacts at the current node; actual audience understanding, live Q&A response and degree/project approval require observed evidence or human decision, not a deck-only score.",
+      "core_assignment": "Select and record the core dimensions applicable to the current task before generation; source absence is not an automatic not_applicable waiver."
+    },
+    {
+      "id": "literature",
+      "name": "文献研读",
+      "intended_outcome": "理解已发表工作的机制、证据及局限，判断可借鉴之处。",
+      "content_coverage": [
+        "论文身份、选文理由与研究问题",
+        "方法机制、假设和条件",
+        "关键图表或证明及原文定位",
+        "贡献、局限与报告者判断",
+        "迁移条件和讨论问题"
+      ],
+      "purpose_review_dimensions": [
+        "原文忠实",
+        "机制理解",
+        "证据结论匹配",
+        "批判判断",
+        "迁移条件清楚",
+        "讨论价值"
+      ],
+      "scope_exceptions": [
+        "不强制逐图或按原文顺序复述",
+        "PICO与临床显著性不普遍适用",
+        "理论和算法论文改用对应证明、基准与验证条件"
+      ],
+      "sources": [
+        {
+          "source_id": "S10",
+          "locator": "Journal Club Tips"
+        },
+        {
+          "source_id": "S11",
+          "locator": "Appraising your Article; Typical Journal Club Structure"
+        }
+      ],
+      "node_guidance": {
+        "planning": "围绕论文中心主张选证据，并按论文学科调整评议问题。",
+        "review": "检查图号页码与解读来源，避免把报告者推断写成作者结论。"
+      },
+      "applicability_note": "Assess preparation or artifacts at the current node; actual audience understanding, live Q&A response and degree/project approval require observed evidence or human decision, not a deck-only score.",
+      "core_assignment": "Select and record the core dimensions applicable to the current task before generation; source absence is not an automatic not_applicable waiver."
+    }
+  ],
+  "canonical_rule_source": {
+    "local_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\templates\\presentations\\purpose-rules.json",
+    "repo_relative_path": "templates/presentations/purpose-rules.json",
+    "deployed_path": "/srv/research-workbench/source/templates/presentations/purpose-rules.json",
+    "version": "2026-11-02",
+    "status": "production_rule_source_confirmed_by_coordinator",
+    "runtime_implementation": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\server\\presentation_catalog.py"
+  },
+  "canonical_stage_review_implementation": {
+    "local_path": "D:\\博士工作\\博士项目\\CodeX\\research-workbench\\server\\stage_reviews.py",
+    "deployed_path": "/srv/research-workbench/source/server/stage_reviews.py",
+    "note": "Current score normalization, hard checks and revision policy are implemented here; this draft is not a runtime gate."
+  },
+  "usage_notice": "Historical design draft retained for review history. Do not use these draft profile dimensions or policy strings instead of the canonical production rule JSON and stage review implementation."
+}

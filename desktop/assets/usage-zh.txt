@@ -1,0 +1,53 @@
+DeepPartner 0.4.2
+
+运行 Deep partner.exe 打开研究工作区。前端已内置，前端与本机功能通过手动安装新版升级；联网读取已发布的兼容服务端能力。
+本机需要 Microsoft Edge WebView2 Runtime。账户登录、项目、文件和研究成果通过已有服务连接。
+
+dp.exe 与主程序位于同一文件夹。命令示例：
+dp.exe doctor --json
+dp.exe task run --engine codex --cwd C:\Research --prompt "说明当前项目" --json
+dp.exe task status 任务ID --json
+dp.exe task events 任务ID --after 0 --jsonl
+dp.exe task cancel 任务ID
+
+项目文件上传与分类：
+dp.exe login --username 你的用户名
+dp.exe project list
+dp.exe project upload --project "项目名称或ID" "D:\研究材料\main.py"
+dp.exe project upload --project "项目名称或ID" "D:\研究材料" --recursive --dry-run
+dp.exe project upload --project "项目名称或ID" "D:\研究材料" --recursive
+dp.exe project upload --project "项目名称或ID" "D:\论文\method.pdf" --purpose methods
+dp.exe project files --project "项目名称或ID" --path src
+dp.exe logout
+默认按文件类型归类；--category 可手动选 literature/code/data/figures/slides/documents/files。
+--purpose 指定文献用途：references/methods/validation/reading；--path 指定非文献的项目相对目录。
+--dry-run 只查看分类和目标，不上传；--json 输出逐文件回执。登录密码隐藏输入，会话由 Windows 为当前用户加密保存。
+
+Codex/Claude Code 使用本机已安装 CLI 和各自登录；未安装或未认证会报告实际错误。当前任务是非交互执行，不提供完整终端或交互审批对话。CLI任务日志保存在当前用户 AppData\Local\DeepPartner\jobs。
+登录后自动加载账户模型；已配置的所有者电脑工具桥与集群连接会自动恢复。普通用户设备沿用原配对方式。
+已配对并配置 ScanSci 运行环境的本机下载设备也在登录后自动恢复，沿用本机 ScanSci 专用机构会话；重复连接复用同一 worker。
+安装程序不修改用户 PATH；可在此文件夹运行 dp.exe 或自行将安装文件夹加入 PATH。
+
+
+研究工作流与对话命令
+
+命令行组件 dp.exe 与主程序位于同一目录，登录后可复用已记住的设备。
+  dp project list --json
+  dp project create --name "课题名称" --json
+  dp chat list --project 项目ID
+  dp chat send --project 项目ID --file 问题.txt --jsonl
+  dp chat send --project 项目ID --session 会话ID --file 追问.txt --jsonl
+  dp chat resume --project 项目ID --session 会话ID --jsonl
+  dp chat history --project 项目ID --session 会话ID --limit 12
+  dp chat reply --project 项目ID --session 会话ID --message "作者回复" --jsonl
+  dp chat stop --project 项目ID --session 会话ID --jsonl
+
+  dp workflow routes --project 项目ID --kind survey
+  dp workflow run --project 项目ID --file 研究任务.json
+  dp workflow status --project 项目ID --id 执行ID
+  dp workflow record --project 项目ID --file 研究记录.json
+  dp workflow graph --project 项目ID --limit 80 --offset 0
+
+研究任务 JSON 指定 kind=search/survey/download/analyze/code/slides，由程序执行相应工具和归档。query 是检索问题，assets 是已入库文献的项目相对路径，entries 为已有 DOI/arXiv 的题录。代码任务通过 input_paths 明确本轮需要的项目材料；已有任务只需 code_task_id 即可恢复回交。每次自动重试沿用 request_id。汇报使用项目已确认的模板与用途 confirmation_id。
+
+全文、研究判断与来源关系分别保存到所属项目。画布的研究知识图谱展示论文、方法、发现、局限和想法的实际关联；点击节点查看来源与判断范围。idea memo 建立项目绑定后自动同步正文与新增材料。

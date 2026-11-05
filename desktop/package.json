@@ -1,0 +1,11 @@
+{
+  "name": "deep-partner-desktop",
+  "version": "0.4.0",
+  "private": true,
+  "scripts": {
+    "dev": "cargo run --features desktop-web --bin deep-partner",
+    "test": "cargo test --features desktop-web --lib --test remote_contract --test cli_worker",
+    "doctor": "cargo run --no-default-features --bin dp -- doctor --json",
+    "build": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-native.ps1"
+  }
+}

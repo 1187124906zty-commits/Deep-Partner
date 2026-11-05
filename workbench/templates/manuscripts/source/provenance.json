@@ -1,0 +1,75 @@
+{
+  "CIRP": {
+    "source": "https://cirp.net/images/cirpfichiers/publicfiles/new-annals/templates/cirp_annals_paper_template_2026.doc",
+    "guide": "https://cirp.net/mainmenu-publications/cirp-annals-col-200/authors-submit-a-paper.html",
+    "version": 2026,
+    "format": "official Word author template",
+    "bytes": 83968
+  },
+  "chinese-engineering": {
+    "source": "https://journal.hep.com.cn/hep/EN/file/download/?fileId=bQW10RIx2w5EMW5JtKp1EA%3D%3D&fileName=%E9%99%84%E4%BB%B64%EF%BC%9A%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%B7%A5%E7%A8%8B%E7%A7%91%E5%AD%A6%E3%80%8B%E6%8A%95%E7%A8%BF%E6%A0%BC%E5%BC%8F%E6%A8%A1%E6%9D%BF.docx&type=file",
+    "guide": "https://www.engineering.org.cn/sscae/CN/templates",
+    "format": "official Word author template",
+    "bytes": 23522
+  },
+  "springer-aas": {
+    "source": "https://www.iapjournals.ac.cn/fileDQKXJZ/attachments/docx/0a2ae156-687b-4870-bbd3-d1c6ebb1ad2b.docx",
+    "guide": "https://media.springer.com/full/springer-instructions-for-authors-assets/pdf/376_AAS_Author%20Guide_2025.pdf",
+    "format": "official journal Word author template linked by Springer AAS 2025 author guide",
+    "bytes": 789844
+  },
+  "chinese-user": {
+    "source": "User supplied: 论文模板260909.doc",
+    "format": "User-supplied native Word journal template",
+    "journal": "Journal of Northwestern Polytechnical University",
+    "conversion": "LibreOffice DOC to DOCX; original DOC retained",
+    "geometry_mm": [
+      210,
+      297,
+      21.5,
+      21.5,
+      19.51,
+      19.51
+    ],
+    "columns": 2,
+    "column_gap_twips": 422
+  },
+  "cas": {
+    "source": "User supplied: els-cas-templates.zip",
+    "version": "2.4 (May 2024)",
+    "format": "Official native LaTeX cas-dc/cas-sc; editable Word mapping only",
+    "classes": "templates/manuscripts/latex/cas"
+  },
+  "rsc": {
+    "source": "https://www.rsc.org/getContentAsset/e90c2529-62d4-4ef9-9d39-80bbb91c40a3/f4c91d86-ac3e-4675-bdf3-f8325ded9710/art-template-2-2.docx?language=en&v=639070119469345925",
+    "format": "official native Word author template",
+    "guide": "https://www.rsc.org/publishing/publish-with-us/publish-a-journal-article/article-templates",
+    "bytes": 3643112
+  },
+  "rsc-faraday": {
+    "source": "https://www.rsc.org/getContentAsset/5c205271-c5a7-48be-8a8d-965fd5f6f526/f4c91d86-ac3e-4675-bdf3-f8325ded9710/Article-template-Faraday-Discussions.docx?language=en&v=639070125956675122",
+    "format": "official native Word author template",
+    "guide": "https://www.rsc.org/publishing/publish-with-us/publish-a-journal-article/article-templates",
+    "bytes": 4260026
+  },
+  "chinese-mechanics": {
+    "source": "User supplied: 写作范例.doc",
+    "format": "User-supplied journal Word writing example",
+    "journal": "力学进展 / Advances in Mechanics",
+    "example_year": 2015,
+    "conversion": "LibreOffice DOC to DOCX; original DOC retained unchanged",
+    "geometry_mm": [
+      210.009,
+      297.004,
+      21.996,
+      22.983,
+      19.509,
+      19.509
+    ],
+    "columns": 1,
+    "body_font": "宋体 / Times New Roman",
+    "equation_object_font": "Cambria Math",
+    "body_grid_twips": 312,
+    "scope": "Typography reference; no assumption that the current manuscript is submitted to this journal"
+  }
+}

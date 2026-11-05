@@ -1,0 +1,61 @@
+{
+  "package": "research-workbench-mcp",
+  "transport": "stdio; authenticated API adapter",
+  "implementation": "Existing externally deployed Research Workbench HTTP APIs; no scientific computation reimplementation",
+  "service_origin": "https://tutor.example.invalid",
+  "source": {
+    "url": "D:/Development/research-workbench",
+    "source_tree": {
+      "path": "repo/research-workbench",
+      "sha256": "a8afcdd48d003bcc188f028225c83f77175bf56de3e05174fb597ed1efd4630e",
+      "note": "Original prepared source snapshot; current API quality additions are recorded under quality_update."
+    }
+  },
+  "tool_count": 37,
+  "source_amendments": "Prepared image reviews avoid summary/model calls; linked figure refresh forwards Request/current owner. Detailed development evidence retained outside archive.",
+  "dependencies": "src/requirements.txt",
+  "expected_tool_names": [
+    "workbench_account",
+    "workbench_annotations",
+    "workbench_author_profile",
+    "workbench_export_download",
+    "workbench_figure",
+    "workbench_figure_chat",
+    "workbench_files",
+    "workbench_image_review",
+    "workbench_jobs",
+    "workbench_journal_templates",
+    "workbench_journals",
+    "workbench_knowledge_bases",
+    "workbench_knowledge_files",
+    "workbench_knowledge_index",
+    "workbench_knowledge_search",
+    "workbench_literature",
+    "workbench_literature_organization",
+    "workbench_manuscript",
+    "workbench_manuscript_export",
+    "workbench_manuscript_templates",
+    "workbench_paper_downloads",
+    "workbench_paper_search",
+    "workbench_project_import",
+    "workbench_projects",
+    "workbench_raster",
+    "workbench_reader",
+    "workbench_references",
+    "workbench_review",
+    "workbench_revisions",
+    "workbench_rules",
+    "workbench_search_sources",
+    "workbench_settings",
+    "workbench_slide_templates",
+    "workbench_slides",
+    "workbench_storage",
+    "workbench_translation",
+    "workbench_web_search"
+  ],
+  "quality_update": {
+    "date": "2026-11-02",
+    "scope": "Existing workbench_review adds rubric, submit, list and gate actions; staged receipts trigger evaluation; workbench_settings preserves independent reviewer choices.",
+    "validation": "12 offline real-transport HTTP contracts; existing 37 tool names preserved; no replacement of prior full-call evidence."
+  }
+}

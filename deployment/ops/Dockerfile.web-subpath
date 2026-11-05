@@ -1,0 +1,45 @@
+# Next.js-only production target, following Dify 1.18.0 web/Dockerfile.
+# Node image digest is recorded in build-images.lock.json.
+FROM node:24.22.1-alpine AS base
+RUN apk add --no-cache tzdata && corepack enable
+ENV PNPM_HOME=/pnpm
+ENV PATH=/pnpm:$PATH
+ARG NEXT_PUBLIC_BASE_PATH=/dify
+ENV NEXT_PUBLIC_BASE_PATH=$NEXT_PUBLIC_BASE_PATH
+
+FROM base AS packages
+WORKDIR /app
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /app/
+COPY web/package.json /app/web/
+COPY e2e/package.json /app/e2e/
+COPY sdks/nodejs-client/package.json /app/sdks/nodejs-client/
+COPY packages /app/packages
+RUN corepack install
+RUN pnpm install --frozen-lockfile --ignore-scripts
+
+FROM packages AS builder
+WORKDIR /app
+COPY . .
+WORKDIR /app/web
+ENV NODE_OPTIONS=--max-old-space-size=4096
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV pnpm_config_verify_deps_before_run=false
+RUN node --input-type=module -e 'import fs from "node:fs"; const p="next.config.ts"; fs.writeFileSync(p, fs.readFileSync(p,"utf8").replace("const nextConfig: NextConfig = {", "const nextConfig: NextConfig = {\n  experimental: { cpus: 2, webpackMemoryOptimizations: true },"))'
+RUN pnpm exec next build --webpack
+
+FROM base AS production
+ENV NODE_ENV=production
+ENV DEPLOY_ENV=PRODUCTION
+ENV PORT=3000
+ENV EXPERIMENTAL_ENABLE_VINEXT=false
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV TZ=Asia/Shanghai
+RUN addgroup -S -g 1001 dify && adduser -S -u 1001 -G dify -s /bin/ash -h /home/dify dify
+WORKDIR /app
+COPY --from=builder --chown=dify:dify /app/web/public ./targets/next/web/public
+COPY --from=builder --chown=dify:dify /app/web/.next/standalone ./targets/next/
+COPY --from=builder --chown=dify:dify /app/web/.next/static ./targets/next/web/.next/static
+COPY --chown=dify:dify --chmod=755 web/docker/entrypoint.sh ./entrypoint.sh
+USER dify
+EXPOSE 3000
+ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]

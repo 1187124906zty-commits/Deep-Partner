@@ -1,0 +1,5 @@
+[deeptutor.tools]
+research_code = research_delegate:ResearchCodeTool
+
+[deeptutor.extensions]
+research_delegation = research_delegate:ResearchDelegation

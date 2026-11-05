@@ -1,0 +1,2 @@
+import {Mark,mergeAttributes} from '@tiptap/core'
+export const AnnotationMark=Mark.create({name:'annotationHighlight',inclusive:false,addAttributes(){return {id:{default:null},color:{default:'#facc15'}}},parseHTML(){return [{tag:'mark[data-annotation-id]'}]},renderHTML({HTMLAttributes}){return ['mark',mergeAttributes(HTMLAttributes,{'data-annotation-id':HTMLAttributes.id,style:'background-color:'+HTMLAttributes.color+'55;color:inherit'}),0]}})

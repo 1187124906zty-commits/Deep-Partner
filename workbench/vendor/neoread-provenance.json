@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/cynicalight/NeoRead",
+  "source_commit": "ccfb94df9f477381daf1a6aee27f77f660daeebe",
+  "web_source": "Installed NeoRead resources/web",
+  "migration": "Original Vite web bundle and original Go server; authenticated project gateway; PyMuPDF text-layer processor adapter",
+  "private_library_copied": false
+}

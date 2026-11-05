@@ -1,0 +1,28 @@
+{
+  "id": "fno-darcy",
+  "name": "FNO · Darcy 中文",
+  "language": "zh-CN",
+  "description": "中文整理稿、官方算子学习代码与小样本数据、结果图和汇报",
+  "repository": "https://github.com/neuraloperator/neuraloperator",
+  "article": "https://arxiv.org/abs/2010.08895",
+  "knowledge_base": "FNO_Darcy",
+  "image": "results/darcy-reference.png",
+  "compute_program": "src/plot_FNO_darcy.py",
+  "literature": [
+    {
+      "file": "reference-downloads/arxiv_2010.08895.pdf",
+      "stage": "问题与方法",
+      "title": "Fourier Neural Operator for Parametric Partial Differential Equations"
+    },
+    {
+      "file": "reference-downloads/arxiv_2111.03794.pdf",
+      "stage": "训练与验证",
+      "title": "Physics-Informed Neural Operator for Learning Partial Differential Equations"
+    },
+    {
+      "file": "reference-downloads/arxiv_1910.03193.pdf",
+      "stage": "相关工作",
+      "title": "DeepONet: Learning nonlinear operators for identifying differential equations based on the universal approximation theorem of operators"
+    }
+  ]
+}

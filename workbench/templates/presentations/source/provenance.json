@@ -1,0 +1,37 @@
+[
+  {
+    "file": "beamercolorthemedefault.sty",
+    "url": "https://raw.githubusercontent.com/josephwright/beamer/main/base/themes/color/beamercolorthemedefault.sty",
+    "bytes": 7228
+  },
+  {
+    "file": "beamerthemeMadrid.sty",
+    "url": "https://raw.githubusercontent.com/josephwright/beamer/main/base/themes/theme/beamerthemeMadrid.sty",
+    "bytes": 695
+  },
+  {
+    "file": "beamercolorthemewhale.sty",
+    "url": "https://raw.githubusercontent.com/josephwright/beamer/main/base/themes/color/beamercolorthemewhale.sty",
+    "bytes": 1003
+  },
+  {
+    "file": "beamercolorthemeorchid.sty",
+    "url": "https://raw.githubusercontent.com/josephwright/beamer/main/base/themes/color/beamercolorthemeorchid.sty",
+    "bytes": 825
+  },
+  {
+    "file": "beamer-LICENSE.md",
+    "url": "https://raw.githubusercontent.com/josephwright/beamer/main/LICENSE.md",
+    "bytes": 1353
+  },
+  {
+    "file": "beamercolorthememetropolis.dtx",
+    "url": "https://raw.githubusercontent.com/matze/mtheme/master/source/beamercolorthememetropolis.dtx",
+    "bytes": 6724
+  },
+  {
+    "file": "beamerthememetropolis.dtx",
+    "url": "https://raw.githubusercontent.com/matze/mtheme/master/source/beamerthememetropolis.dtx",
+    "bytes": 6003
+  }
+]

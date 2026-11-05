@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="pages" x1="10" y1="22" x2="89" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#65AFB3"/>
+      <stop offset=".5" stop-color="#3D7E8C"/>
+      <stop offset="1" stop-color="#263F59"/>
+    </linearGradient>
+    <linearGradient id="hand" x1="26" y1="88" x2="91" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#658F9B"/>
+      <stop offset=".56" stop-color="#C6A475"/>
+      <stop offset="1" stop-color="#E3C597"/>
+    </linearGradient>
+  </defs>
+  <g stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 30C37 15 20 11 11 16C8 30 7 49 10 66C22 65 37 72 49 81C49 63 50 45 49 30ZM49 30C62 15 78 11 88 16C91 29 92 46 90 58" stroke="url(#pages)"/>
+    <path d="M17 26C27 25 36 30 41 37M60 37C66 30 75 26 82 26M17 35C27 35 33 39 38 44" stroke="url(#pages)" stroke-width="2.4"/>
+    <path d="M11 76C24 75 38 81 50 91C60 83 69 79 78 77C84 74 88 69 93 60C96 54 92 49 88 53L76 65C72 69 64 73 57 75C66 69 71 64 75 59C79 54 76 49 72 52C60 63 49 71 40 74" stroke="url(#hand)"/>
+    <path d="M50 91C65 91 83 82 90 71" stroke="url(#hand)" stroke-width="2.3"/>
+  </g>
+</svg>

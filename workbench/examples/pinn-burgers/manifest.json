@@ -1,0 +1,28 @@
+{
+  "id": "pinn-burgers",
+  "name": "PINN · Burgers",
+  "language": "en",
+  "description": "英文稿件、作者代码与参考数据、结果图和组会汇报",
+  "repository": "https://github.com/maziarraissi/PINNs",
+  "article": "https://arxiv.org/abs/1711.10561",
+  "knowledge_base": "PINN_Burgers",
+  "image": "results/burgers-reference.png",
+  "compute_program": "src/Burgers.py",
+  "literature": [
+    {
+      "file": "pinn-burgers/literature/arxiv_1711.10561.pdf",
+      "stage": "问题与方法",
+      "title": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations"
+    },
+    {
+      "file": "reference-downloads/arxiv_2001.04536.pdf",
+      "stage": "训练与验证",
+      "title": "Understanding and mitigating gradient pathologies in physics-informed neural networks"
+    },
+    {
+      "file": "reference-downloads/arxiv_1711.10566.pdf",
+      "stage": "相关工作",
+      "title": "Physics Informed Deep Learning (Part II): Data-driven Discovery of Nonlinear Partial Differential Equations"
+    }
+  ]
+}

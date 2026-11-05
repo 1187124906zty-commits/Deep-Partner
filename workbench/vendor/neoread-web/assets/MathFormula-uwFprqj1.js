@@ -1,0 +1,1 @@
+import{r as s,y as e,j as n}from"./index-hR60aL1b.js";function m({value:t,display:r}){const a=s.useMemo(()=>e.renderToString(t,{displayMode:r,throwOnError:!1,trust:!1,strict:"warn",maxExpand:100,maxSize:20}),[t,r]);return n.jsx("span",{className:r?"markdown-math display":"markdown-math",dangerouslySetInnerHTML:{__html:a}})}export{m as default};

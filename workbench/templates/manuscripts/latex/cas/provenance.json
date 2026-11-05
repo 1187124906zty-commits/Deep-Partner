@@ -1,0 +1,14 @@
+{
+  "publisher": "Elsevier",
+  "bundle": "CAS Bundle",
+  "version": "2.4",
+  "class_date": "2024/05/04",
+  "user_source": "C:\\Users\\DEVELOPER\\Downloads\\els-cas-templates.zip",
+  "official_page": "https://www.elsevier.com/researcher/author/policies-and-guidelines/latex-instructions",
+  "official_download": "https://assets.ctfassets.net/o78em1y1w4i4/5uFmLZJTPDMAUjFnHRpjj8/6f19a979146eb93263763d87a894ab0d/els-cas-templates.zip",
+  "classes": {
+    "single": "cas-sc.cls",
+    "double": "cas-dc.cls"
+  },
+  "adaptation": "Official class, cas-common.sty, title/author/affiliation/abstract/keywords and table/figure environments. No custom title box, header theme or substitute table style. Chinese text uses the existing private fonts for glyph support."
+}

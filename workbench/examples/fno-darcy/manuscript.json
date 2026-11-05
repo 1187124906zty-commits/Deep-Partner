@@ -1,0 +1,735 @@
+{
+  "title": "Darcy 流算子学习：从公开资料到可审阅结果",
+  "template": "chinese",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "摘要"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "本示例以 Fourier Neural Operator 的 Darcy 流问题为线索，把原始论文、作者维护的代码、公开小样本数据和可编辑稿件放在同一工作区。图中展示的是代码仓库附带的参考数据，本次运行完成数据读取、检查和绘图，尚未训练 FNO。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1  研究问题"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "参数化偏微分方程需要对不同输入场反复求解。FNO 学习输入函数到解函数的映射，并在傅里叶空间中参数化积分核。Darcy 流算例将空间变化的系数场作为输入，将稳态解作为输出[1]。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2  方程与条件"
+          }
+        ]
+      },
+      {
+        "type": "blockMath",
+        "attrs": {
+          "latex": "-\\nabla\\cdot(a(x)\\nabla u(x))=1,\\quad x\\in(0,1)^2"
+        }
+      },
+      {
+        "type": "blockMath",
+        "attrs": {
+          "latex": "u(x)=0,\\quad x\\in\\partial(0,1)^2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "以上条件依据已下载 FNO 论文附录 A.3.2。原论文的系数取两个正值，参考解采用 421×421 网格计算后降采样。本工作区使用当前 NeuralOperator 仓库的小型示例文件，不将它等同于原论文全部基准数据。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3  数据与结果图"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "当前数据文件把输入相位存为 torch.bool 类型。图中左侧直接显示保存的 0/1 编码，右侧显示配套参考解；没有将 0/1 冒充带物理单位的渗透率，也没有自行恢复未核实的编码映射。"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "asset:darcy-reference.png",
+          "title": "图1  NeuralOperator 小型 Darcy 测试样本：保存的二值输入编码与配套参考解。",
+          "alt": "Darcy 数据中的输入相位编码与参考解"
+        }
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "检查项"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "本次结果"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "输入数组形状"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "50 × 16 × 16"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "输入存储类型"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "torch.bool，相位编码"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "数据有效性"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "所有数组项均为有限值"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "网络训练"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "本示例未执行"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4  验证应回答什么"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "资料整理与预测模型验证承担不同任务。当前结果用于核对文件、图像和程序索引是否一致；若开展训练，需要在独立测试样本上报告误差，并说明训练分辨率、测试分辨率和归一化方式。知识库中的 PINO 文献[2]可用于考察物理约束，DeepONet 文献[3]提供另一类算子表示作为相关方法。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5  运行与来源"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "在程序目录运行 python src/plot_reference.py 可重建图1。src/plot_FNO_darcy.py 为作者维护的训练示例，src/fno.py 为同一提交的模型实现；完整训练需安装并遵从上游 NeuralOperator 环境。本地副本固定为 a6648eeeb60fe0837f2d7d021517a945a159a0c8，保留 MIT 许可证。计算图在已登记集群的 Slurm 作业中生成。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "参考文献"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[1] Li 等. Fourier Neural Operator for Parametric Partial Differential Equations. ICLR 2021, arXiv:2010.08895。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[2] Li 等. Physics-Informed Neural Operator for Learning Partial Differential Equations, arXiv:2111.03794。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[3] Lu、Jin、Karniadakis. DeepONet: Learning nonlinear operators for identifying differential equations based on the universal approximation theorem of operators, arXiv:1910.03193。"
+          }
+        ]
+      }
+    ]
+  },
+  "comments": [],
+  "translation": {
+    "title": "Darcy operator learning: from public sources to reviewable results",
+    "language": "en",
+    "template": "springer",
+    "content": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "This example follows the Darcy-flow problem in Fourier Neural Operator and brings together the original paper, author-maintained code, a public small dataset and an editable manuscript. The figure displays reference data packaged with the repository. This run reads, checks and plots the data; it does not train an FNO."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "1. Research question"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Parametric partial differential equations require repeated solutions for different input fields. FNO learns a mapping from an input function to a solution function and parameterizes an integral kernel in Fourier space. The Darcy-flow example maps a spatially varying coefficient field to a steady-state solution [1]."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "2. Equation and conditions"
+            }
+          ]
+        },
+        {
+          "type": "blockMath",
+          "attrs": {
+            "latex": "-\\nabla\\cdot(a(x)\\nabla u(x))=1,\\quad x\\in(0,1)^2"
+          }
+        },
+        {
+          "type": "blockMath",
+          "attrs": {
+            "latex": "u(x)=0,\\quad x\\in\\partial(0,1)^2"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "These conditions follow Appendix A.3.2 of the downloaded FNO paper. In the original paper, the coefficient takes two positive values, and reference solutions are computed on a 421 × 421 grid before downsampling. This workspace uses the small example file in the current NeuralOperator repository and does not equate it with the complete original benchmark."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "3. Data and figure"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "The current file stores the input phase as torch.bool. The left panel shows the stored 0/1 encoding directly, and the right panel shows the associated reference target. The binary values are not presented as permeability values with physical units, and no unverified encoding map is reconstructed."
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "attrs": {
+            "src": "asset:darcy-reference.png",
+            "title": "Figure 1. A small Darcy test sample from NeuralOperator: stored binary input encoding and associated reference target.",
+            "alt": "Stored Darcy phase encoding and reference target"
+          }
+        },
+        {
+          "type": "table",
+          "content": [
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableHeader",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Check"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Result of this run"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Input array shape"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "50 × 16 × 16"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Stored input type"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "torch.bool phase encoding"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Finite-value check"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "All array entries are finite"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Network training"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Not performed in this demonstration"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "4. What validation should establish"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Organizing sources and validating a predictive model serve different purposes. The present output checks whether files, images and program references agree. Training experiments should report errors on independent test samples and specify training resolution, testing resolution and normalization. The PINO reference [2] supports an examination of physical constraints, while DeepONet [3] provides a different operator representation for comparison."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "5. Running the example and its sources"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Run python src/plot_reference.py from the program folder to regenerate Figure 1. The author-maintained training example is src/plot_FNO_darcy.py, and src/fno.py contains the model implementation from the same commit. Full training requires the upstream NeuralOperator environment. The local copy is pinned to a6648eeeb60fe0837f2d7d021517a945a159a0c8 and retains the MIT license. The figure was generated by a Slurm job on the registered research cluster."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "References"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "[1] Li et al. Fourier Neural Operator for Parametric Partial Differential Equations. ICLR 2021, arXiv:2010.08895."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "[2] Li et al. Physics-Informed Neural Operator for Learning Partial Differential Equations, arXiv:2111.03794."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "[3] Lu, Jin and Karniadakis. DeepONet: Learning nonlinear operators for identifying differential equations based on the universal approximation theorem of operators, arXiv:1910.03193."
+            }
+          ]
+        }
+      ]
+    },
+    "comments": [],
+    "source_revision": 0,
+    "stale": false,
+    "origin": "preset",
+    "generation_id": "preset-fno-darcy"
+  }
+}

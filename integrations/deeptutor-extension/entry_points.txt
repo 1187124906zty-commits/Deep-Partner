@@ -1,0 +1,12 @@
+[deeptutor.tools]
+registration_manage = registration_admin:RegistrationAdminTool
+device_login_manage = trusted_devices:DeviceAdminTool
+coder_run = coder_bridge:CoderTool
+code_files = coder_bridge:CodeFilesTool
+
+[deeptutor.extensions]
+registration_admin = registration_admin:RegistrationAdminCapability
+device_login_admin = trusted_devices:DeviceAdminCapability
+code_mode = code_mode:CodeMode
+coder_bridge = code_mode:CodeLoop
+code_awareness = coder_bridge:CodeAwareness

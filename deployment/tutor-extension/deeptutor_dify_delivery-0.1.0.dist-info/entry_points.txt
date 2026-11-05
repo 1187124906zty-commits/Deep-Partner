@@ -1,0 +1,7 @@
+[deeptutor.tools]
+research_workbench = dify_delivery:ResearchWorkbenchTool
+partner_writing_workflow = partner_writing:PartnerWritingTool
+
+[deeptutor.extensions]
+dify_workbench_delivery = dify_delivery:WorkbenchDelivery
+partner_writing = partner_writing:PartnerWriting

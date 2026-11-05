@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/neuraloperator/neuraloperator",
+  "commit": "a6648eeeb60fe0837f2d7d021517a945a159a0c8",
+  "license": "MIT",
+  "article": "https://arxiv.org/abs/2010.08895",
+  "files": {
+    "LICENSE": "project/LICENSE",
+    "README.rst": "project/docs/UPSTREAM.rst",
+    "examples/models/plot_FNO_darcy.py": "project/src/plot_FNO_darcy.py",
+    "neuralop/models/fno.py": "project/src/fno.py",
+    "neuralop/data/datasets/darcy.py": "project/docs/darcy_dataset.py",
+    "neuralop/data/datasets/data/darcy_test_16.pt": "project/data/darcy_test_16.pt"
+  },
+  "scope": "Current author-maintained Darcy example and packaged reference dataset. This workbench visualizes supplied data; no FNO training is claimed."
+}

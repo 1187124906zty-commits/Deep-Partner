@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "source_notes_and_synthesized_guidance",
+  "reviewed_at": "2026-11-02",
+  "runtime_enabled": false,
+  "state": "research_notes_not_promoted",
+  "taxonomy_policy": {
+    "purpose_ids": "六个稳定ID构成长期开口分类，可扩展其他用途。",
+    "visual_styles": "当前三种视觉风格是临时可替换选择，不决定用途内容与评价。",
+    "scoring_policy": "Q1/Q2待用户确认；本材料只列定性评价维度，不设固定合格分。"
+  },
+  "language": "zh-CN",
+  "catalog_reviewed": "D:/Development/research-workbench/server/presentation_catalog.py:PROFILES",
+  "companion_document": "docs/ppt-purpose-evidence.md",
+  "interpretation": {
+    "source_fact": "发布机构的指南实际主张，不等于实验证明的最佳做法。",
+    "synthesis_guidance": "将来源原则用于工作台的信息组织、反馈与评审建议；不是来源逐字规则。",
+    "local_requirement": "只对其机构、活动、学位阶段与版本适用。",
+    "precedence": "用户本次目标及实际机构要求优先；不从来源示例推导全球固定结构、页数、时长、配额或分数。",
+    "required_information_semantics": "按实际用途和材料检查信息是否足够；无需每项独立成页；缺失则说明影响，禁止补造。",
+    "evaluation_semantics": "评价维度是定性问题，不构成已验证量表、权重或自动合格判据。"
+  },
+  "coverage": {
+    "sources_total": 12,
+    "relevant_body_read": 11,
+    "indexed_body_only": 1,
+    "excluded_as_unread": [
+      {"publisher": "ASLO", "reason": "原页抓取失败；未作为已读依据。"},
+      {"publisher": "UCL CoMPLEX", "reason": "正文抓取超时；未作为已读依据。"}
+    ]
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "publisher": "MIT Biological Engineering Communication Lab",
+      "title": "Slideshow",
+      "url": "https://mitcommlab.mit.edu/be/commkit/slideshow/",
+      "source_type": "university_communication_guidance",
+      "access_scope": "相关正文已读；页面注明2026-07更新。",
+      "locators": [
+        {"section": "Identify Your Purpose", "read_lines": "54-59", "supports": "方法反馈与结果传播需要不同内容重点。"},
+        {"section": "Analyze Your Audience; Help your audience understand your data", "read_lines": "60-79", "supports": "背景、术语和图表解释需匹配听众。"},
+        {"section": "Prepare for the talking part of the talk", "read_lines": "129-134", "supports": "可准备更技术化的补充问答材料。"}
+      ],
+      "not_supported": ["一页最多一张图", "六类用途固定同一大纲", "所有报告都应删掉方法细节"]
+    },
+    {
+      "id": "S02",
+      "publisher": "American Geophysical Union",
+      "title": "Preparing Your Presentation for #AGU20",
+      "url": "https://www.agu.org/-/media/files/fall-meeting/preparing-presentation-guidelines.pdf",
+      "source_type": "official_conference_historical_guidance",
+      "access_scope": "两页PDF正文已读；2020虚拟会议文件。",
+      "locators": [{"section": "Create your presentation", "page": 1, "read_lines": "9-24", "supports": "组织必要要点、保证图形可读，可拆解复杂页面。"}],
+      "not_supported": ["AGU26现行要求", "所有学术报告28pt下限", "所有场景强制16:9或指定字体"]
+    },
+    {
+      "id": "S03",
+      "publisher": "Newcastle University, Student Guidelines",
+      "title": "At Lab Meetings Show Everything",
+      "url": "https://microsites.ncl.ac.uk/fmspgrstudentguidelines/2015/07/30/at-lab-meetings-show-everything/",
+      "source_type": "university_training_article",
+      "access_scope": "正文已读；2015文章，含个人经验。",
+      "locators": [{"section": "Opening; Things to Include; Practical Tips", "read_lines": "9-29", "supports": "组会用于改进研究，应提供方法条件、失败结果和所需诊断信息。"}],
+      "not_supported": ["每次组会展示全部原始记录", "只要有异常就必须扩大报告范围"]
+    },
+    {
+      "id": "S04",
+      "publisher": "DARPA",
+      "title": "The Heilmeier Catechism",
+      "url": "https://www.darpa.mil/about/heilmeier-catechism",
+      "source_type": "research_agency_program_evaluation_framework",
+      "access_scope": "官方索引内容含完整八问；初次打开返回页面元数据，后续正文重取超时。未宣称全文阅读。",
+      "locators": [{"section": "The Heilmeier Catechism, eight numbered questions", "supports": "目标、现状、新方法、意义、风险、成本、时间与成功检查。"}],
+      "not_supported": ["所有项目汇报必须逐问作答", "这些问题构成PPT版式要求"]
+    },
+    {
+      "id": "S05",
+      "publisher": "National Institutes of Health",
+      "title": "Research Performance Progress Report (RPPR)",
+      "url": "https://www.grants.nih.gov/grants-process/post-award-monitoring-and-reporting/reporting-requirements/research-performance-progress-report-rppr",
+      "source_type": "official_research_progress_reporting_guidance",
+      "access_scope": "相关正文已读；页面注明2024-09-04更新。",
+      "locators": [
+        {"section": "Types of RPPRs", "read_lines": "7-12", "supports": "年度、阶段与结题报告内容不完全相同。"},
+        {"section": "What: Accomplishments; Products; Changes/Problems; Project Outcomes", "read_lines": "42-74", "supports": "记录目标下的完成情况、产品、后续计划及问题。"}
+      ],
+      "not_supported": ["NIH要求可直接视为所有口头汇报的法定要求", "结题一律强制下一期预算"]
+    },
+    {
+      "id": "S06",
+      "publisher": "MIT EECS Communication Lab",
+      "title": "Thesis Proposal",
+      "url": "https://mitcommlab.mit.edu/eecs/commkit/thesis-proposal/",
+      "source_type": "university_communication_guidance",
+      "access_scope": "相关正文已读；主要对象为书面开题。",
+      "locators": [
+        {"section": "Purpose; Analyze Your Audience", "read_lines": "42-49", "supports": "论证价值、可行性及明确的工作范围。"},
+        {"section": "Include a timeline; Include details and preliminary results", "read_lines": "65-72", "supports": "计划应能说明如何实施及为何可行。"}
+      ],
+      "not_supported": ["书面页数转换为PPT页数", "背景与方案必须25/75", "必须已经有完整结果"]
+    },
+    {
+      "id": "S07",
+      "publisher": "MIT AeroAstro Communication Lab",
+      "title": "PhD Thesis Proposals",
+      "url": "https://mitcommlab.mit.edu/aeroastro/commkit/phd-thesis-proposals/",
+      "source_type": "university_department_communication_guidance",
+      "access_scope": "相关正文已读；包含2025-09起的本部门局部规定。",
+      "locators": [
+        {"section": "4. Purpose; 7.2.2 Planned Contributions; 7.2.3 Timeline", "read_lines": "54-60;96-103", "supports": "拟议贡献、实施资源与里程碑共同支持可行性。"},
+        {"section": "7.3.1 Purpose", "read_lines": "104-107", "supports": "委员已预读时，口头开题可聚焦拟议贡献和建设性问答。"}
+      ],
+      "not_supported": ["所有开题听众均已预读", "本部门页数时长对所有学校适用"]
+    },
+    {
+      "id": "S08",
+      "publisher": "MIT, online writing guide",
+      "title": "Thesis Defense, section 2.9.4",
+      "url": "https://web.mit.edu/course/21/21.guide/th-defen.htm",
+      "source_type": "university_legacy_communication_guidance",
+      "access_scope": "短篇正文全段已读；未提供可确认的当前更新时间。",
+      "locators": [{"section": "2.9.4, main paragraph", "read_lines": "3-5", "supports": "背景、问题、方法、结果、结论是一种组织参考，并需练习。"}],
+      "not_supported": ["现行学位行政政策", "唯一允许的答辩顺序"]
+    },
+    {
+      "id": "S09",
+      "publisher": "MIT Biological Engineering Communication Lab",
+      "title": "Defense Season Wrapped: What Makes a Thesis Defense Great?",
+      "url": "https://mitcommlab.mit.edu/be/2026/02/25/defense-season-wrapped-what-makes-a-thesis-defense-great/",
+      "source_type": "university_case_based_communication_guidance",
+      "access_scope": "相关正文已读；2026-02案例教学文章。",
+      "locators": [
+        {"section": "Why Your Work Matters", "read_lines": "54-99", "supports": "解释贡献所处位置，并诚实讨论限制。"},
+        {"section": "Tour Guiding Your PhD", "read_lines": "100-121", "supports": "可以按独立章节组织；不必依照严格时间顺序。"}
+      ],
+      "not_supported": ["所有学位论文必须有单一线性故事", "所有研究部分必须回答唯一问题", "文中案例时长是普遍规定"]
+    },
+    {
+      "id": "S10",
+      "publisher": "University of Virginia, Department of Pharmacology",
+      "title": "Your Journal Club Presentation",
+      "url": "https://med.virginia.edu/research/pharmacology/current-students/degree-requirements/journal-club-tips",
+      "source_type": "university_department_training_guidance",
+      "access_scope": "Journal Club Tips正文已读。",
+      "locators": [{"section": "Journal Club Tips", "read_lines": "36-39", "supports": "围绕中心主张选择关键实验，并主持聚焦论文的讨论。"}],
+      "not_supported": ["必须按原文图序逐图复述", "所有学科都必须采用实验论文结构"]
+    },
+    {
+      "id": "S11",
+      "publisher": "NYU Health Sciences Library",
+      "title": "Journal Clubs, Evidence Based Medicine",
+      "url": "https://hslguides.med.nyu.edu/EBM/journalclubs",
+      "source_type": "university_library_instructional_guidance",
+      "access_scope": "相关正文已读；页面注明2026-07-06更新。",
+      "locators": [{"section": "Appraising your Article; Typical Journal Club Structure", "read_lines": "128-180", "supports": "评议研究设计、结果有效性、局限和应用情境。"}],
+      "not_supported": ["PICO适用于所有理论及算法工作", "临床显著性是所有论文评价维度"]
+    },
+    {
+      "id": "S12",
+      "publisher": "MIT Department of Earth, Atmospheric and Planetary Sciences",
+      "title": "Graduate Resources, Thesis Defense Scheduling",
+      "url": "https://eaps.mit.edu/education/graduate-program/graduate-resources/",
+      "source_type": "official_department_degree_guidance",
+      "access_scope": "答辩目的及相邻说明已读。",
+      "locators": [{"section": "Thesis Defense + Graduation > Thesis Defense Scheduling", "read_lines": "266-269", "supports": "答辩展示合格质量的独立研究及连贯表达结果的能力。"}],
+      "not_supported": ["其委员会、排期和到场政策可移植到其他学校", "PPT可自动决定授予学位"]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "group",
+      "name": "组会讨论",
+      "kind": "synthesis_guidance",
+      "task_purpose": "通过讨论改进正在开展的研究。",
+      "necessary_information": ["本次问题或需要反馈的选择", "理解问题所需的进展与条件", "关键结果、异常或已尝试方法", "仍有分歧的解释及下一步"],
+      "evidence_feedback_or_decision": "提供足以诊断的证据；把反馈请求写成同事可回答的具体问题。",
+      "non_applicable": ["无结果的方案讨论不强制结果页", "报告演练可采用conference", "不强制公开所有原始数据"],
+      "evaluation_dimensions": ["问题清晰", "诊断条件充分", "异常与不确定性诚实", "反馈可回答", "行动可承接"],
+      "source_bindings": [{"source_id": "S01", "locator": "Identify Your Purpose"}, {"source_id": "S03", "locator": "Things to Include; Practical Tips"}],
+      "node_guidance": {"planning": "按诊断、设计或进展讨论选择组织方式。", "review": "检查听众是否有足够信息回答所请求的问题。"}
+    },
+    {
+      "id": "conference",
+      "name": "学术报告",
+      "kind": "synthesis_guidance",
+      "task_purpose": "使不熟悉具体工作的同行理解核心贡献与可信程度。",
+      "necessary_information": ["必要背景与研究问题", "核心贡献及所需的方法解释", "关键结果和比较条件", "结论、限制及意义"],
+      "evidence_feedback_or_decision": "选择回答中心问题的证据，说明复杂图形的读法，并为问答保留必要细节。",
+      "non_applicable": ["方法贡献需要充分解释机制", "不替代完整日志或项目验收", "历史会议格式不视为本次规则"],
+      "evaluation_dimensions": ["听众可理解", "贡献可辨识", "证据支持主张", "意义连接清楚", "适合给定时间"],
+      "source_bindings": [{"source_id": "S01", "locator": "Identify Your Purpose; Analyze Your Audience"}, {"source_id": "S02", "locator": "page 1, Create your presentation"}],
+      "node_guidance": {"planning": "按本次时长和受众决定背景与方法深度。", "review": "检查中心贡献是否有可解释的证据，避免用页面数量代替信息取舍判断。"}
+    },
+    {
+      "id": "project",
+      "name": "项目汇报",
+      "kind": "synthesis_guidance",
+      "task_purpose": "对照约定目标说明状态，支持项目阶段决策。",
+      "necessary_information": ["报告阶段、范围与约定目标", "实际完成工作及可交付产品", "证据、差距和原因", "风险、依赖与处理", "下阶段安排或本次决策需求"],
+      "evidence_feedback_or_decision": "建立目标—当前状态—证据—差距的关系；需要决定时说明选项和影响。",
+      "non_applicable": ["Heilmeier八问不是强制逐页模板", "结题不强制下一报告期或续期预算", "无决策需求可仅供知情"],
+      "evaluation_dimensions": ["目标覆盖", "证据可追溯", "活动与交付区分", "偏差可解释", "风险可处理", "决策可用"],
+      "source_bindings": [{"source_id": "S04", "locator": "eight questions", "access_limitation": "official indexed body only"}, {"source_id": "S05", "locator": "Types of RPPRs; What"}],
+      "node_guidance": {"planning": "先判定阶段汇报或结题，并读取实际合同或机构要求。", "review": "检查状态是否可与目标比较，缺证据时不得标作已达成。"}
+    },
+    {
+      "id": "proposal",
+      "name": "开题报告",
+      "kind": "synthesis_guidance",
+      "task_purpose": "论证研究价值、可行性、工作范围与可检验计划。",
+      "necessary_information": ["问题、已有工作与缺口", "研究目标与拟议贡献", "方法、假设及实施步骤", "可行性依据与验证办法", "资源、风险与里程碑"],
+      "evidence_feedback_or_decision": "区分前期结果、预期结果和假设；请求对范围、方法和验证路径的评议。",
+      "non_applicable": ["不强制已有全部结果或前期数据", "未预读时需补充必要背景", "书面页数和章节比例不转成PPT硬规则"],
+      "evaluation_dimensions": ["问题价值与范围", "相关工作理解", "方法匹配", "验证可执行", "资源时间可行", "不确定性处理"],
+      "source_bindings": [{"source_id": "S06", "locator": "Purpose; Include details and preliminary results"}, {"source_id": "S07", "locator": "4; 7.2.2; 7.2.3; 7.3.1"}],
+      "node_guidance": {"planning": "标明计划与已完成工作的状态，确认委员会是否预读。", "review": "检查方法和验证是否足以支撑可行性判断；文献或理论依据也可成立。"}
+    },
+    {
+      "id": "defense",
+      "name": "学位论文答辩",
+      "kind": "synthesis_guidance",
+      "task_purpose": "说明完成的学位研究及作者贡献，接受证据与理解的质询。",
+      "necessary_information": ["研究范围与主要问题", "各部分关系或如实分组", "作者贡献与方法", "关键结果、比较与验证", "限制及结论"],
+      "evidence_feedback_or_decision": "使主要贡献可追溯到证据、条件和边界；为重要假设及替代解释准备回答。",
+      "non_applicable": ["允许独立章节或多个项目，不虚构唯一统一问题", "未来计划不代替完成贡献", "答辩程序和授位判断由学位机构负责"],
+      "evaluation_dimensions": ["贡献和作者角色清楚", "证据充分", "方法理解", "章节导航", "限制诚实", "质询回应"],
+      "source_bindings": [{"source_id": "S08", "locator": "2.9.4 main paragraph"}, {"source_id": "S09", "locator": "Why Your Work Matters; Tour Guiding Your PhD"}, {"source_id": "S12", "locator": "Thesis Defense Scheduling"}],
+      "node_guidance": {"planning": "先提炼贡献及章节关系，再选择线性或分组结构。", "review": "检查作者完成工作和证据是否清楚，不对学位合格与否自动裁决。"}
+    },
+    {
+      "id": "literature",
+      "name": "文献研读",
+      "kind": "synthesis_guidance",
+      "task_purpose": "理解已发表工作的机制、证据及局限，判断可借鉴之处。",
+      "necessary_information": ["论文身份、选文理由与研究问题", "方法机制、假设和条件", "关键图表或证明及原文定位", "贡献、局限与报告者判断", "迁移条件和讨论问题"],
+      "evidence_feedback_or_decision": "区分作者结论、报告者解读与外推；讨论可信度及迁移所需条件。",
+      "non_applicable": ["不强制逐图或按原文顺序复述", "PICO与临床显著性不普遍适用", "理论和算法论文改用对应证明、基准与验证条件"],
+      "evaluation_dimensions": ["原文忠实", "机制理解", "证据结论匹配", "批判判断", "迁移条件清楚", "讨论价值"],
+      "source_bindings": [{"source_id": "S10", "locator": "Journal Club Tips"}, {"source_id": "S11", "locator": "Appraising your Article; Typical Journal Club Structure"}],
+      "node_guidance": {"planning": "围绕论文中心主张选证据，并按论文学科调整评议问题。", "review": "检查图号页码与解读来源，避免把报告者推断写成作者结论。"}
+    }
+  ],
+  "recommended_catalog_adjustments": [
+    {"profile_id": "defense", "target": "structure", "suggestion": "将论文的统一问题调整为论文研究范围、主要问题及各部分关系。", "kind": "synthesis_guidance", "source_ids": ["S09", "S12"]},
+    {"profile_id": "proposal", "target": "structure and generation instructions", "suggestion": "前期依据可由实际数据、理论或文献提供；区分计划和结果。", "kind": "synthesis_guidance", "source_ids": ["S06", "S07"]},
+    {"profile_id": "project", "target": "purpose context", "suggestion": "区分阶段汇报和结题；按本次目标及机构要求判断必要信息。", "kind": "synthesis_guidance", "source_ids": ["S05"]},
+    {"profile_id": "literature", "target": "evidence context", "suggestion": "补充原文定位与作者结论、报告者判断的区分。", "kind": "synthesis_guidance", "source_ids": ["S10", "S11"]}
+  ],
+  "out_of_scope": ["服务或catalog实现修改", "视觉模板、字号和每页图表数的普遍标准核验", "自动授位或项目验收裁决", "完整复制来源文章或书籍"]
+}

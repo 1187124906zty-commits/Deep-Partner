@@ -1,0 +1,27 @@
+{
+  "copies": [
+    {
+      "original": "chinese-journal-original.docx",
+      "copy": "chinese-journal.docx",
+      "changed_parts": [
+        "word/document.xml",
+        "word/header3.xml",
+        "word/header6.xml"
+      ],
+      "journal_name_replacements": 8,
+      "other_package_members_unchanged": true
+    },
+    {
+      "original": "elsevier-research-original.docx",
+      "copy": "elsevier-research.docx",
+      "changed_parts": [
+        "word/document.xml"
+      ],
+      "journal_name_replacements": 2,
+      "other_package_members_unchanged": true
+    }
+  ],
+  "english_source": "https://legacyfileshare.elsevier.com/promis_misc/Research%20Article%20template%20and%20guidance.docx",
+  "chinese_source": "User-provided 力学学报模版.doc",
+  "changes": "Journal names only; source styles, sections, drawings, equations and instructions retained."
+}

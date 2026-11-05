@@ -1,0 +1,25 @@
+{
+  "mattpocock": {
+    "repository": "https://github.com/mattpocock/skills",
+    "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+    "license": "MIT",
+    "selected": [
+      "codebase-design",
+      "diagnosing-bugs",
+      "domain-modeling",
+      "tdd",
+      "code-review",
+      "research"
+    ]
+  },
+  "stop-that-shit": {
+    "source": "C:\\Users\\DEVELOPER\\.agents\\skills\\stop-that-shit",
+    "license": "MIT",
+    "mode": "advisory skill; no guard hooks installed"
+  },
+  "deepcode": {
+    "repository": "https://github.com/HKUDS/DeepCode",
+    "mode": "Independent workbench output standard based on original Paper2Code description; not a bundled engine",
+    "accessed": "2026-11-01"
+  }
+}

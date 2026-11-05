@@ -1,0 +1,16 @@
+{
+  "publisher": "Elsevier",
+  "official_page": "https://www.elsevier.com/researcher/author/policies-and-guidelines/latex-instructions",
+  "download": "https://assets.ctfassets.net/o78em1y1w4i4/4MpsJHO0MOJ2xZuwGTAbOZ/7bc64af36477c5d6cfce335a1f872363/elsarticle.zip",
+  "files": [
+    "elsarticle-num.bst",
+    "elsarticle.dtx",
+    "elsarticle.ins",
+    "elsarticle-harv.bst",
+    "elsdoc.pdf",
+    "elsarticle-num-names.bst",
+    "README",
+    "elsarticle.cls"
+  ],
+  "adaptation": "Official elsarticle 5p/twocolumn class. The workbench adds a draft header with the selected journal and never invents publication metadata."
+}
