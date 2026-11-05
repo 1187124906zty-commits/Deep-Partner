@@ -1,0 +1,35 @@
+[Unit]
+Description=OpenHands Agent Canvas for Deep Partner development
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=openhands
+Group=openhands
+WorkingDirectory=/srv/openhands
+Environment=HOME=/srv/openhands
+Environment=PATH=/srv/openhands/tools/node/bin:/srv/openhands/tools/bin:/usr/local/bin:/usr/bin:/bin
+Environment=UV_CACHE_DIR=/srv/openhands/cache/uv
+Environment=UV_PYTHON_INSTALL_DIR=/srv/openhands/tools/python
+Environment=OH_PERSISTENCE_DIR=/srv/openhands/state
+Environment=OH_WORKSPACE_DIR=/srv/openhands/projects
+Environment=NODE_OPTIONS=--max-old-space-size=384
+EnvironmentFile=/srv/openhands/private/service.env
+ExecStart=/srv/openhands/tools/node/bin/node /srv/openhands/runtime/node_modules/@openhands/agent-canvas/bin/agent-canvas.mjs --port 48000 --host 127.0.0.1
+Restart=on-failure
+RestartSec=10
+KillMode=control-group
+TimeoutStopSec=30
+MemoryHigh=1400M
+MemoryMax=1600M
+CPUQuota=100%
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/openhands
+InaccessiblePaths=/srv/deeptutor /srv/dify-research /srv/research-workbench /srv/figure-library /srv/tutor-research-compute /srv/deep-partner-admin
+
+[Install]
+WantedBy=multi-user.target

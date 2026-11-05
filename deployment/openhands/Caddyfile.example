@@ -1,0 +1,13 @@
+https://tutor.example.invalid:8443 {
+    encode gzip
+    # Caddy 2.6 uses basicauth. Newer Caddy versions also support basic_auth.
+    basicauth {
+        admin REPLACE_WITH_A_GENERATED_BCRYPT_HASH
+    }
+    reverse_proxy 127.0.0.1:48000 {
+        # Authentication is performed above before the loopback service is reached.
+        header_up Host localhost:48000
+        header_up -Authorization
+        flush_interval -1
+    }
+}

@@ -42,6 +42,8 @@ Deep Partner 是一个科研工作流 App，组合 DeepTutor 会话与工具运�
 
 当前快照并未在一个全新环境内重新构建全部系统。历史验收记录与本次源码发布检查分别看待。
 
+独立的 OpenHands 自托管工程环境说明见 [deployment/openhands](deployment/openhands)。
+
 ## 许可证与公开范围
 
 各第三方组件保留原许可证，不以本仓库的名义重新授权。特别是 Dify 使用其自有附加条款的许可证；请阅读 [第三方来源说明](THIRD_PARTY_NOTICES.md)。
