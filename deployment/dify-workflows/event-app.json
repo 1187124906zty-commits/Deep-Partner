@@ -1,0 +1,599 @@
+{
+  "source": "draft-only",
+  "name": "DeepTutor 扩展 · 交付事件自动处理",
+  "app_id": "587c5e8f-5df8-4b54-866d-598a582dccb4",
+  "graph": {
+    "nodes": [
+      {
+        "id": "event",
+        "type": "custom",
+        "data": {
+          "type": "trigger-webhook",
+          "title": "成果交付事件",
+          "desc": "由交付服务在成功、失败或中断后发送事件；收到请求仅表示受理，后续回执才表示流程完成。",
+          "selected": false,
+          "method": "POST",
+          "content_type": "application/json",
+          "async_mode": true,
+          "headers": [],
+          "params": [],
+          "body": [
+            {
+              "name": "event_id",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "event_token",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "status_code": 202,
+          "response_body": "{\"accepted\":true}",
+          "timeout": 10,
+          "variables": [
+            {
+              "variable": "event_id",
+              "label": "body",
+              "value_type": "string",
+              "value_selector": [],
+              "required": true
+            },
+            {
+              "variable": "event_token",
+              "label": "body",
+              "value_type": "string",
+              "value_selector": [],
+              "required": true
+            },
+            {
+              "variable": "_webhook_raw",
+              "label": "raw",
+              "value_type": "object",
+              "value_selector": [],
+              "required": true
+            }
+          ],
+          "webhook_url": "https://tutor.example.invalid/dify/triggers/webhook/c_YwPCOY78a3mWIU-y9COns_",
+          "webhook_debug_url": "https://tutor.example.invalid/dify/triggers/webhook-debug/c_YwPCOY78a3mWIU-y9COns_"
+        },
+        "position": {
+          "x": 60,
+          "y": 220
+        },
+        "positionAbsolute": {
+          "x": 60,
+          "y": 220
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 190,
+        "zIndex": 0
+      },
+      {
+        "id": "inspect",
+        "type": "custom",
+        "data": {
+          "type": "tool",
+          "title": "读取事件真实状态",
+          "desc": "",
+          "selected": false,
+          "provider_id": "2e6cf6a7-a33b-4137-9cbc-1a491880fdf0",
+          "provider_type": "mcp",
+          "provider_name": "research-workbench",
+          "tool_name": "workbench_delivery_event",
+          "tool_label": "读取事件真实状态",
+          "tool_node_version": "2",
+          "is_team_authorization": true,
+          "tool_configurations": {},
+          "tool_parameters": {
+            "event_id": {
+              "type": "mixed",
+              "value": "{{#event.event_id#}}"
+            },
+            "event_token": {
+              "type": "mixed",
+              "value": "{{#event.event_token#}}"
+            },
+            "action": {
+              "type": "mixed",
+              "value": "inspect"
+            }
+          }
+        },
+        "position": {
+          "x": 380,
+          "y": 220
+        },
+        "positionAbsolute": {
+          "x": 380,
+          "y": 220
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 84,
+        "zIndex": 0
+      },
+      {
+        "id": "inspect_result",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "提取已核验状态",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(results: list) -> dict:\n    if not isinstance(results,list) or len(results)!=1:raise ValueError(\"工具没有返回唯一结果\")\n    value=results[0]\n    if value.get(\"isError\"):raise ValueError(\"工具执行失败，请检查节点原始输出\")\n    for _ in range(4):\n        if isinstance(value,dict) and (\"outcome\" in value or \"needs_attention\" in value):break\n        value=value.get(\"data\") if isinstance(value,dict) else None\n    if not isinstance(value,dict):raise ValueError(\"工具缺少结构化业务结果\")\n    flag=value.get(\"ready\") if \"outcome\" in value else not value.get(\"needs_attention\",True)\n    return {\"ready\":bool(flag),\"detail\":json.dumps(value,ensure_ascii=False)}\n",
+          "variables": [
+            {
+              "variable": "results",
+              "value_selector": [
+                "inspect",
+                "json"
+              ]
+            }
+          ],
+          "outputs": {
+            "ready": {
+              "type": "boolean",
+              "children": null
+            },
+            "detail": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 700,
+          "y": 220
+        },
+        "positionAbsolute": {
+          "x": 700,
+          "y": 220
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 52,
+        "zIndex": 0
+      },
+      {
+        "id": "route",
+        "type": "custom",
+        "data": {
+          "type": "if-else",
+          "title": "交付状态分流",
+          "desc": "",
+          "selected": false,
+          "cases": [
+            {
+              "case_id": "ready",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "confirmed",
+                  "varType": "boolean",
+                  "variable_selector": [
+                    "inspect_result",
+                    "ready"
+                  ],
+                  "comparison_operator": "is",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1020,
+          "y": 220
+        },
+        "positionAbsolute": {
+          "x": 1020,
+          "y": 220
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 124,
+        "zIndex": 0
+      },
+      {
+        "id": "success",
+        "type": "custom",
+        "data": {
+          "type": "tool",
+          "title": "登记已核验交付",
+          "desc": "",
+          "selected": false,
+          "provider_id": "2e6cf6a7-a33b-4137-9cbc-1a491880fdf0",
+          "provider_type": "mcp",
+          "provider_name": "research-workbench",
+          "tool_name": "workbench_delivery_event",
+          "tool_label": "登记已核验交付",
+          "tool_node_version": "2",
+          "is_team_authorization": true,
+          "tool_configurations": {},
+          "tool_parameters": {
+            "event_id": {
+              "type": "mixed",
+              "value": "{{#event.event_id#}}"
+            },
+            "event_token": {
+              "type": "mixed",
+              "value": "{{#event.event_token#}}"
+            },
+            "action": {
+              "type": "mixed",
+              "value": "settle"
+            },
+            "route": {
+              "type": "mixed",
+              "value": "success"
+            }
+          }
+        },
+        "position": {
+          "x": 1340,
+          "y": 80
+        },
+        "positionAbsolute": {
+          "x": 1340,
+          "y": 80
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 84,
+        "zIndex": 0
+      },
+      {
+        "id": "attention",
+        "type": "custom",
+        "data": {
+          "type": "tool",
+          "title": "登记异常与恢复动作",
+          "desc": "",
+          "selected": false,
+          "provider_id": "2e6cf6a7-a33b-4137-9cbc-1a491880fdf0",
+          "provider_type": "mcp",
+          "provider_name": "research-workbench",
+          "tool_name": "workbench_delivery_event",
+          "tool_label": "登记异常与恢复动作",
+          "tool_node_version": "2",
+          "is_team_authorization": true,
+          "tool_configurations": {},
+          "tool_parameters": {
+            "event_id": {
+              "type": "mixed",
+              "value": "{{#event.event_id#}}"
+            },
+            "event_token": {
+              "type": "mixed",
+              "value": "{{#event.event_token#}}"
+            },
+            "action": {
+              "type": "mixed",
+              "value": "settle"
+            },
+            "route": {
+              "type": "mixed",
+              "value": "attention"
+            }
+          }
+        },
+        "position": {
+          "x": 1340,
+          "y": 370
+        },
+        "positionAbsolute": {
+          "x": 1340,
+          "y": 370
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 84,
+        "zIndex": 0
+      },
+      {
+        "id": "end_ok",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "自动处理完成",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "detail",
+              "value_selector": [
+                "inspect_result",
+                "detail"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1660,
+          "y": 80
+        },
+        "positionAbsolute": {
+          "x": 1660,
+          "y": 80
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 88,
+        "zIndex": 0
+      },
+      {
+        "id": "end_attention",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "问题已记录",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "attention_detail",
+              "value_selector": [
+                "inspect_result",
+                "detail"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1660,
+          "y": 370
+        },
+        "positionAbsolute": {
+          "x": 1660,
+          "y": 370
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 88,
+        "zIndex": 0
+      },
+      {
+        "id": "scope",
+        "type": "custom-note",
+        "position": {
+          "x": 50,
+          "y": -170
+        },
+        "width": 540,
+        "height": 140,
+        "data": {
+          "type": "",
+          "title": "职责说明",
+          "desc": "",
+          "selected": false,
+          "width": 540,
+          "height": 140,
+          "text": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":1,\"mode\":\"normal\",\"style\":\"font-size: 16px;\",\"text\":\"自动处理范围\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":1,\"textStyle\":\"font-size: 16px;\"},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"font-size: 16px;\",\"text\":\"交付事件与状态协调；不重复执行模型、计算或文件写入。运行日志保留触发来源、分支和原始工具结果。\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"font-size: 16px;\"}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+          "theme": "blue",
+          "author": "",
+          "showAuthor": false
+        },
+        "zIndex": 0,
+        "positionAbsolute": {
+          "x": 50,
+          "y": -170
+        }
+      },
+      {
+        "id": "author",
+        "type": "custom-note",
+        "position": {
+          "x": 690,
+          "y": -170
+        },
+        "width": 540,
+        "height": 140,
+        "data": {
+          "type": "",
+          "title": "职责说明",
+          "desc": "",
+          "selected": false,
+          "width": 540,
+          "height": 140,
+          "text": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":1,\"mode\":\"normal\",\"style\":\"font-size: 16px;\",\"text\":\"作者判断\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":1,\"textStyle\":\"font-size: 16px;\"},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"font-size: 16px;\",\"text\":\"研究方案、稿件主张和结论仍由原会话与工作台中的作者确认；技术保存成功不代替科学判断。\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"font-size: 16px;\"}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+          "theme": "yellow",
+          "author": "",
+          "showAuthor": false
+        },
+        "zIndex": 0,
+        "positionAbsolute": {
+          "x": 690,
+          "y": -170
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "event-source-inspect",
+        "type": "custom",
+        "source": "event",
+        "sourceHandle": "source",
+        "target": "inspect",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "trigger-webhook",
+          "targetType": "tool",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "inspect-source-inspect_result",
+        "type": "custom",
+        "source": "inspect",
+        "sourceHandle": "source",
+        "target": "inspect_result",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "tool",
+          "targetType": "code",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "inspect_result-source-route",
+        "type": "custom",
+        "source": "inspect_result",
+        "sourceHandle": "source",
+        "target": "route",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "if-else",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "route-ready-success",
+        "type": "custom",
+        "source": "route",
+        "sourceHandle": "ready",
+        "target": "success",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "tool",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "route-false-attention",
+        "type": "custom",
+        "source": "route",
+        "sourceHandle": "false",
+        "target": "attention",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "tool",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "success-source-end_ok",
+        "type": "custom",
+        "source": "success",
+        "sourceHandle": "source",
+        "target": "end_ok",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "tool",
+          "targetType": "end",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "attention-source-end_attention",
+        "type": "custom",
+        "source": "attention",
+        "sourceHandle": "source",
+        "target": "end_attention",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "tool",
+          "targetType": "end",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      }
+    ],
+    "viewport": {
+      "x": 25,
+      "y": 90,
+      "zoom": 0.65
+    }
+  },
+  "features": {
+    "opening_statement": "",
+    "suggested_questions": [],
+    "suggested_questions_after_answer": {
+      "enabled": false
+    },
+    "text_to_speech": {
+      "enabled": false,
+      "voice": "",
+      "language": ""
+    },
+    "speech_to_text": {
+      "enabled": false
+    },
+    "retriever_resource": {
+      "enabled": false
+    },
+    "sensitive_word_avoidance": {
+      "enabled": false
+    },
+    "file_upload": {
+      "image": {
+        "enabled": false,
+        "number_limits": 3,
+        "transfer_methods": [
+          "local_file",
+          "remote_url"
+        ]
+      },
+      "enabled": false,
+      "allowed_file_types": [
+        "image"
+      ],
+      "allowed_file_extensions": [
+        ".JPG",
+        ".JPEG",
+        ".PNG",
+        ".GIF",
+        ".WEBP",
+        ".SVG"
+      ],
+      "allowed_file_upload_methods": [
+        "local_file",
+        "remote_url"
+      ],
+      "number_limits": 3,
+      "fileUploadConfig": {
+        "file_size_limit": 15,
+        "knowledge_file_size_limit": 15,
+        "batch_count_limit": 5,
+        "file_upload_limit": 20,
+        "image_file_size_limit": 10,
+        "video_file_size_limit": 100,
+        "audio_file_size_limit": 50,
+        "skill_file_size_limit": 50,
+        "workflow_file_upload_limit": 10,
+        "image_file_batch_limit": 10,
+        "single_chunk_attachment_limit": 10,
+        "attachment_image_file_size_limit": 2
+      }
+    }
+  },
+  "environment_variables": [],
+  "conversation_variables": []
+}

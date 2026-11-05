@@ -1,0 +1,252 @@
+{
+  "source": "draft-only",
+  "name": "DeepTutor 扩展 · 网页证据读取",
+  "app_id": "2f0d0b10-0d03-4a92-89b5-f8f07a51769a",
+  "graph": {
+    "nodes": [
+      {
+        "id": "start",
+        "type": "custom",
+        "data": {
+          "type": "start",
+          "title": "网页证据请求",
+          "desc": "",
+          "selected": false,
+          "variables": [
+            {
+              "variable": "url",
+              "label": "公开网页链接",
+              "type": "text-input",
+              "required": true,
+              "max_length": 2000,
+              "options": []
+            }
+          ]
+        },
+        "position": {
+          "x": 80,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 80,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "read_page",
+        "type": "custom",
+        "data": {
+          "type": "tool",
+          "title": "公开网页正文读取",
+          "desc": "使用已安装的 WebScraper 提取公开网页正文，关闭模型摘要；来源链接随证据返回。",
+          "selected": false,
+          "provider_id": "webscraper",
+          "provider_type": "builtin",
+          "provider_name": "webscraper",
+          "tool_name": "webscraper",
+          "tool_label": "网页正文读取",
+          "tool_node_version": "2",
+          "is_team_authorization": true,
+          "tool_configurations": {
+            "generate_summary": {
+              "type": "constant",
+              "value": false
+            },
+            "user_agent": {
+              "type": "constant",
+              "value": "Mozilla/5.0 (compatible; ResearchWorkbench/1.0)"
+            }
+          },
+          "tool_parameters": {
+            "url": {
+              "type": "mixed",
+              "value": "{{#start.url#}}"
+            }
+          }
+        },
+        "position": {
+          "x": 420,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 420,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "evidence",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "网页证据整理",
+          "desc": "保留原链接、读取时间与正文，标明截断；读取失败时不返回虚构内容。",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\nfrom datetime import datetime, timezone\ndef main(text: str, url: str) -> dict:\n    content=(text or \"\").strip()\n    blocked=(not content or content.startswith(\"URL returned status code\") or content.startswith(\"Unsupported content-type\")\n        or content.lower().startswith(\"please input url\") or \"verify you are human\" in content[:1500].lower())\n    if blocked:raise ValueError(\"网页正文未取得，可能需要登录、人工验证或其他读取方式\")\n    value={\"status\":\"ready\",\"source_url\":url,\"content\":content[:50000],\"truncated\":len(content)>50000,\n        \"retrieved_at\":datetime.now(timezone.utc).isoformat(),\"source\":\"Dify WebScraper\",\n        \"evidence\":\"public-webpage-content\",\"content_chars\":len(content)}\n    return {\"evidence\":json.dumps(value,ensure_ascii=False),\"source_url\":url,\"content\":value[\"content\"]}\n",
+          "variables": [
+            {
+              "variable": "text",
+              "value_selector": [
+                "read_page",
+                "text"
+              ]
+            },
+            {
+              "variable": "url",
+              "value_selector": [
+                "start",
+                "url"
+              ]
+            }
+          ],
+          "outputs": {
+            "evidence": {
+              "type": "string",
+              "children": null
+            },
+            "source_url": {
+              "type": "string",
+              "children": null
+            },
+            "content": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 760,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 760,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "网页证据结果",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "evidence",
+              "value_selector": [
+                "evidence",
+                "evidence"
+              ]
+            },
+            {
+              "variable": "source_url",
+              "value_selector": [
+                "evidence",
+                "source_url"
+              ]
+            },
+            {
+              "variable": "content",
+              "value_selector": [
+                "evidence",
+                "content"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1100,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 1100,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      }
+    ],
+    "edges": [
+      {
+        "id": "start-read_page",
+        "type": "custom",
+        "source": "start",
+        "sourceHandle": "source",
+        "target": "read_page",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "start",
+          "targetType": "tool",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "read_page-evidence",
+        "type": "custom",
+        "source": "read_page",
+        "sourceHandle": "source",
+        "target": "evidence",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "tool",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "evidence-end",
+        "type": "custom",
+        "source": "evidence",
+        "sourceHandle": "source",
+        "target": "end",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      }
+    ]
+  },
+  "features": {
+    "file_upload": {
+      "enabled": false
+    },
+    "retriever_resource": {
+      "enabled": false
+    },
+    "sensitive_word_avoidance": {
+      "enabled": false
+    },
+    "speech_to_text": {
+      "enabled": false
+    },
+    "text_to_speech": {
+      "enabled": false,
+      "voice": "",
+      "language": ""
+    },
+    "suggested_questions": [],
+    "suggested_questions_after_answer": {
+      "enabled": false
+    },
+    "opening_statement": ""
+  },
+  "environment_variables": [],
+  "conversation_variables": []
+}

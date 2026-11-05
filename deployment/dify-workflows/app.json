@@ -1,0 +1,622 @@
+{
+  "source": "draft-only",
+  "name": "研究工作台 · 技能成果交付",
+  "app_id": "5c9d68ae-3847-4774-8e94-ecbfa9543e25",
+  "graph": {
+    "nodes": [
+      {
+        "id": "start",
+        "type": "custom",
+        "width": 260,
+        "height": 179,
+        "position": {
+          "x": 80,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 80,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "selected": false,
+        "data": {
+          "type": "start",
+          "title": "成果交付请求",
+          "desc": "由 Tutor 或 Code 自动传入交付编号与会话授权；无需用户手动填写。",
+          "variables": [
+            {
+              "variable": "run_id",
+              "label": "run_id",
+              "type": "text-input",
+              "required": true,
+              "max_length": 200,
+              "options": []
+            },
+            {
+              "variable": "ticket",
+              "label": "ticket",
+              "type": "text-input",
+              "required": true,
+              "max_length": 200,
+              "options": []
+            }
+          ],
+          "selected": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "prepare",
+        "type": "custom",
+        "width": 260,
+        "height": 202,
+        "position": {
+          "x": 380,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 380,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "selected": false,
+        "data": {
+          "type": "http-request",
+          "title": "项目与版本校验",
+          "desc": "绑定当前账户和项目，读取规范与任务技能；版本不一致时停止，保留现有成果。",
+          "method": "get",
+          "url": "https://tutor.example.invalid/research/dify/internal/runs/{{#start.run_id#}}/context",
+          "authorization": {
+            "type": "no-auth"
+          },
+          "headers": "X-Run-Ticket:{{#start.ticket#}}\nX-Dify-Workflow-Run-Id:{{#sys.workflow_run_id#}}",
+          "params": "",
+          "body": {
+            "type": "none",
+            "data": []
+          },
+          "timeout": {
+            "connect": 10,
+            "read": 90,
+            "write": 30
+          },
+          "retry_config": {
+            "retry_enabled": false,
+            "max_retries": 0,
+            "retry_interval": 1000
+          },
+          "selected": false,
+          "ssl_verify": true
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "prepare_check",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "确认项目校验通过",
+          "desc": "非成功HTTP响应在这里停止，保留原始错误；不继续调用保存。",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "prepare",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "prepare",
+                "body"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 680,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 680,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "commit",
+        "type": "custom",
+        "width": 260,
+        "height": 186,
+        "position": {
+          "x": 980,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 980,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "selected": false,
+        "data": {
+          "type": "http-request",
+          "title": "成果版本化保存",
+          "desc": "保存指定成果，保留可恢复版本，回读内容并登记原生处理回执。",
+          "method": "post",
+          "url": "https://tutor.example.invalid/research/dify/internal/runs/{{#start.run_id#}}/commit",
+          "authorization": {
+            "type": "no-auth"
+          },
+          "headers": "X-Run-Ticket:{{#start.ticket#}}",
+          "params": "",
+          "body": {
+            "type": "none",
+            "data": []
+          },
+          "timeout": {
+            "connect": 10,
+            "read": 90,
+            "write": 30
+          },
+          "retry_config": {
+            "retry_enabled": false,
+            "max_retries": 0,
+            "retry_interval": 1000
+          },
+          "selected": false,
+          "ssl_verify": true
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "commit_check",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "确认成果保存回执",
+          "desc": "保存被拒绝时原样报告原因；不会将HTTP节点运行结束当成保存成功。",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "commit",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "commit",
+                "body"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1280,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 1280,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "delivery_verify",
+        "type": "custom",
+        "data": {
+          "type": "tool",
+          "title": "成果保存与记录核验",
+          "desc": "通过工作台 MCP 核对当前文件或稿件版本及处理记录；此步骤不代表科学结论验证通过。",
+          "selected": false,
+          "provider_id": "2e6cf6a7-a33b-4137-9cbc-1a491880fdf0",
+          "provider_type": "mcp",
+          "provider_name": "research-workbench",
+          "tool_name": "workbench_delivery_verify",
+          "tool_label": "成果保存与记录核验",
+          "tool_configurations": {},
+          "tool_parameters": {
+            "run_id": {
+              "type": "mixed",
+              "value": "{{#start.run_id#}}"
+            }
+          },
+          "tool_node_version": "2",
+          "is_team_authorization": true
+        },
+        "position": {
+          "x": 1580,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 1580,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "delivery_summary",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "交付回执生成",
+          "desc": "将已经核验的成果路径、项目和处理记录整理成结构化回执；不生成新的研究结论。",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(results: list, run_id: str) -> dict:\n    if not isinstance(results,list) or len(results)!=1 or not isinstance(results[0],dict):\n        raise ValueError(\"成果核验工具没有返回唯一的结构化结果\")\n    result=results[0]\n    if result.get(\"isError\") or result.get(\"error\"):\n        raise ValueError(\"成果核验未完成，请查询同一交付任务\")\n    value=result.get(\"data\")\n    if not isinstance(value,dict) or value.get(\"run_id\")!=run_id or value.get(\"status\")!=\"saved\":\n        raise ValueError(\"保存回执与当前交付任务不一致\")\n    if value.get(\"processing_history_verified\") is not True or not value.get(\"history_event_id\"):\n        raise ValueError(\"成果尚未取得原生处理记录的核验结果\")\n    artifact=value.get(\"artifact\",{}).get(\"path\")\n    if not artifact:raise ValueError(\"保存回执缺少成果路径\")\n    return {\"receipt\":json.dumps(value,ensure_ascii=False),\"artifact\":artifact,\n        \"project_id\":value[\"project_id\"],\"history_event_id\":str(value[\"history_event_id\"]),\n        \"summary\":json.dumps(value.get(\"delivery_summary\",{}),ensure_ascii=False)}\n",
+          "variables": [
+            {
+              "variable": "results",
+              "value_selector": [
+                "delivery_verify",
+                "json"
+              ]
+            },
+            {
+              "variable": "run_id",
+              "value_selector": [
+                "start",
+                "run_id"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            },
+            "artifact": {
+              "type": "string",
+              "children": null
+            },
+            "project_id": {
+              "type": "string",
+              "children": null
+            },
+            "history_event_id": {
+              "type": "string",
+              "children": null
+            },
+            "summary": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1880,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 1880,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end",
+        "type": "custom",
+        "width": 260,
+        "height": 236,
+        "position": {
+          "x": 2180,
+          "y": 180
+        },
+        "positionAbsolute": {
+          "x": 2180,
+          "y": 180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "selected": false,
+        "data": {
+          "type": "end",
+          "title": "交付结果",
+          "desc": "返回成果位置和实际状态，供 Tutor 继续解释或按需读取。",
+          "outputs": [
+            {
+              "variable": "receipt",
+              "value_selector": [
+                "delivery_summary",
+                "receipt"
+              ]
+            },
+            {
+              "variable": "artifact",
+              "value_selector": [
+                "delivery_summary",
+                "artifact"
+              ]
+            },
+            {
+              "variable": "project_id",
+              "value_selector": [
+                "delivery_summary",
+                "project_id"
+              ]
+            },
+            {
+              "variable": "history_event_id",
+              "value_selector": [
+                "delivery_summary",
+                "history_event_id"
+              ]
+            },
+            {
+              "variable": "summary",
+              "value_selector": [
+                "delivery_summary",
+                "summary"
+              ]
+            }
+          ],
+          "selected": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "role_tutor",
+        "type": "custom-note",
+        "position": {
+          "x": 80,
+          "y": -20
+        },
+        "width": 540,
+        "height": 140,
+        "data": {
+          "type": "",
+          "title": "职责说明",
+          "desc": "",
+          "selected": false,
+          "width": 540,
+          "height": 140,
+          "text": "{\"root\": {\"children\": [{\"children\": [{\"detail\": 0, \"format\": 1, \"mode\": \"normal\", \"style\": \"font-size: 16px;\", \"text\": \"DeepTutor｜研究对话与判断\", \"type\": \"text\", \"version\": 1}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"paragraph\", \"version\": 1, \"textFormat\": 0, \"textStyle\": \"\"}, {\"children\": [{\"detail\": 0, \"format\": 0, \"mode\": \"normal\", \"style\": \"font-size: 16px;\", \"text\": \"理解研究问题与约束，按需检索或委派 Code，结合交接证据解释结果。\", \"type\": \"text\", \"version\": 1}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"paragraph\", \"version\": 1, \"textFormat\": 0, \"textStyle\": \"\"}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"root\", \"version\": 1}}",
+          "theme": "blue",
+          "author": "",
+          "showAuthor": false
+        }
+      },
+      {
+        "id": "role_code",
+        "type": "custom-note",
+        "position": {
+          "x": 650,
+          "y": -20
+        },
+        "width": 540,
+        "height": 140,
+        "data": {
+          "type": "",
+          "title": "职责说明",
+          "desc": "",
+          "selected": false,
+          "width": 540,
+          "height": 140,
+          "text": "{\"root\": {\"children\": [{\"children\": [{\"detail\": 0, \"format\": 1, \"mode\": \"normal\", \"style\": \"font-size: 16px;\", \"text\": \"Code Agent｜实现与技术验证\", \"type\": \"text\", \"version\": 1}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"paragraph\", \"version\": 1, \"textFormat\": 0, \"textStyle\": \"\"}, {\"children\": [{\"detail\": 0, \"format\": 0, \"mode\": \"normal\", \"style\": \"font-size: 16px;\", \"text\": \"编程、数据处理、计算和测试；整理来源、结果、失败原因及适用范围。\", \"type\": \"text\", \"version\": 1}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"paragraph\", \"version\": 1, \"textFormat\": 0, \"textStyle\": \"\"}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"root\", \"version\": 1}}",
+          "theme": "green",
+          "author": "",
+          "showAuthor": false
+        }
+      },
+      {
+        "id": "role_workbench",
+        "type": "custom-note",
+        "position": {
+          "x": 1220,
+          "y": -20
+        },
+        "width": 540,
+        "height": 140,
+        "data": {
+          "type": "",
+          "title": "职责说明",
+          "desc": "",
+          "selected": false,
+          "width": 540,
+          "height": 140,
+          "text": "{\"root\": {\"children\": [{\"children\": [{\"detail\": 0, \"format\": 1, \"mode\": \"normal\", \"style\": \"font-size: 16px;\", \"text\": \"研究工作台｜共享成果与证据\", \"type\": \"text\", \"version\": 1}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"paragraph\", \"version\": 1, \"textFormat\": 0, \"textStyle\": \"\"}, {\"children\": [{\"detail\": 0, \"format\": 0, \"mode\": \"normal\", \"style\": \"font-size: 16px;\", \"text\": \"保存程序、数据、稿件和版本，供 Tutor 定向读取。下方流程仅负责成果交付。\", \"type\": \"text\", \"version\": 1}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"paragraph\", \"version\": 1, \"textFormat\": 0, \"textStyle\": \"\"}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"root\", \"version\": 1}}",
+          "theme": "yellow",
+          "author": "",
+          "showAuthor": false
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "start-source-prepare-target",
+        "type": "custom",
+        "source": "start",
+        "sourceHandle": "source",
+        "target": "prepare",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "start",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "prepare-source-prepare_check-target",
+        "type": "custom",
+        "source": "prepare",
+        "sourceHandle": "source",
+        "target": "prepare_check",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "prepare_check-source-commit-target",
+        "type": "custom",
+        "source": "prepare_check",
+        "sourceHandle": "source",
+        "target": "commit",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "commit-source-commit_check-target",
+        "type": "custom",
+        "source": "commit",
+        "sourceHandle": "source",
+        "target": "commit_check",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "commit_check-source-delivery_verify-target",
+        "type": "custom",
+        "source": "commit_check",
+        "sourceHandle": "source",
+        "target": "delivery_verify",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "tool",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "delivery_verify-source-delivery_summary-target",
+        "type": "custom",
+        "source": "delivery_verify",
+        "sourceHandle": "source",
+        "target": "delivery_summary",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "tool",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "delivery_summary-source-end-target",
+        "type": "custom",
+        "source": "delivery_summary",
+        "sourceHandle": "source",
+        "target": "end",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      }
+    ],
+    "viewport": {
+      "x": 15,
+      "y": 110,
+      "zoom": 0.85
+    }
+  },
+  "features": {
+    "opening_statement": "",
+    "suggested_questions": [],
+    "suggested_questions_after_answer": {
+      "enabled": false
+    },
+    "text_to_speech": {
+      "enabled": false,
+      "voice": "",
+      "language": ""
+    },
+    "speech_to_text": {
+      "enabled": false
+    },
+    "retriever_resource": {
+      "enabled": false
+    },
+    "sensitive_word_avoidance": {
+      "enabled": false
+    },
+    "file_upload": {
+      "image": {
+        "enabled": false,
+        "number_limits": 3,
+        "transfer_methods": [
+          "local_file",
+          "remote_url"
+        ]
+      },
+      "enabled": false,
+      "allowed_file_types": [
+        "image"
+      ],
+      "allowed_file_extensions": [
+        ".JPG",
+        ".JPEG",
+        ".PNG",
+        ".GIF",
+        ".WEBP",
+        ".SVG"
+      ],
+      "allowed_file_upload_methods": [
+        "local_file",
+        "remote_url"
+      ],
+      "number_limits": 3,
+      "fileUploadConfig": {
+        "file_size_limit": 15,
+        "knowledge_file_size_limit": 15,
+        "batch_count_limit": 5,
+        "file_upload_limit": 20,
+        "image_file_size_limit": 10,
+        "video_file_size_limit": 100,
+        "audio_file_size_limit": 50,
+        "skill_file_size_limit": 50,
+        "workflow_file_upload_limit": 10,
+        "image_file_batch_limit": 10,
+        "single_chunk_attachment_limit": 10,
+        "attachment_image_file_size_limit": 2
+      }
+    }
+  },
+  "environment_variables": [],
+  "conversation_variables": []
+}

@@ -1,0 +1,1596 @@
+{
+  "source": "draft-only",
+  "name": "DeepPartner · 内置写作工作流",
+  "app_id": "9cc80c31-08f7-422c-877c-6b668cde5054",
+  "graph": {
+    "nodes": [
+      {
+        "id": "start",
+        "type": "custom",
+        "data": {
+          "type": "start",
+          "title": "Partner 写作任务事件",
+          "desc": "",
+          "selected": false,
+          "variables": [
+            {
+              "variable": "run_id",
+              "label": "当前写作任务编号",
+              "type": "text-input",
+              "required": true,
+              "max_length": 300,
+              "options": []
+            },
+            {
+              "variable": "ticket",
+              "label": "项目与任务绑定凭证",
+              "type": "text-input",
+              "required": true,
+              "max_length": 300,
+              "options": []
+            },
+            {
+              "variable": "stage",
+              "label": "当前阶段",
+              "type": "text-input",
+              "required": true,
+              "max_length": 300,
+              "options": []
+            }
+          ]
+        },
+        "position": {
+          "x": 40,
+          "y": 350
+        },
+        "positionAbsolute": {
+          "x": 40,
+          "y": 350
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "stage_route",
+        "type": "custom",
+        "data": {
+          "type": "if-else",
+          "title": "按当前执行阶段调度",
+          "desc": "",
+          "selected": false,
+          "cases": [
+            {
+              "case_id": "intent",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "intent",
+                  "varType": "string",
+                  "variable_selector": [
+                    "start",
+                    "stage"
+                  ],
+                  "comparison_operator": "is",
+                  "value": "intent"
+                }
+              ]
+            },
+            {
+              "case_id": "exemplar",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "exemplar",
+                  "varType": "string",
+                  "variable_selector": [
+                    "start",
+                    "stage"
+                  ],
+                  "comparison_operator": "is",
+                  "value": "exemplar"
+                }
+              ]
+            },
+            {
+              "case_id": "alignment",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "alignment",
+                  "varType": "string",
+                  "variable_selector": [
+                    "start",
+                    "stage"
+                  ],
+                  "comparison_operator": "is",
+                  "value": "alignment"
+                }
+              ]
+            },
+            {
+              "case_id": "narrow",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "narrow",
+                  "varType": "string",
+                  "variable_selector": [
+                    "start",
+                    "stage"
+                  ],
+                  "comparison_operator": "is",
+                  "value": "narrow"
+                }
+              ]
+            },
+            {
+              "case_id": "wide",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "wide",
+                  "varType": "string",
+                  "variable_selector": [
+                    "start",
+                    "stage"
+                  ],
+                  "comparison_operator": "is",
+                  "value": "wide"
+                }
+              ]
+            },
+            {
+              "case_id": "review",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "review",
+                  "varType": "string",
+                  "variable_selector": [
+                    "start",
+                    "stage"
+                  ],
+                  "comparison_operator": "is",
+                  "value": "review"
+                }
+              ]
+            },
+            {
+              "case_id": "deliver",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "deliver",
+                  "varType": "string",
+                  "variable_selector": [
+                    "start",
+                    "stage"
+                  ],
+                  "comparison_operator": "is",
+                  "value": "deliver"
+                }
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 370,
+          "y": 350
+        },
+        "positionAbsolute": {
+          "x": 370,
+          "y": 350
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "intent",
+        "type": "custom",
+        "data": {
+          "type": "http-request",
+          "title": "理解用户意图：初稿 / 投稿 / 返修",
+          "desc": "提交当前阶段的异步任务后立即返回。模型生成无本地固定超时；完成事件接续同一写作任务。",
+          "selected": false,
+          "method": "post",
+          "url": "https://tutor.example.invalid/research/api/writing/internal/runs/{{#start.run_id#}}/dispatch",
+          "authorization": {
+            "type": "no-auth",
+            "config": null
+          },
+          "headers": "Content-Type:application/json\nX-Writing-Ticket:{{#start.ticket#}}\nX-Dify-Workflow-Run-Id:{{#sys.workflow_run_id#}}",
+          "params": "",
+          "body": {
+            "type": "json",
+            "data": [
+              {
+                "id": "body",
+                "key": "",
+                "type": "text",
+                "value": "{\"stage\": \"intent\"}"
+              }
+            ]
+          },
+          "timeout": {
+            "connect": 20,
+            "read": 60,
+            "write": 20
+          },
+          "ssl_verify": true
+        },
+        "position": {
+          "x": 720,
+          "y": 0
+        },
+        "positionAbsolute": {
+          "x": 720,
+          "y": 0
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "accepted_intent",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "核对阶段受理回执",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n\ncheck_http = main\ndef main(status_code: int, body: str, run_id: str, stage: str) -> dict:\n    receipt = check_http(status_code, body)\n    value = json.loads(receipt[\"receipt\"])\n    if value.get(\"accepted\") is not True:\n        raise ValueError(\"写作阶段未被接受，保留当前任务等待核对\")\n    if value.get(\"run_id\", run_id) != run_id:\n        raise ValueError(\"写作回执不属于当前任务\")\n    if value.get(\"stage\", stage) != stage and value.get(\"status\") != \"already_advanced\":\n        raise ValueError(\"写作回执阶段不一致\")\n    return receipt\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "intent",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "intent",
+                "body"
+              ]
+            },
+            {
+              "variable": "run_id",
+              "value_selector": [
+                "start",
+                "run_id"
+              ]
+            },
+            {
+              "variable": "stage",
+              "value_selector": [
+                "start",
+                "stage"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1040,
+          "y": 0
+        },
+        "positionAbsolute": {
+          "x": 1040,
+          "y": 0
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end_intent",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "阶段任务已接入",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "receipt_intent",
+              "value_selector": [
+                "accepted_intent",
+                "receipt"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1360,
+          "y": 0
+        },
+        "positionAbsolute": {
+          "x": 1360,
+          "y": 0
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "exemplar",
+        "type": "custom",
+        "data": {
+          "type": "http-request",
+          "title": "Agent 0：标杆解构与期刊基因",
+          "desc": "提交当前阶段的异步任务后立即返回。模型生成无本地固定超时；完成事件接续同一写作任务。",
+          "selected": false,
+          "method": "post",
+          "url": "https://tutor.example.invalid/research/api/writing/internal/runs/{{#start.run_id#}}/dispatch",
+          "authorization": {
+            "type": "no-auth",
+            "config": null
+          },
+          "headers": "Content-Type:application/json\nX-Writing-Ticket:{{#start.ticket#}}\nX-Dify-Workflow-Run-Id:{{#sys.workflow_run_id#}}",
+          "params": "",
+          "body": {
+            "type": "json",
+            "data": [
+              {
+                "id": "body",
+                "key": "",
+                "type": "text",
+                "value": "{\"stage\": \"exemplar\"}"
+              }
+            ]
+          },
+          "timeout": {
+            "connect": 20,
+            "read": 60,
+            "write": 20
+          },
+          "ssl_verify": true
+        },
+        "position": {
+          "x": 720,
+          "y": 160
+        },
+        "positionAbsolute": {
+          "x": 720,
+          "y": 160
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "accepted_exemplar",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "核对阶段受理回执",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n\ncheck_http = main\ndef main(status_code: int, body: str, run_id: str, stage: str) -> dict:\n    receipt = check_http(status_code, body)\n    value = json.loads(receipt[\"receipt\"])\n    if value.get(\"accepted\") is not True:\n        raise ValueError(\"写作阶段未被接受，保留当前任务等待核对\")\n    if value.get(\"run_id\", run_id) != run_id:\n        raise ValueError(\"写作回执不属于当前任务\")\n    if value.get(\"stage\", stage) != stage and value.get(\"status\") != \"already_advanced\":\n        raise ValueError(\"写作回执阶段不一致\")\n    return receipt\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "exemplar",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "exemplar",
+                "body"
+              ]
+            },
+            {
+              "variable": "run_id",
+              "value_selector": [
+                "start",
+                "run_id"
+              ]
+            },
+            {
+              "variable": "stage",
+              "value_selector": [
+                "start",
+                "stage"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1040,
+          "y": 160
+        },
+        "positionAbsolute": {
+          "x": 1040,
+          "y": 160
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end_exemplar",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "阶段任务已接入",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "receipt_exemplar",
+              "value_selector": [
+                "accepted_exemplar",
+                "receipt"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1360,
+          "y": 160
+        },
+        "positionAbsolute": {
+          "x": 1360,
+          "y": 160
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "alignment",
+        "type": "custom",
+        "data": {
+          "type": "http-request",
+          "title": "Agent 1：主题对标与沙漏架构",
+          "desc": "提交当前阶段的异步任务后立即返回。模型生成无本地固定超时；完成事件接续同一写作任务。",
+          "selected": false,
+          "method": "post",
+          "url": "https://tutor.example.invalid/research/api/writing/internal/runs/{{#start.run_id#}}/dispatch",
+          "authorization": {
+            "type": "no-auth",
+            "config": null
+          },
+          "headers": "Content-Type:application/json\nX-Writing-Ticket:{{#start.ticket#}}\nX-Dify-Workflow-Run-Id:{{#sys.workflow_run_id#}}",
+          "params": "",
+          "body": {
+            "type": "json",
+            "data": [
+              {
+                "id": "body",
+                "key": "",
+                "type": "text",
+                "value": "{\"stage\": \"alignment\"}"
+              }
+            ]
+          },
+          "timeout": {
+            "connect": 20,
+            "read": 60,
+            "write": 20
+          },
+          "ssl_verify": true
+        },
+        "position": {
+          "x": 720,
+          "y": 320
+        },
+        "positionAbsolute": {
+          "x": 720,
+          "y": 320
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "accepted_alignment",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "核对阶段受理回执",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n\ncheck_http = main\ndef main(status_code: int, body: str, run_id: str, stage: str) -> dict:\n    receipt = check_http(status_code, body)\n    value = json.loads(receipt[\"receipt\"])\n    if value.get(\"accepted\") is not True:\n        raise ValueError(\"写作阶段未被接受，保留当前任务等待核对\")\n    if value.get(\"run_id\", run_id) != run_id:\n        raise ValueError(\"写作回执不属于当前任务\")\n    if value.get(\"stage\", stage) != stage and value.get(\"status\") != \"already_advanced\":\n        raise ValueError(\"写作回执阶段不一致\")\n    return receipt\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "alignment",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "alignment",
+                "body"
+              ]
+            },
+            {
+              "variable": "run_id",
+              "value_selector": [
+                "start",
+                "run_id"
+              ]
+            },
+            {
+              "variable": "stage",
+              "value_selector": [
+                "start",
+                "stage"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1040,
+          "y": 320
+        },
+        "positionAbsolute": {
+          "x": 1040,
+          "y": 320
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end_alignment",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "阶段任务已接入",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "receipt_alignment",
+              "value_selector": [
+                "accepted_alignment",
+                "receipt"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1360,
+          "y": 320
+        },
+        "positionAbsolute": {
+          "x": 1360,
+          "y": 320
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "narrow",
+        "type": "custom",
+        "data": {
+          "type": "http-request",
+          "title": "Agent 2：方法与展示性结果",
+          "desc": "提交当前阶段的异步任务后立即返回。模型生成无本地固定超时；完成事件接续同一写作任务。",
+          "selected": false,
+          "method": "post",
+          "url": "https://tutor.example.invalid/research/api/writing/internal/runs/{{#start.run_id#}}/dispatch",
+          "authorization": {
+            "type": "no-auth",
+            "config": null
+          },
+          "headers": "Content-Type:application/json\nX-Writing-Ticket:{{#start.ticket#}}\nX-Dify-Workflow-Run-Id:{{#sys.workflow_run_id#}}",
+          "params": "",
+          "body": {
+            "type": "json",
+            "data": [
+              {
+                "id": "body",
+                "key": "",
+                "type": "text",
+                "value": "{\"stage\": \"narrow\"}"
+              }
+            ]
+          },
+          "timeout": {
+            "connect": 20,
+            "read": 60,
+            "write": 20
+          },
+          "ssl_verify": true
+        },
+        "position": {
+          "x": 720,
+          "y": 480
+        },
+        "positionAbsolute": {
+          "x": 720,
+          "y": 480
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "accepted_narrow",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "核对阶段受理回执",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n\ncheck_http = main\ndef main(status_code: int, body: str, run_id: str, stage: str) -> dict:\n    receipt = check_http(status_code, body)\n    value = json.loads(receipt[\"receipt\"])\n    if value.get(\"accepted\") is not True:\n        raise ValueError(\"写作阶段未被接受，保留当前任务等待核对\")\n    if value.get(\"run_id\", run_id) != run_id:\n        raise ValueError(\"写作回执不属于当前任务\")\n    if value.get(\"stage\", stage) != stage and value.get(\"status\") != \"already_advanced\":\n        raise ValueError(\"写作回执阶段不一致\")\n    return receipt\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "narrow",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "narrow",
+                "body"
+              ]
+            },
+            {
+              "variable": "run_id",
+              "value_selector": [
+                "start",
+                "run_id"
+              ]
+            },
+            {
+              "variable": "stage",
+              "value_selector": [
+                "start",
+                "stage"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1040,
+          "y": 480
+        },
+        "positionAbsolute": {
+          "x": 1040,
+          "y": 480
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end_narrow",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "阶段任务已接入",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "receipt_narrow",
+              "value_selector": [
+                "accepted_narrow",
+                "receipt"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1360,
+          "y": 480
+        },
+        "positionAbsolute": {
+          "x": 1360,
+          "y": 480
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "wide",
+        "type": "custom",
+        "data": {
+          "type": "http-request",
+          "title": "Agent 3：引言、摘要、标题与结论",
+          "desc": "提交当前阶段的异步任务后立即返回。模型生成无本地固定超时；完成事件接续同一写作任务。",
+          "selected": false,
+          "method": "post",
+          "url": "https://tutor.example.invalid/research/api/writing/internal/runs/{{#start.run_id#}}/dispatch",
+          "authorization": {
+            "type": "no-auth",
+            "config": null
+          },
+          "headers": "Content-Type:application/json\nX-Writing-Ticket:{{#start.ticket#}}\nX-Dify-Workflow-Run-Id:{{#sys.workflow_run_id#}}",
+          "params": "",
+          "body": {
+            "type": "json",
+            "data": [
+              {
+                "id": "body",
+                "key": "",
+                "type": "text",
+                "value": "{\"stage\": \"wide\"}"
+              }
+            ]
+          },
+          "timeout": {
+            "connect": 20,
+            "read": 60,
+            "write": 20
+          },
+          "ssl_verify": true
+        },
+        "position": {
+          "x": 720,
+          "y": 640
+        },
+        "positionAbsolute": {
+          "x": 720,
+          "y": 640
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "accepted_wide",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "核对阶段受理回执",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n\ncheck_http = main\ndef main(status_code: int, body: str, run_id: str, stage: str) -> dict:\n    receipt = check_http(status_code, body)\n    value = json.loads(receipt[\"receipt\"])\n    if value.get(\"accepted\") is not True:\n        raise ValueError(\"写作阶段未被接受，保留当前任务等待核对\")\n    if value.get(\"run_id\", run_id) != run_id:\n        raise ValueError(\"写作回执不属于当前任务\")\n    if value.get(\"stage\", stage) != stage and value.get(\"status\") != \"already_advanced\":\n        raise ValueError(\"写作回执阶段不一致\")\n    return receipt\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "wide",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "wide",
+                "body"
+              ]
+            },
+            {
+              "variable": "run_id",
+              "value_selector": [
+                "start",
+                "run_id"
+              ]
+            },
+            {
+              "variable": "stage",
+              "value_selector": [
+                "start",
+                "stage"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1040,
+          "y": 640
+        },
+        "positionAbsolute": {
+          "x": 1040,
+          "y": 640
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end_wide",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "阶段任务已接入",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "receipt_wide",
+              "value_selector": [
+                "accepted_wide",
+                "receipt"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1360,
+          "y": 640
+        },
+        "positionAbsolute": {
+          "x": 1360,
+          "y": 640
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "review",
+        "type": "custom",
+        "data": {
+          "type": "http-request",
+          "title": "Agent 4：期刊语感与审稿红蓝对抗",
+          "desc": "提交当前阶段的异步任务后立即返回。模型生成无本地固定超时；完成事件接续同一写作任务。",
+          "selected": false,
+          "method": "post",
+          "url": "https://tutor.example.invalid/research/api/writing/internal/runs/{{#start.run_id#}}/dispatch",
+          "authorization": {
+            "type": "no-auth",
+            "config": null
+          },
+          "headers": "Content-Type:application/json\nX-Writing-Ticket:{{#start.ticket#}}\nX-Dify-Workflow-Run-Id:{{#sys.workflow_run_id#}}",
+          "params": "",
+          "body": {
+            "type": "json",
+            "data": [
+              {
+                "id": "body",
+                "key": "",
+                "type": "text",
+                "value": "{\"stage\": \"review\"}"
+              }
+            ]
+          },
+          "timeout": {
+            "connect": 20,
+            "read": 60,
+            "write": 20
+          },
+          "ssl_verify": true
+        },
+        "position": {
+          "x": 720,
+          "y": 800
+        },
+        "positionAbsolute": {
+          "x": 720,
+          "y": 800
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "accepted_review",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "核对阶段受理回执",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n\ncheck_http = main\ndef main(status_code: int, body: str, run_id: str, stage: str) -> dict:\n    receipt = check_http(status_code, body)\n    value = json.loads(receipt[\"receipt\"])\n    if value.get(\"accepted\") is not True:\n        raise ValueError(\"写作阶段未被接受，保留当前任务等待核对\")\n    if value.get(\"run_id\", run_id) != run_id:\n        raise ValueError(\"写作回执不属于当前任务\")\n    if value.get(\"stage\", stage) != stage and value.get(\"status\") != \"already_advanced\":\n        raise ValueError(\"写作回执阶段不一致\")\n    return receipt\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "review",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "review",
+                "body"
+              ]
+            },
+            {
+              "variable": "run_id",
+              "value_selector": [
+                "start",
+                "run_id"
+              ]
+            },
+            {
+              "variable": "stage",
+              "value_selector": [
+                "start",
+                "stage"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1040,
+          "y": 800
+        },
+        "positionAbsolute": {
+          "x": 1040,
+          "y": 800
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end_review",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "阶段任务已接入",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "receipt_review",
+              "value_selector": [
+                "accepted_review",
+                "receipt"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1360,
+          "y": 800
+        },
+        "positionAbsolute": {
+          "x": 1360,
+          "y": 800
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "deliver",
+        "type": "custom",
+        "data": {
+          "type": "http-request",
+          "title": "保存当前写作成果",
+          "desc": "提交当前阶段的异步任务后立即返回。模型生成无本地固定超时；完成事件接续同一写作任务。",
+          "selected": false,
+          "method": "post",
+          "url": "https://tutor.example.invalid/research/api/writing/internal/runs/{{#start.run_id#}}/dispatch",
+          "authorization": {
+            "type": "no-auth",
+            "config": null
+          },
+          "headers": "Content-Type:application/json\nX-Writing-Ticket:{{#start.ticket#}}\nX-Dify-Workflow-Run-Id:{{#sys.workflow_run_id#}}",
+          "params": "",
+          "body": {
+            "type": "json",
+            "data": [
+              {
+                "id": "body",
+                "key": "",
+                "type": "text",
+                "value": "{\"stage\": \"deliver\"}"
+              }
+            ]
+          },
+          "timeout": {
+            "connect": 20,
+            "read": 60,
+            "write": 20
+          },
+          "ssl_verify": true
+        },
+        "position": {
+          "x": 720,
+          "y": 960
+        },
+        "positionAbsolute": {
+          "x": 720,
+          "y": 960
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "accepted_deliver",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "核对阶段受理回执",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef main(status_code: int, body: str) -> dict:\n    try: value = json.loads(body)\n    except (ValueError, TypeError): value = None\n    if not 200 <= status_code < 300:\n        detail = value.get(\"detail\", \"请求未被接受\") if isinstance(value, dict) else \"响应不是有效JSON\"\n        raise ValueError(\"HTTP \" + str(status_code) + \": \" + str(detail)[:600])\n    if not isinstance(value, dict): raise ValueError(\"接口缺少结构化回执\")\n    return {\"receipt\": json.dumps(value, ensure_ascii=False)}\n\ncheck_http = main\ndef main(status_code: int, body: str, run_id: str, stage: str) -> dict:\n    receipt = check_http(status_code, body)\n    value = json.loads(receipt[\"receipt\"])\n    if value.get(\"accepted\") is not True:\n        raise ValueError(\"写作阶段未被接受，保留当前任务等待核对\")\n    if value.get(\"run_id\", run_id) != run_id:\n        raise ValueError(\"写作回执不属于当前任务\")\n    if value.get(\"stage\", stage) != stage and value.get(\"status\") != \"already_advanced\":\n        raise ValueError(\"写作回执阶段不一致\")\n    return receipt\n",
+          "variables": [
+            {
+              "variable": "status_code",
+              "value_selector": [
+                "deliver",
+                "status_code"
+              ]
+            },
+            {
+              "variable": "body",
+              "value_selector": [
+                "deliver",
+                "body"
+              ]
+            },
+            {
+              "variable": "run_id",
+              "value_selector": [
+                "start",
+                "run_id"
+              ]
+            },
+            {
+              "variable": "stage",
+              "value_selector": [
+                "start",
+                "stage"
+              ]
+            }
+          ],
+          "outputs": {
+            "receipt": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 1040,
+          "y": 960
+        },
+        "positionAbsolute": {
+          "x": 1040,
+          "y": 960
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "end_deliver",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "阶段任务已接入",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "receipt_deliver",
+              "value_selector": [
+                "accepted_deliver",
+                "receipt"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1360,
+          "y": 960
+        },
+        "positionAbsolute": {
+          "x": 1360,
+          "y": 960
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "invalid",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "拒绝未知阶段",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "def main(stage: str) -> dict:\n    raise ValueError(\"未知写作阶段：\" + stage)\n",
+          "variables": [
+            {
+              "variable": "stage",
+              "value_selector": [
+                "start",
+                "stage"
+              ]
+            }
+          ],
+          "outputs": {
+            "error": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 720,
+          "y": 1180
+        },
+        "positionAbsolute": {
+          "x": 720,
+          "y": 1180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "invalid_end",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "阶段未被接受",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "error",
+              "value_selector": [
+                "invalid",
+                "error"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1040,
+          "y": 1180
+        },
+        "positionAbsolute": {
+          "x": 1040,
+          "y": 1180
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 260,
+        "height": 102
+      },
+      {
+        "id": "roles",
+        "type": "custom-note",
+        "position": {
+          "x": 30,
+          "y": -190
+        },
+        "width": 540,
+        "height": 140,
+        "data": {
+          "type": "",
+          "title": "职责说明",
+          "desc": "",
+          "selected": false,
+          "width": 540,
+          "height": 140,
+          "text": "{\"root\": {\"children\": [{\"children\": [{\"detail\": 0, \"format\": 1, \"mode\": \"normal\", \"style\": \"font-size: 16px;\", \"text\": \"PDF 原方案\", \"type\": \"text\", \"version\": 1}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"paragraph\", \"version\": 1, \"textFormat\": 0, \"textStyle\": \"\"}, {\"children\": [{\"detail\": 0, \"format\": 0, \"mode\": \"normal\", \"style\": \"font-size: 16px;\", \"text\": \"外部标杆解构与期刊基因；内部资产主题对齐、窄口证据、宽口写作、期刊语感与审稿对抗。\", \"type\": \"text\", \"version\": 1}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"paragraph\", \"version\": 1, \"textFormat\": 0, \"textStyle\": \"\"}], \"direction\": null, \"format\": \"\", \"indent\": 0, \"type\": \"root\", \"version\": 1}}",
+          "theme": "blue",
+          "author": "",
+          "showAuthor": false
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "start-source-stage_route",
+        "type": "custom",
+        "source": "start",
+        "sourceHandle": "source",
+        "target": "stage_route",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "start",
+          "targetType": "if-else",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "stage_route-intent-intent",
+        "type": "custom",
+        "source": "stage_route",
+        "sourceHandle": "intent",
+        "target": "intent",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "intent-source-accepted_intent",
+        "type": "custom",
+        "source": "intent",
+        "sourceHandle": "source",
+        "target": "accepted_intent",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "accepted_intent-source-end_intent",
+        "type": "custom",
+        "source": "accepted_intent",
+        "sourceHandle": "source",
+        "target": "end_intent",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "stage_route-exemplar-exemplar",
+        "type": "custom",
+        "source": "stage_route",
+        "sourceHandle": "exemplar",
+        "target": "exemplar",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "exemplar-source-accepted_exemplar",
+        "type": "custom",
+        "source": "exemplar",
+        "sourceHandle": "source",
+        "target": "accepted_exemplar",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "accepted_exemplar-source-end_exemplar",
+        "type": "custom",
+        "source": "accepted_exemplar",
+        "sourceHandle": "source",
+        "target": "end_exemplar",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "stage_route-alignment-alignment",
+        "type": "custom",
+        "source": "stage_route",
+        "sourceHandle": "alignment",
+        "target": "alignment",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "alignment-source-accepted_alignment",
+        "type": "custom",
+        "source": "alignment",
+        "sourceHandle": "source",
+        "target": "accepted_alignment",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "accepted_alignment-source-end_alignment",
+        "type": "custom",
+        "source": "accepted_alignment",
+        "sourceHandle": "source",
+        "target": "end_alignment",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "stage_route-narrow-narrow",
+        "type": "custom",
+        "source": "stage_route",
+        "sourceHandle": "narrow",
+        "target": "narrow",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "narrow-source-accepted_narrow",
+        "type": "custom",
+        "source": "narrow",
+        "sourceHandle": "source",
+        "target": "accepted_narrow",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "accepted_narrow-source-end_narrow",
+        "type": "custom",
+        "source": "accepted_narrow",
+        "sourceHandle": "source",
+        "target": "end_narrow",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "stage_route-wide-wide",
+        "type": "custom",
+        "source": "stage_route",
+        "sourceHandle": "wide",
+        "target": "wide",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "wide-source-accepted_wide",
+        "type": "custom",
+        "source": "wide",
+        "sourceHandle": "source",
+        "target": "accepted_wide",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "accepted_wide-source-end_wide",
+        "type": "custom",
+        "source": "accepted_wide",
+        "sourceHandle": "source",
+        "target": "end_wide",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "stage_route-review-review",
+        "type": "custom",
+        "source": "stage_route",
+        "sourceHandle": "review",
+        "target": "review",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "review-source-accepted_review",
+        "type": "custom",
+        "source": "review",
+        "sourceHandle": "source",
+        "target": "accepted_review",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "accepted_review-source-end_review",
+        "type": "custom",
+        "source": "accepted_review",
+        "sourceHandle": "source",
+        "target": "end_review",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "stage_route-deliver-deliver",
+        "type": "custom",
+        "source": "stage_route",
+        "sourceHandle": "deliver",
+        "target": "deliver",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "http-request",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "deliver-source-accepted_deliver",
+        "type": "custom",
+        "source": "deliver",
+        "sourceHandle": "source",
+        "target": "accepted_deliver",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "http-request",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "accepted_deliver-source-end_deliver",
+        "type": "custom",
+        "source": "accepted_deliver",
+        "sourceHandle": "source",
+        "target": "end_deliver",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "stage_route-false-invalid",
+        "type": "custom",
+        "source": "stage_route",
+        "sourceHandle": "false",
+        "target": "invalid",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "code",
+          "isInIteration": false
+        }
+      },
+      {
+        "id": "invalid-source-invalid_end",
+        "type": "custom",
+        "source": "invalid",
+        "sourceHandle": "source",
+        "target": "invalid_end",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "end",
+          "isInIteration": false
+        }
+      }
+    ],
+    "viewport": {
+      "x": 10,
+      "y": 90,
+      "zoom": 0.6
+    }
+  },
+  "features": {
+    "file_upload": {
+      "enabled": false
+    },
+    "retriever_resource": {
+      "enabled": false
+    },
+    "sensitive_word_avoidance": {
+      "enabled": false
+    },
+    "speech_to_text": {
+      "enabled": false
+    },
+    "text_to_speech": {
+      "enabled": false,
+      "voice": "",
+      "language": ""
+    },
+    "suggested_questions": [],
+    "suggested_questions_after_answer": {
+      "enabled": false
+    },
+    "opening_statement": ""
+  },
+  "environment_variables": [],
+  "conversation_variables": []
+}

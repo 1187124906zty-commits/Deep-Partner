@@ -1,0 +1,715 @@
+{
+  "source": "draft-only",
+  "name": "DeepTutor 扩展 · 多来源联合检索",
+  "app_id": "643e80d5-4c8e-4449-a692-816f8fea221d",
+  "graph": {
+    "nodes": [
+      {
+        "id": "start",
+        "type": "custom",
+        "data": {
+          "type": "start",
+          "title": "当前项目检索请求",
+          "desc": "",
+          "selected": false,
+          "variables": [
+            {
+              "variable": "run_id",
+              "label": "服务器绑定的检索编号",
+              "type": "text-input",
+              "required": true,
+              "max_length": 100,
+              "options": []
+            },
+            {
+              "variable": "query",
+              "label": "当前检索问题",
+              "type": "text-input",
+              "required": true,
+              "max_length": 600,
+              "options": []
+            }
+          ]
+        },
+        "position": {
+          "x": 60,
+          "y": 260
+        },
+        "positionAbsolute": {
+          "x": 60,
+          "y": 260
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 135,
+        "zIndex": 0
+      },
+      {
+        "id": "knowledge",
+        "type": "custom",
+        "data": {
+          "type": "tool",
+          "title": "项目知识库语义检索",
+          "desc": "独立执行并返回真实来源、片段和状态；超时或失败不会冒充空结果。",
+          "selected": false,
+          "provider_id": "2e6cf6a7-a33b-4137-9cbc-1a491880fdf0",
+          "provider_type": "mcp",
+          "provider_name": "research-workbench",
+          "tool_name": "workbench_evidence_search",
+          "tool_label": "项目知识库语义检索",
+          "tool_node_version": "2",
+          "is_team_authorization": true,
+          "tool_configurations": {},
+          "tool_parameters": {
+            "run_id": {
+              "type": "mixed",
+              "value": "{{#start.run_id#}}"
+            },
+            "branch": {
+              "type": "mixed",
+              "value": "knowledge"
+            },
+            "workflow_run_id": {
+              "type": "mixed",
+              "value": "{{#sys.workflow_run_id#}}"
+            }
+          }
+        },
+        "position": {
+          "x": 400,
+          "y": 60
+        },
+        "positionAbsolute": {
+          "x": 400,
+          "y": 60
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 128,
+        "zIndex": 0
+      },
+      {
+        "id": "web",
+        "type": "custom",
+        "data": {
+          "type": "tool",
+          "title": "公开网页检索",
+          "desc": "独立执行并返回真实来源、片段和状态；超时或失败不会冒充空结果。",
+          "selected": false,
+          "provider_id": "2e6cf6a7-a33b-4137-9cbc-1a491880fdf0",
+          "provider_type": "mcp",
+          "provider_name": "research-workbench",
+          "tool_name": "workbench_evidence_search",
+          "tool_label": "公开网页检索",
+          "tool_node_version": "2",
+          "is_team_authorization": true,
+          "tool_configurations": {},
+          "tool_parameters": {
+            "run_id": {
+              "type": "mixed",
+              "value": "{{#start.run_id#}}"
+            },
+            "branch": {
+              "type": "mixed",
+              "value": "web"
+            },
+            "workflow_run_id": {
+              "type": "mixed",
+              "value": "{{#sys.workflow_run_id#}}"
+            }
+          }
+        },
+        "position": {
+          "x": 400,
+          "y": 260
+        },
+        "positionAbsolute": {
+          "x": 400,
+          "y": 260
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 128,
+        "zIndex": 0
+      },
+      {
+        "id": "papers",
+        "type": "custom",
+        "data": {
+          "type": "tool",
+          "title": "学术题录检索",
+          "desc": "独立执行并返回真实来源、片段和状态；超时或失败不会冒充空结果。",
+          "selected": false,
+          "provider_id": "2e6cf6a7-a33b-4137-9cbc-1a491880fdf0",
+          "provider_type": "mcp",
+          "provider_name": "research-workbench",
+          "tool_name": "workbench_evidence_search",
+          "tool_label": "学术题录检索",
+          "tool_node_version": "2",
+          "is_team_authorization": true,
+          "tool_configurations": {},
+          "tool_parameters": {
+            "run_id": {
+              "type": "mixed",
+              "value": "{{#start.run_id#}}"
+            },
+            "branch": {
+              "type": "mixed",
+              "value": "papers"
+            },
+            "workflow_run_id": {
+              "type": "mixed",
+              "value": "{{#sys.workflow_run_id#}}"
+            }
+          }
+        },
+        "position": {
+          "x": 400,
+          "y": 460
+        },
+        "positionAbsolute": {
+          "x": 400,
+          "y": 460
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 128,
+        "zIndex": 0
+      },
+      {
+        "id": "complete",
+        "type": "custom",
+        "data": {
+          "type": "template-transform",
+          "title": "来源已返回",
+          "desc": "",
+          "selected": false,
+          "template": "各来源状态已返回。{{ counts }}",
+          "variables": [
+            {
+              "variable": "counts",
+              "value_selector": [
+                "merge",
+                "counts"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1400,
+          "y": 90
+        },
+        "positionAbsolute": {
+          "x": 1400,
+          "y": 90
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 52,
+        "zIndex": 0
+      },
+      {
+        "id": "partial",
+        "type": "custom",
+        "data": {
+          "type": "template-transform",
+          "title": "标明缺口并保留证据",
+          "desc": "",
+          "selected": false,
+          "template": "部分来源未完成，请按缺口补查。{{ counts }}",
+          "variables": [
+            {
+              "variable": "counts",
+              "value_selector": [
+                "merge",
+                "counts"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1400,
+          "y": 430
+        },
+        "positionAbsolute": {
+          "x": 1400,
+          "y": 430
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 52,
+        "zIndex": 0
+      },
+      {
+        "id": "merge",
+        "type": "custom",
+        "data": {
+          "type": "code",
+          "title": "合并来源与覆盖状态",
+          "desc": "",
+          "selected": false,
+          "code_language": "python3",
+          "code": "import json\ndef branch(results):\n    if not isinstance(results,list) or len(results)!=1:raise ValueError(\"分支没有返回唯一结果\")\n    value=results[0]\n    for _ in range(4):\n        if isinstance(value,dict) and \"branch\" in value:return value\n        value=value.get(\"data\") if isinstance(value,dict) else None\n    raise ValueError(\"分支未返回结构化状态\")\ndef main(knowledge: list, web: list, papers: list, query: str) -> dict:\n    branches=[branch(knowledge),branch(web),branch(papers)]\n    if {b[\"branch\"] for b in branches}!={\"knowledge\",\"web\",\"papers\"}:raise ValueError(\"检索分支身份不完整\")\n    incomplete=any(b[\"status\"] in {\"failed\",\"timed_out\",\"not_configured\",\"partial\"} for b in branches)\n    value={\"query\":query,\"coverage\":[{k:b.get(k) for k in (\"branch\",\"status\",\"source\",\"count\",\"error\",\"warnings\")} for b in branches],\"partial\":incomplete}\n    counts=\"；\".join(b[\"branch\"]+\"=\"+b[\"status\"]+\"(\"+str(b.get(\"count\",0))+\")\" for b in branches)\n    return {\"evidence\":json.dumps(value,ensure_ascii=False),\"complete\":not incomplete,\"counts\":counts}\n",
+          "variables": [
+            {
+              "variable": "knowledge",
+              "value_selector": [
+                "knowledge",
+                "json"
+              ]
+            },
+            {
+              "variable": "web",
+              "value_selector": [
+                "web",
+                "json"
+              ]
+            },
+            {
+              "variable": "papers",
+              "value_selector": [
+                "papers",
+                "json"
+              ]
+            },
+            {
+              "variable": "query",
+              "value_selector": [
+                "start",
+                "query"
+              ]
+            }
+          ],
+          "outputs": {
+            "evidence": {
+              "type": "string",
+              "children": null
+            },
+            "complete": {
+              "type": "boolean",
+              "children": null
+            },
+            "counts": {
+              "type": "string",
+              "children": null
+            }
+          }
+        },
+        "position": {
+          "x": 760,
+          "y": 260
+        },
+        "positionAbsolute": {
+          "x": 760,
+          "y": 260
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 52,
+        "zIndex": 0
+      },
+      {
+        "id": "route",
+        "type": "custom",
+        "data": {
+          "type": "if-else",
+          "title": "来源是否完整返回",
+          "desc": "",
+          "selected": false,
+          "cases": [
+            {
+              "case_id": "complete",
+              "logical_operator": "and",
+              "conditions": [
+                {
+                  "id": "all-returned",
+                  "varType": "boolean",
+                  "variable_selector": [
+                    "merge",
+                    "complete"
+                  ],
+                  "comparison_operator": "is",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1080,
+          "y": 260
+        },
+        "positionAbsolute": {
+          "x": 1080,
+          "y": 260
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 148,
+        "zIndex": 0
+      },
+      {
+        "id": "end",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "返回来源及定位",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "evidence",
+              "value_selector": [
+                "merge",
+                "evidence"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1720,
+          "y": 90
+        },
+        "positionAbsolute": {
+          "x": 1720,
+          "y": 90
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 88,
+        "zIndex": 0
+      },
+      {
+        "id": "end_partial",
+        "type": "custom",
+        "data": {
+          "type": "end",
+          "title": "返回部分证据与缺口",
+          "desc": "",
+          "selected": false,
+          "outputs": [
+            {
+              "variable": "partial_evidence",
+              "value_selector": [
+                "merge",
+                "evidence"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "x": 1720,
+          "y": 430
+        },
+        "positionAbsolute": {
+          "x": 1720,
+          "y": 430
+        },
+        "sourcePosition": "right",
+        "targetPosition": "left",
+        "width": 242,
+        "height": 88,
+        "zIndex": 0
+      },
+      {
+        "id": "scope",
+        "type": "custom-note",
+        "position": {
+          "x": 60,
+          "y": -170
+        },
+        "width": 540,
+        "height": 140,
+        "data": {
+          "type": "",
+          "title": "职责说明",
+          "desc": "",
+          "selected": false,
+          "width": 540,
+          "height": 140,
+          "text": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":1,\"mode\":\"normal\",\"style\":\"font-size: 16px;\",\"text\":\"联合取证\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":1,\"textStyle\":\"font-size: 16px;\"},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"font-size: 16px;\",\"text\":\"三路独立并行：项目 RAG、公开网页、学术题录。保留缺失与失败来源，再由 Tutor 定向补查。\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"font-size: 16px;\"}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+          "theme": "blue",
+          "author": "",
+          "showAuthor": false
+        },
+        "zIndex": 0,
+        "positionAbsolute": {
+          "x": 60,
+          "y": -170
+        }
+      },
+      {
+        "id": "limits",
+        "type": "custom-note",
+        "position": {
+          "x": 690,
+          "y": -170
+        },
+        "width": 540,
+        "height": 140,
+        "data": {
+          "type": "",
+          "title": "职责说明",
+          "desc": "",
+          "selected": false,
+          "width": 540,
+          "height": 140,
+          "text": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":1,\"mode\":\"normal\",\"style\":\"font-size: 16px;\",\"text\":\"证据范围\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":1,\"textStyle\":\"font-size: 16px;\"},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"font-size: 16px;\",\"text\":\"题录与搜索摘要不等于论文全文。片段保留来源和定位，研究结论由原会话根据原始证据判断。\",\"type\":\"text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"font-size: 16px;\"}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+          "theme": "yellow",
+          "author": "",
+          "showAuthor": false
+        },
+        "zIndex": 0,
+        "positionAbsolute": {
+          "x": 690,
+          "y": -170
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "start-source-knowledge",
+        "type": "custom",
+        "source": "start",
+        "sourceHandle": "source",
+        "target": "knowledge",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "start",
+          "targetType": "tool",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "start-source-web",
+        "type": "custom",
+        "source": "start",
+        "sourceHandle": "source",
+        "target": "web",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "start",
+          "targetType": "tool",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "start-source-papers",
+        "type": "custom",
+        "source": "start",
+        "sourceHandle": "source",
+        "target": "papers",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "start",
+          "targetType": "tool",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "knowledge-source-merge",
+        "type": "custom",
+        "source": "knowledge",
+        "sourceHandle": "source",
+        "target": "merge",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "tool",
+          "targetType": "code",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "web-source-merge",
+        "type": "custom",
+        "source": "web",
+        "sourceHandle": "source",
+        "target": "merge",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "tool",
+          "targetType": "code",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "papers-source-merge",
+        "type": "custom",
+        "source": "papers",
+        "sourceHandle": "source",
+        "target": "merge",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "tool",
+          "targetType": "code",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "merge-source-route",
+        "type": "custom",
+        "source": "merge",
+        "sourceHandle": "source",
+        "target": "route",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "code",
+          "targetType": "if-else",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "route-complete-complete",
+        "type": "custom",
+        "source": "route",
+        "sourceHandle": "complete",
+        "target": "complete",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "template-transform",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "route-false-partial",
+        "type": "custom",
+        "source": "route",
+        "sourceHandle": "false",
+        "target": "partial",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "if-else",
+          "targetType": "template-transform",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "complete-source-end",
+        "type": "custom",
+        "source": "complete",
+        "sourceHandle": "source",
+        "target": "end",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "template-transform",
+          "targetType": "end",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      },
+      {
+        "id": "partial-source-end_partial",
+        "type": "custom",
+        "source": "partial",
+        "sourceHandle": "source",
+        "target": "end_partial",
+        "targetHandle": "target",
+        "data": {
+          "sourceType": "template-transform",
+          "targetType": "end",
+          "isInIteration": false,
+          "isInLoop": false
+        },
+        "zIndex": 0
+      }
+    ],
+    "viewport": {
+      "x": 15,
+      "y": 100,
+      "zoom": 0.62
+    }
+  },
+  "features": {
+    "opening_statement": "",
+    "suggested_questions": [],
+    "suggested_questions_after_answer": {
+      "enabled": false
+    },
+    "text_to_speech": {
+      "enabled": false,
+      "voice": "",
+      "language": ""
+    },
+    "speech_to_text": {
+      "enabled": false
+    },
+    "retriever_resource": {
+      "enabled": false
+    },
+    "sensitive_word_avoidance": {
+      "enabled": false
+    },
+    "file_upload": {
+      "image": {
+        "enabled": false,
+        "number_limits": 3,
+        "transfer_methods": [
+          "local_file",
+          "remote_url"
+        ]
+      },
+      "enabled": false,
+      "allowed_file_types": [
+        "image"
+      ],
+      "allowed_file_extensions": [
+        ".JPG",
+        ".JPEG",
+        ".PNG",
+        ".GIF",
+        ".WEBP",
+        ".SVG"
+      ],
+      "allowed_file_upload_methods": [
+        "local_file",
+        "remote_url"
+      ],
+      "number_limits": 3,
+      "fileUploadConfig": {
+        "file_size_limit": 15,
+        "knowledge_file_size_limit": 15,
+        "batch_count_limit": 5,
+        "file_upload_limit": 20,
+        "image_file_size_limit": 10,
+        "video_file_size_limit": 100,
+        "audio_file_size_limit": 50,
+        "skill_file_size_limit": 50,
+        "workflow_file_upload_limit": 10,
+        "image_file_batch_limit": 10,
+        "single_chunk_attachment_limit": 10,
+        "attachment_image_file_size_limit": 2
+      }
+    }
+  },
+  "environment_variables": [],
+  "conversation_variables": []
+}
